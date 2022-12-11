@@ -3,7 +3,6 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { IBlogPostFields } from '../src/@types/contentful';
 import ContentService from '../src/services/content';
-import styles from '../styles/Home.module.css';
 import safeStringify from 'fast-safe-stringify';
 import styled from 'styled-components';
 
