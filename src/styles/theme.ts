@@ -24,7 +24,7 @@ const colors = {
   },
   gray: {
     solid: '#a3a3a3',
-    transparency: 'rgba(255, 255, 255, 0.2)',
+    transparency: 'rgba(163, 163, 163, 0.3)',
   },
 };
 
