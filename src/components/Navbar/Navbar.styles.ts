@@ -90,6 +90,7 @@ export const NavItem = styled.div<{ active?: boolean }>`
     border-bottom: 3px solid transparent;
     transition: 0.2s ease;
     min-width: 89px;
+    min-height: 36px;
     border: none;
     background-color: transparent;
 
