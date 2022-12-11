@@ -60,6 +60,9 @@ export const SidebarMenu = styled.div`
       color: ${({ theme }) => theme.colors.gray.solid};
     }
   }
+  svg {
+    font-size: 2rem;
+  }
 
   @media screen and (max-width: 480px) {
     grid-template-rows: repeat(4, 80px);

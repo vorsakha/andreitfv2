@@ -98,6 +98,9 @@ export const NavItem = styled.div<{ active?: boolean }>`
       border-radius: 6px;
     }
   }
+  svg {
+    font-size: 1.5rem;
+  }
 `;
 
 export const NavLink = styled(Link)``;

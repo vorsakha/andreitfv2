@@ -1,5 +1,7 @@
 import React from 'react';
 import { FaBars } from '@react-icons/all-files/fa/FaBars';
+import { HiOutlineSun as SunIcon } from '@react-icons/all-files/hi/HiOutlineSun';
+import { HiOutlineMoon as MoonIcon } from '@react-icons/all-files/hi/HiOutlineMoon';
 
 import {
   Nav,
@@ -45,7 +47,9 @@ const Navbar: React.FC<NavbarTypes> = ({
             <NavLink href="/blog">Blog</NavLink>
           </NavItem>
           <NavItem>
-            <button onClick={toggleTheme}>{selectedTheme}</button>
+            <button onClick={toggleTheme}>
+              {selectedTheme === THEMES.DARK ? <SunIcon /> : <MoonIcon />}
+            </button>
           </NavItem>
         </NavMenu>
       </NavbarContainer>
