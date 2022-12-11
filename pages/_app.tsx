@@ -5,7 +5,7 @@ import { GlobalStyles, theme, THEMES } from '../src/styles/theme';
 import Navbar from '../src/components/Navbar';
 import Sidebar from '../src/components/Sidebar';
 import Footer from '../src/components/Footer';
-import { Container } from '../src/components/Container';
+import { Container } from '../src/components/ui/Container';
 
 export default function App({ Component, pageProps }: AppProps) {
   const [selectedTheme, setSelectedTheme] = useState<THEMES>(THEMES.DARK);
