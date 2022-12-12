@@ -24,7 +24,7 @@ const colors = {
   },
   gray: {
     solid: '#a3a3a3',
-    transparency: 'rgba(163, 163, 163, 0.3)',
+    transparency: 'rgba(163, 163, 163, 0.2)',
   },
 };
 
@@ -45,7 +45,7 @@ export const theme = {
 
 export const GlobalStyles = createGlobalStyle`
     @import
-    url('https://fonts.googleapis.com/css2?family=Inter&family=Nunito&display=swap');
+    url('https://fonts.googleapis.com/css2?family=Inter&family=Fira+Code&display=swap');
     
     * {
         box-sizing: border-box;

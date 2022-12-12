@@ -2,7 +2,9 @@ import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
 import { IBlogPostFields } from '../../src/@types/contentful';
 import ContentService from '../../src/services/content';
-import ReactMarkdown from 'react-markdown';
+import { Main } from '../../src/components/ui/Container';
+import ScrollButton from '../../src/components/ui/ScrollButton';
+import Post from '../../src/components/Post';
 
 interface PostsProps {
   post: IBlogPostFields;
@@ -16,14 +18,10 @@ const Posts: NextPage<PostsProps> = ({ post }) => {
         <meta name="description" content={post.description} />
       </Head>
 
-      <main>
-        <h1>{post.title}</h1>
-        <p>{post.description}</p>
-        <time dateTime={post.publishDate}>Published on {post.publishDate}</time>
-        <div>
-          <ReactMarkdown>{post.body}</ReactMarkdown>
-        </div>
-      </main>
+      <Main>
+        <ScrollButton />
+        <Post post={post} />
+      </Main>
     </div>
   );
 };
