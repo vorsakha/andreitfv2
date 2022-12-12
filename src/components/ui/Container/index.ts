@@ -7,6 +7,7 @@ export const Container = styled.div`
 
 export const Main = styled.main`
   display: flex;
+  flex-direction: column;
   max-width: 1100px;
   justify-content: center;
   margin: 0 auto;

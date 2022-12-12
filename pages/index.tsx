@@ -1,10 +1,15 @@
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
 import { IBlogPostFields } from '../src/@types/contentful';
 import ContentService from '../src/services/content';
 import safeStringify from 'fast-safe-stringify';
 import styled from 'styled-components';
+
+import { MdEmail } from '@react-icons/all-files/md/MdEmail';
+import { FaGithub } from '@react-icons/all-files/fa/FaGithub';
+import { FaLinkedinIn } from '@react-icons/all-files/fa/FaLinkedinIn';
+import Banner from '../src/components/Banner';
+import { Main } from '../src/components/ui/Container';
 
 interface HomeProps {
   posts: IBlogPostFields[];
@@ -13,6 +18,24 @@ interface HomeProps {
 const Container = styled.div`
   background-color: ${({ theme }) => theme.background};
 `;
+
+const socials = [
+  {
+    name: 'Github',
+    icon: <FaGithub />,
+    href: 'https://github.com/vorsakha',
+  },
+  {
+    name: 'Linkedin',
+    icon: <FaLinkedinIn />,
+    href: 'https://www.linkedin.com/in/andreitf/',
+  },
+  {
+    name: 'Email',
+    icon: <MdEmail />,
+    href: 'mailto:andreitf.dev@gmail.com',
+  },
+];
 
 export default function Home({ posts }: HomeProps) {
   return (
@@ -23,7 +46,8 @@ export default function Home({ posts }: HomeProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
+      <Main>
+        <Banner socials={socials} />
         <div>
           {posts.map(post => (
             <a key={post.slug} href={`/blog/${post.slug}`}>
@@ -32,20 +56,7 @@ export default function Home({ posts }: HomeProps) {
             </a>
           ))}
         </div>
-      </main>
-
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+      </Main>
     </Container>
   );
 }
@@ -53,7 +64,9 @@ export default function Home({ posts }: HomeProps) {
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   const articles = (
     await ContentService.instance.getEntriesByType<IBlogPostFields>('blogPost')
-  ).map(entry => entry.fields);
+  )
+    .map(entry => entry.fields)
+    .slice(0, 3);
   const stringifiedData = safeStringify(articles);
   const posts = JSON.parse(stringifiedData);
 
