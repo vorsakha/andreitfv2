@@ -4,13 +4,16 @@ import { IBlogPostFields } from '../src/@types/contentful';
 import ContentService from '../src/services/content';
 import safeStringify from 'fast-safe-stringify';
 import styled from 'styled-components';
+import useSWR from 'swr';
 
 import { MdEmail } from '@react-icons/all-files/md/MdEmail';
 import { FaGithub } from '@react-icons/all-files/fa/FaGithub';
 import { FaLinkedinIn } from '@react-icons/all-files/fa/FaLinkedinIn';
+
 import Banner from '../src/components/Banner';
 import { Main } from '../src/components/ui/Container';
 import Featured from '../src/components/Featured';
+import CurrentlyPlaying from '../src/components/CurrentlyPlaying';
 
 interface HomeProps {
   posts: IBlogPostFields[];
@@ -39,6 +42,9 @@ const socials = [
 ];
 
 export default function Home({ posts }: HomeProps) {
+  const fetcher = (url: string) => fetch(url).then(r => r.json());
+  const { data: song } = useSWR('/api/spotify/current', fetcher);
+
   return (
     <Container>
       <Head>
@@ -50,6 +56,7 @@ export default function Home({ posts }: HomeProps) {
       <Main>
         <Banner socials={socials} />
         <Featured posts={posts} />
+        <CurrentlyPlaying song={song} />
       </Main>
     </Container>
   );
