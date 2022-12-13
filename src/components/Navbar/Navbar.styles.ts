@@ -18,15 +18,7 @@ export const NavbarContainer = styled.div`
   z-index: 1;
   width: 100%;
   max-width: 1100px;
-  margin: 0 24px;
-
-  @media screen and (max-width: 768px) {
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-  @media screen and (max-width: 480px) {
-    padding-left: 24px;
-  }
+  padding: 0 24px;
 `;
 export const NavLogo = styled(Link)`
   font-size: 35px;
@@ -97,6 +89,8 @@ export const NavItem = styled.div<{ active?: boolean }>`
     :hover {
       background-color: ${({ theme }) => theme.colors.gray.transparency};
       border-radius: 6px;
+      color: ${({ theme }) => theme.text};
+      text-shadow: none;
     }
   }
   svg {

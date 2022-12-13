@@ -31,9 +31,8 @@ export const PostHero = styled.div`
 export const ArchiveWrapper = styled.div`
   max-width: 1100px;
   margin: 0 auto;
-  padding: 24px 24px 0 24px;
 `;
-export const ArchiveTitle = styled.h2`
+export const ArchiveTitle = styled.div`
   font-size: 1.4rem;
   color: ${({ theme }) => theme.text};
   display: flex;

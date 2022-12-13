@@ -2,8 +2,7 @@ import Image from 'next/image';
 import React, { FC } from 'react';
 import { IBlogPostFields } from '../../@types/contentful';
 import formatDate from '../../utils/formatData';
-import { Dot } from '../ui/Dot';
-import { Title } from '../ui/Title';
+import { AltTitle } from '../ui/Title';
 import {
   ArchiveContainer,
   ArchiveList,
@@ -26,8 +25,7 @@ const Posts: FC<PostsProps> = ({ posts }) => (
   <ArchiveContainer>
     <ArchiveWrapper>
       <ArchiveTitle>
-        <Dot />
-        <Title>Archive</Title>
+        <AltTitle>Archive</AltTitle>
       </ArchiveTitle>
       <ArchiveList>
         {posts?.map((item, key) => {

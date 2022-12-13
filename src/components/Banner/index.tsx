@@ -13,7 +13,7 @@ const Banner: FC<SocialsProps> = ({ socials }) => {
   return (
     <BannerContainer>
       <h1>Andrei T. Ferreira</h1>
-      <p>Dev / Learner </p>
+      <p>Dev / Learner / Problem Solver </p>
       <Socials>
         {socials.map((data, key) => {
           return (

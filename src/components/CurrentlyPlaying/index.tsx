@@ -13,12 +13,15 @@ import {
   CurrentlyPlayingWrapper,
 } from './CurrentlyPlaying.styles';
 import { AltTitle } from '../ui/Title';
+import { useTheme } from 'styled-components';
 
 interface CurrentlyPlayingProps {
   song: SongResponse;
 }
 
 const CurrentlyPlaying: FC<CurrentlyPlayingProps> = ({ song }) => {
+  const theme = useTheme();
+
   return (
     <CurrentlyPlayingContainer>
       <AltTitle>Now Playing</AltTitle>
@@ -40,7 +43,7 @@ const CurrentlyPlaying: FC<CurrentlyPlayingProps> = ({ song }) => {
               height={64}
             />
           ) : (
-            <SiSpotify size={64} color={'#1ED760'} />
+            <SiSpotify size={64} color={theme.colors.red.solid} />
           )}
         </CurrentlyPlayingImageWrapper>
 
@@ -53,7 +56,7 @@ const CurrentlyPlaying: FC<CurrentlyPlayingProps> = ({ song }) => {
           </CurrentlyPlayingArtist>
           {song?.isPlaying && (
             <CurrentlyPlayingIcon>
-              <SiSpotify size={20} color={'#1ED760'} />
+              <SiSpotify size={20} color={theme.colors.red.solid} />
             </CurrentlyPlayingIcon>
           )}
         </CurrentlyPlayingContentWrapper>

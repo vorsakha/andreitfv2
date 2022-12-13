@@ -18,17 +18,13 @@ export const BannerContainer = styled.div`
   p {
     color: ${({ theme }) => theme.colors.gray.solid};
     text-align: start;
-    padding: 12px 1rem;
+    padding: 12px 0;
     font-size: 1rem;
     font-weight: 300;
-
-    @media screen and (max-width: 768px) {
-      text-align: center;
-    }
   }
   h1 {
     color: ${({ theme }) => theme.colors.red.solid};
-    padding: 12px 1rem;
+    padding: 12px 0;
     font-size: 4rem;
     display: flex;
     text-align: start;
@@ -39,13 +35,9 @@ export const BannerContainer = styled.div`
     text-shadow: ${({ theme }) =>
       ` ${theme.colors.red.transparency} 0px 4px 18px, ${theme.colors.red.transparency} 0px 2px 10px`};
 
-    @media screen and (max-width: 768px) {
-      text-align: center;
-    }
     @media screen and (max-width: 480px) {
       font-size: 3.2rem;
       line-height: 55px;
-      text-align: center;
     }
     @media screen and (max-width: 340px) {
       font-size: 2rem;
@@ -53,8 +45,8 @@ export const BannerContainer = styled.div`
   }
 
   @media screen and (max-width: 768px) {
-    padding: 24px;
-
+    padding: 0;
+    padding-bottom: 24px;
     ul {
       align-self: center;
     }
@@ -66,11 +58,7 @@ export const BannerContainer = styled.div`
 
 export const Socials = styled.div`
   display: flex;
-  padding: 12px 1rem;
-
-  @media screen and (max-width: 768px) {
-    justify-content: center;
-  }
+  padding: 12px 0;
 `;
 
 export const SocialLink = styled.a`

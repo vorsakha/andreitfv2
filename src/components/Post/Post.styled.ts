@@ -191,6 +191,7 @@ export const PostBody = styled(ReactMarkdown)`
     display: inline-block;
     width: 1.5rem;
     margin-left: -1rem;
+    margin-top: 0.5rem;
     font-size: 1.5rem;
   }
 `;

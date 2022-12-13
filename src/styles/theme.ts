@@ -85,7 +85,7 @@ export const GlobalStyles = createGlobalStyle`
 
   li {
     display: flex;
-    margin-top: 1rem;
+    margin-top: .5rem;
   }
   li:first-child {
     margin-top: 0;

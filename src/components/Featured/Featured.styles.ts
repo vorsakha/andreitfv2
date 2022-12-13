@@ -5,7 +5,7 @@ export const FeaturedContainer = styled.div``;
 export const FeaturedList = styled.div`
   padding: 24px 0;
   display: grid;
-  gap: 1rem;
+  gap: 1.5rem;
   grid-template-columns: 1fr 1fr 1fr;
 
   @media screen and (max-width: 768px) {
@@ -13,13 +13,10 @@ export const FeaturedList = styled.div`
   }
 `;
 export const FeaturedItem = styled(Link)`
-  padding: 24px;
+  padding: 24px 0;
   border-radius: 8px;
-  border: 1px solid ${({ theme }) => theme.colors.red.solid};
-  min-height: 200px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   transition: all 0.2s ease;
   text-decoration: none;
 
@@ -35,9 +32,7 @@ export const FeaturedItem = styled(Link)`
     text-shadow: none;
   }
 
-  :hover {
-    /* box-shadow: ${({ theme }) =>
-      theme.colors.gray.transparency} 0px 5px 20px; */
-    scale: 1.03;
+  @media screen and (max-width: 768px) {
+    padding: 0;
   }
 `;
