@@ -5,6 +5,7 @@ import ContentService from '../../src/services/content';
 import { Main } from '../../src/components/ui/Container';
 import ScrollButton from '../../src/components/ui/ScrollButton';
 import Post from '../../src/components/Post';
+import safeStringify from 'fast-safe-stringify';
 
 interface PostsProps {
   post: IBlogPostFields;
@@ -32,14 +33,16 @@ export const getStaticProps: GetStaticProps<
 > = async ctx => {
   const { slug } = ctx.params!;
   const post = await ContentService.instance.getPostBySlug(slug);
+  const stringifiedData = safeStringify(post);
+  const parsedPost = JSON.parse(stringifiedData);
 
-  if (!post) {
+  if (!parsedPost) {
     return { notFound: true };
   }
 
   return {
     props: {
-      post: post.fields,
+      post: parsedPost.fields,
     },
   };
 };
