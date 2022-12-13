@@ -6,7 +6,7 @@ export const CurrentlyPlayingContainer = styled.div`
 
 export const CurrentlyPlayingWrapper = styled.a`
   position: relative;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: start;
   margin: 24px 0;
