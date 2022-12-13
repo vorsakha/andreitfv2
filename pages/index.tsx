@@ -10,6 +10,7 @@ import { FaGithub } from '@react-icons/all-files/fa/FaGithub';
 import { FaLinkedinIn } from '@react-icons/all-files/fa/FaLinkedinIn';
 import Banner from '../src/components/Banner';
 import { Main } from '../src/components/ui/Container';
+import Featured from '../src/components/Featured';
 
 interface HomeProps {
   posts: IBlogPostFields[];
@@ -48,14 +49,7 @@ export default function Home({ posts }: HomeProps) {
 
       <Main>
         <Banner socials={socials} />
-        <div>
-          {posts.map(post => (
-            <a key={post.slug} href={`/blog/${post.slug}`}>
-              <h2>{post.title} &rarr;</h2>
-              <p>{post.description}</p>
-            </a>
-          ))}
-        </div>
+        <Featured posts={posts} />
       </Main>
     </Container>
   );
