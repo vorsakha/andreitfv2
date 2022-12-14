@@ -12,8 +12,10 @@ import { FaLinkedinIn } from '@react-icons/all-files/fa/FaLinkedinIn';
 
 import Banner from '../src/components/Banner';
 import { Main } from '../src/components/ui/Container';
-import Featured from '../src/components/Featured';
 import CurrentlyPlaying from '../src/components/CurrentlyPlaying';
+import { AltTitle } from '../src/components/ui/Title';
+import List from '../src/components/List';
+import { ListProps } from '../src/components/List/List';
 
 interface HomeProps {
   posts: IBlogPostFields[];
@@ -55,7 +57,15 @@ export default function Home({ posts }: HomeProps) {
 
       <Main>
         <Banner socials={socials} />
-        <Featured posts={posts} />
+        <div>
+          <AltTitle>Featured Posts</AltTitle>
+          <List
+            items={posts as unknown as ListProps['items']}
+            direction="row"
+            grayscaleImage
+            linkToSelf
+          />
+        </div>
         <CurrentlyPlaying song={song} />
       </Main>
     </Container>
@@ -66,7 +76,12 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   const articles = (
     await ContentService.instance.getEntriesByType<IBlogPostFields>('blogPost')
   )
-    .map(entry => entry.fields)
+    .map(entry => ({
+      title: entry.fields.title,
+      subtitle: entry.fields.description,
+      image: `https:${entry.fields.heroImage.fields.file.url}`,
+      url: `/blog/${entry.fields.slug}`,
+    }))
     .slice(0, 3);
   const stringifiedData = safeStringify(articles);
   const posts = JSON.parse(stringifiedData);

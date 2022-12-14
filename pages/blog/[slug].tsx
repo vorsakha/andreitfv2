@@ -15,7 +15,7 @@ const Posts: NextPage<PostsProps> = ({ post }) => {
   return (
     <div>
       <Head>
-        <title>{post.title} | My awesome Harry Potter blog</title>
+        <title>{post.title} | TF</title>
         <meta name="description" content={post.description} />
       </Head>
 

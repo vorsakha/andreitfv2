@@ -8,7 +8,7 @@ export const Title = styled.h1`
 export const AltTitle = styled.h2`
   color: ${({ theme }) => theme.text};
   padding: 12px 0;
-  font-size: 3rem;
+  font-size: 2.6rem;
   display: flex;
   text-align: start;
   letter-spacing: normal;

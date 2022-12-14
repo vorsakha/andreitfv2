@@ -5,6 +5,14 @@ export const Container = styled.div`
   background: ${({ theme }) => theme.background};
 `;
 
+export const Wrapper = styled.div`
+  margin: 24px 0;
+
+  :first-of-type {
+    margin-top: 0;
+  }
+`;
+
 export const Main = styled.main`
   display: flex;
   flex-direction: column;

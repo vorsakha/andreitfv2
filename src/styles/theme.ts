@@ -60,6 +60,7 @@ export const GlobalStyles = createGlobalStyle`
         color: ${({ theme }) => theme.text};
         text-shadow: ${({ theme }) =>
           `${theme.colors.gray.transparency} 0px 4px 18px, ${theme.colors.gray.transparency} 0px 2px 10px`};
+        transition: all 0.2s ease;
         
         
         :hover {
@@ -101,5 +102,10 @@ export const GlobalStyles = createGlobalStyle`
       `${theme.colors.red.transparency} 0px 4px 18px, ${theme.colors.red.transparency} 0px 2px 10px`};
     display: inline-block;
     font-size: 1.5rem;
+  }
+
+  small {
+    color: ${({ theme }) => theme.colors.gray.solid};
+    font-style: italic;
   }
 `;

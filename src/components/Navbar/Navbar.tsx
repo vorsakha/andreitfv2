@@ -14,6 +14,7 @@ import {
 } from './Navbar.styles';
 import { useRouter } from 'next/router';
 import { THEMES } from '../../styles/theme';
+import Button from '../ui/Button';
 
 type NavbarTypes = {
   handleMenu: () => void;
@@ -41,16 +42,14 @@ const Navbar: React.FC<NavbarTypes> = ({
             <NavLink href="/">Home</NavLink>
           </NavItem>
           <NavItem active={router.pathname === '/misc'}>
-            <NavLink href="/about">Misc</NavLink>
+            <NavLink href="/misc">Misc</NavLink>
           </NavItem>
           <NavItem active={router.pathname === '/blog'}>
             <NavLink href="/blog">Blog</NavLink>
           </NavItem>
-          <NavItem>
-            <button onClick={toggleTheme}>
-              {selectedTheme === THEMES.DARK ? <SunIcon /> : <MoonIcon />}
-            </button>
-          </NavItem>
+          <Button onClick={toggleTheme}>
+            {selectedTheme === THEMES.DARK ? <SunIcon /> : <MoonIcon />}
+          </Button>
         </NavMenu>
       </NavbarContainer>
     </Nav>

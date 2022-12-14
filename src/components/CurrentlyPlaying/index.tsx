@@ -49,7 +49,7 @@ const CurrentlyPlaying: FC<CurrentlyPlayingProps> = ({ song }) => {
 
         <CurrentlyPlayingContentWrapper>
           <CurrentlyPlayingSong>
-            {song?.isPlaying ? song.title : 'Not Listening'}
+            {song?.isPlaying ? song.title : 'Not Playing'}
           </CurrentlyPlayingSong>
           <CurrentlyPlayingArtist>
             {song?.isPlaying ? song.artist : 'Spotify'}
