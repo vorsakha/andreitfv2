@@ -74,6 +74,7 @@ export const PostLink = styled(Link)`
 export const PostDescription = styled.div`
   margin: 1rem 0;
   color: ${({ theme }) => theme.colors.gray.solid};
+  font-style: italic;
 
   @media screen and (max-width: 768px) {
     margin-bottom: 2rem;

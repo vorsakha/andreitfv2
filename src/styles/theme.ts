@@ -44,9 +44,6 @@ export const theme = {
 };
 
 export const GlobalStyles = createGlobalStyle`
-    @import
-    url('https://fonts.googleapis.com/css2?family=Inter&family=Fira+Code&display=swap');
-    
     * {
         box-sizing: border-box;
         margin: 0;
@@ -64,9 +61,9 @@ export const GlobalStyles = createGlobalStyle`
         
         
         :hover {
-            color: ${({ theme }) => theme.colors.red.solid};
-        text-shadow: ${({ theme }) =>
-          `${theme.colors.red.transparency} 0px 4px 18px, ${theme.colors.red.transparency} 0px 2px 10px`};
+          color: ${({ theme }) => theme.colors.red.solid};
+          text-shadow: ${({ theme }) =>
+            `${theme.colors.red.transparency} 0px 4px 18px, ${theme.colors.red.transparency} 0px 2px 10px`};
         }
     }
 

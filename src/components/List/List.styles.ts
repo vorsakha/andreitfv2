@@ -25,8 +25,11 @@ export const ListItem = styled.li<List>`
 
   p,
   a {
-    color: ${({ theme }) => theme.text};
     line-height: 1.2rem;
+  }
+
+  p {
+    color: ${({ theme }) => theme.text};
   }
 
   small {
