@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
 import { IBlogPostFields } from '../../@types/contentful';
-import formatDate from '../../utils/formatData';
+import formatDate from '../../utils/formatDate';
 import { Back } from '../ui/Button';
 import { AltTitle } from '../ui/Title';
 import { CodeBlock } from './CodeBlock';

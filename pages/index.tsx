@@ -16,6 +16,7 @@ import CurrentlyPlaying from '../src/components/CurrentlyPlaying';
 import { AltTitle } from '../src/components/ui/Title';
 import List from '../src/components/List';
 import { ListProps } from '../src/components/List/List';
+import { Spinner } from '../src/components/ui/Spinner';
 
 interface HomeProps {
   posts: IBlogPostFields[];
@@ -23,6 +24,13 @@ interface HomeProps {
 
 const Container = styled.div`
   background-color: ${({ theme }) => theme.background};
+`;
+
+const LoadingWrapper = styled.div`
+  height: 176.2px;
+  position: relative;
+  width: 200px;
+  margin: 24px 0;
 `;
 
 const socials = [
@@ -45,7 +53,7 @@ const socials = [
 
 export default function Home({ posts }: HomeProps) {
   const fetcher = (url: string) => fetch(url).then(r => r.json());
-  const { data: song } = useSWR('/api/spotify/current', fetcher);
+  const { data: song, isLoading } = useSWR('/api/spotify/current', fetcher);
 
   return (
     <Container>
@@ -66,7 +74,13 @@ export default function Home({ posts }: HomeProps) {
             linkToSelf
           />
         </div>
-        <CurrentlyPlaying song={song} />
+        {isLoading ? (
+          <LoadingWrapper>
+            <Spinner />
+          </LoadingWrapper>
+        ) : (
+          <CurrentlyPlaying song={song} />
+        )}
       </Main>
     </Container>
   );

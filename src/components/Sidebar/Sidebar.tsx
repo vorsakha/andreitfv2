@@ -36,6 +36,9 @@ const Sidebar: React.FC<SidebarTypes> = ({
         <SidebarLink onClick={handleMenu} href="/misc">
           Misc
         </SidebarLink>
+        <SidebarLink onClick={handleMenu} href="/lib">
+          Lib
+        </SidebarLink>
         <SidebarLink onClick={handleMenu} href="/blog">
           Blog
         </SidebarLink>

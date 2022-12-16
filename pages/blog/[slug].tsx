@@ -44,6 +44,7 @@ export const getStaticProps: GetStaticProps<
     props: {
       post: parsedPost.fields,
     },
+    revalidate: 120,
   };
 };
 
@@ -58,7 +59,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
         slug: post.fields.slug,
       },
     })),
-    fallback: false,
+    fallback: 'blocking',
   };
 };
 

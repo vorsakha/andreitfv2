@@ -30,14 +30,14 @@ const colors = {
 
 export const theme = {
   light: {
-    text: '#2d2d2d',
+    text: '#0f0f0f',
     background: '#FAFAFA',
     shadow: 'rgba(255, 24, 76, 0.4)',
     colors,
   },
   dark: {
     text: '#FAFAFA',
-    background: '#2D2D2D',
+    background: '#0f0f0f',
     shadow: 'rgba(255, 24, 76, 0.4)',
     colors,
   },

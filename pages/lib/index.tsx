@@ -37,5 +37,6 @@ export const getStaticProps: GetStaticProps<
     props: {
       gists: gists,
     },
+    revalidate: 120,
   };
 };

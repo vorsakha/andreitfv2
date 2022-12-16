@@ -86,6 +86,7 @@ export const getStaticProps: GetStaticProps<
         language: file?.language?.toLowerCase(),
       },
     },
+    revalidate: 120,
   };
 };
 
@@ -98,6 +99,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
         slug: gist.slug,
       },
     })),
-    fallback: false,
+    fallback: 'blocking',
   };
 };

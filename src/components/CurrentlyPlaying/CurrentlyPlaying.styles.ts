@@ -23,6 +23,10 @@ export const CurrentlyPlayingImageWrapper = styled.div`
     max-width: 64px;
     max-height: 64px;
   }
+
+  svg {
+    filter: drop-shadow(0px 2px 6px rgba(255, 24, 76, 0.5));
+  }
 `;
 export const CurrentlyPlayingContentWrapper = styled.div`
   padding-right: 30px;
@@ -41,4 +45,5 @@ export const CurrentlyPlayingIcon = styled.div`
   position: absolute;
   bottom: 0px;
   right: 2px;
+  filter: drop-shadow(0px 2px 6px rgba(255, 24, 76, 0.5));
 `;

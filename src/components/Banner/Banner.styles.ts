@@ -23,9 +23,8 @@ export const BannerContainer = styled.div`
     font-weight: 300;
   }
   h1 {
-    color: ${({ theme }) => theme.colors.red.solid};
+    color: ${({ theme }) => theme.text};
     padding: 12px 0;
-    text-transform: uppercase;
     font-size: 4rem;
     display: flex;
     text-align: start;
@@ -34,7 +33,7 @@ export const BannerContainer = styled.div`
     margin-bottom: -8px;
     font-weight: bold;
     text-shadow: ${({ theme }) =>
-      ` ${theme.colors.red.transparency} 0px 4px 18px, ${theme.colors.red.transparency} 0px 2px 10px`};
+      ` ${theme.colors.gray.transparency} 0px 4px 18px, ${theme.colors.gray.transparency} 0px 2px 10px`};
 
     @media screen and (max-width: 480px) {
       font-size: 3.2rem;

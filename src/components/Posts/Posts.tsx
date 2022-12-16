@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React, { FC } from 'react';
 import { IBlogPostFields } from '../../@types/contentful';
-import formatDate from '../../utils/formatData';
+import formatDate from '../../utils/formatDate';
 import {
   ArchiveContainer,
   ArchiveList,
