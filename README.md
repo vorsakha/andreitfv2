@@ -5,13 +5,13 @@
     andreitf.co
 </h1>
 
-## ✅Technology Stack
+## ✅ Technology Stack
 
 - [NextJs](https://nextjs.org).
 - [Styled components](https://styled-components.com/).
 - [Contentful CMS](https://www.contentful.com/).
-- [Spotify API](https://www.contentful.com/).
-- [Github API](https://www.contentful.com/).
+- [Spotify API](https://developer.spotify.com/documentation/web-api/reference/#/).
+- [Github API](https://docs.github.com/en/rest).
 
 
 ## Getting Started
