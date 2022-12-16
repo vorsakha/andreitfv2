@@ -29,14 +29,8 @@ export const PostHero = styled.div`
   }
 `;
 export const ArchiveWrapper = styled.div`
-  max-width: 1100px;
+  max-width: 800px;
   margin: 0 auto;
-`;
-export const ArchiveTitle = styled.div`
-  font-size: 1.4rem;
-  color: ${({ theme }) => theme.text};
-  display: flex;
-  align-items: center;
 `;
 export const ArchiveList = styled.div`
   padding: 0 0 2rem 0;

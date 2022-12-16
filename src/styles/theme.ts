@@ -83,7 +83,6 @@ export const GlobalStyles = createGlobalStyle`
 
   li {
     display: flex;
-    margin-top: .5rem;
   }
   li:first-child {
     margin-top: 0;
@@ -104,5 +103,13 @@ export const GlobalStyles = createGlobalStyle`
   small {
     color: ${({ theme }) => theme.colors.gray.solid};
     font-style: italic;
+  }
+
+  .codeStyle {
+    border-radius: 8px !important;
+    border: none !important;
+    span {
+      font-family: 'Fira Code', monospace !important;
+    }
   }
 `;

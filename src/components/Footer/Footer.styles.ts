@@ -12,7 +12,7 @@ export const FooterWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  max-width: 1100px;
+  max-width: 800px;
   margin: 0 auto;
 `;
 export const FooterRights = styled.div`

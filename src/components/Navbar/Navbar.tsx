@@ -44,6 +44,9 @@ const Navbar: React.FC<NavbarTypes> = ({
           <NavItem active={router.pathname === '/misc'}>
             <NavLink href="/misc">Misc</NavLink>
           </NavItem>
+          <NavItem active={router.pathname === '/lib'}>
+            <NavLink href="/lib">Lib</NavLink>
+          </NavItem>
           <NavItem active={router.pathname === '/blog'}>
             <NavLink href="/blog">Blog</NavLink>
           </NavItem>

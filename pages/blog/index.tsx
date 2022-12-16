@@ -6,6 +6,7 @@ import ContentService from '../../src/services/content';
 import { Main } from '../../src/components/ui/Container';
 import Posts from '../../src/components/Posts';
 import ScrollButton from '../../src/components/ui/ScrollButton';
+import { AltTitle } from '../../src/components/ui/Title';
 
 interface HomeProps {
   posts: IBlogPostFields[];
@@ -22,6 +23,7 @@ export default function Home({ posts }: HomeProps) {
 
       <Main>
         <ScrollButton />
+        <AltTitle>Archive</AltTitle>
         <Posts posts={posts} />
       </Main>
     </>

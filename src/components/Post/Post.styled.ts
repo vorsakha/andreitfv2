@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { IoReturnUpBackSharp } from '@react-icons/all-files/io5/IoReturnUpBackSharp';
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 
@@ -10,7 +9,7 @@ export const PostContainer = styled.div`
 `;
 export const PostHero = styled.div`
   height: 350px;
-  max-width: 1100px;
+  max-width: 800px;
   width: 100%;
   margin: 0 auto;
   opacity: 0.8;
@@ -34,44 +33,15 @@ export const PostWrapper = styled.div`
   max-width: 900px;
   width: 100%;
   margin: 0 auto;
-  padding: 24px;
+  padding: 24px 0;
   display: flex;
   flex-direction: column;
-`;
-export const Arrow = styled(IoReturnUpBackSharp)`
-  font-size: 18px;
-  display: flex;
-  align-items: center;
-  margin-bottom: -8px;
-  color: ${({ theme }) => theme.colors.red.solid};
-  filter: drop-shadow(0px 2px 6px rgba(255, 24, 76, 0.6));
-`;
-export const PostTitle = styled.h1`
-  color: ${({ theme }) => theme.text};
-  padding-bottom: 12px;
-  margin: 1rem 0 1rem;
-  display: flex;
-  align-items: center;
-  line-height: 32px;
-  margin-bottom: 0;
-
-  @media screen and (max-width: 768px) {
-    display: block;
-  }
 `;
 export const PostSub = styled.div`
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
   font-style: italic;
-`;
-export const PostBack = styled(Link)`
-  color: ${({ theme }) => theme.colors.gray.solid};
-  text-shadow: none;
-  font-size: 13.33px;
-  cursor: pointer;
-  text-decoration: none;
-  width: 60px;
 `;
 export const PostAuthor = styled.a`
   font-size: 13.33px;
@@ -123,14 +93,6 @@ export const PostBody = styled(ReactMarkdown)`
 
   pre {
     padding: 24px;
-  }
-
-  .codeStyle {
-    border-radius: 8px !important;
-    border: none !important;
-    span {
-      font-family: 'Fira Code', monospace !important;
-    }
   }
 
   img {
@@ -191,7 +153,6 @@ export const PostBody = styled(ReactMarkdown)`
     display: inline-block;
     width: 1.5rem;
     margin-left: -1rem;
-    margin-top: 0.5rem;
     font-size: 1.5rem;
   }
 `;

@@ -2,7 +2,12 @@ import Image from 'next/image';
 import React, { FC, useState } from 'react';
 import Button from '../ui/Button';
 import { Wrapper } from '../ui/Container';
-import { ListContainer, ListItem } from './List.styles';
+import {
+  ListContainer,
+  ListItem,
+  ListItemContent,
+  ListItemImage,
+} from './List.styles';
 
 export interface List {
   direction?: 'row' | 'column';
@@ -44,10 +49,17 @@ const List: FC<ListProps> = ({
       <ListContainer direction={direction || 'column'}>
         {items.slice(0, quantityShown).map(item => (
           <ListItem key={item.title} grayscaleImage={grayscaleImage}>
-            <div>
-              <Image src={item.image} alt={item.title} width={64} height={64} />
-            </div>
-            <div>
+            {item.image && (
+              <ListItemImage>
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  width={64}
+                  height={64}
+                />
+              </ListItemImage>
+            )}
+            <ListItemContent>
               {item.url ? (
                 <a
                   href={item.url}
@@ -64,7 +76,7 @@ const List: FC<ListProps> = ({
                   ? item.subtitle.join(', ')
                   : item.subtitle}
               </small>
-            </div>
+            </ListItemContent>
           </ListItem>
         ))}
       </ListContainer>

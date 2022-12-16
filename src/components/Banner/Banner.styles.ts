@@ -25,6 +25,7 @@ export const BannerContainer = styled.div`
   h1 {
     color: ${({ theme }) => theme.colors.red.solid};
     padding: 12px 0;
+    text-transform: uppercase;
     font-size: 4rem;
     display: flex;
     text-align: start;

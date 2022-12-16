@@ -13,7 +13,6 @@ export const CurrentlyPlayingWrapper = styled.a`
   border-radius: 4px;
   gap: 10px;
   text-decoration: none;
-  height: 64px;
 `;
 
 export const CurrentlyPlayingImageWrapper = styled.div`

@@ -3,19 +3,17 @@ import Link from 'next/link';
 import { FC } from 'react';
 import { IBlogPostFields } from '../../@types/contentful';
 import formatDate from '../../utils/formatData';
-import { Dot } from '../ui/Dot';
+import { Back } from '../ui/Button';
+import { AltTitle } from '../ui/Title';
 import { CodeBlock } from './CodeBlock';
 import {
-  Arrow,
   PostAuthor,
-  PostBack,
   PostBody,
   PostContainer,
   PostDate,
   PostHero,
   PostRelated,
   PostSub,
-  PostTitle,
   PostWrapper,
 } from './Post.styled';
 
@@ -33,15 +31,8 @@ const Post: FC<PostProps> = ({ post }) => (
       />
     </PostHero>
     <PostWrapper>
-      <PostBack href="/blog">
-        <Arrow />
-        Blogs
-        <div />
-      </PostBack>
-      <PostTitle>
-        <Dot />
-        {post.title}
-      </PostTitle>
+      <Back href="/blog">Back</Back>
+      <AltTitle>{post.title}</AltTitle>
       <PostSub>
         <PostAuthor href="https://github.com/vorsakha" target="_blank">
           {post.author}

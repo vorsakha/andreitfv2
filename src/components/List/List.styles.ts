@@ -6,7 +6,7 @@ export const ListContainer = styled.ul<List>`
   margin: 1rem 0;
   display: flex;
   flex-direction: ${({ direction }) => direction};
-  gap: 10px;
+  gap: ${({ direction }) => (direction === 'row' ? '1rem' : '10px')};
 
   @media screen and (max-width: 768px) {
     flex-direction: column;
@@ -33,7 +33,8 @@ export const ListItem = styled.li<List>`
   }
 
   small {
-    line-height: 1.1rem;
+    line-height: 14px;
+    margin-top: 3px;
   }
 
   ::before {
@@ -45,8 +46,11 @@ export const ListItem = styled.li<List>`
     display: flex;
     flex-direction: column;
   }
+`;
 
-  div:first-of-type {
-    margin-right: 10px;
-  }
+export const ListItemContent = styled.div`
+  padding: 1rem 0;
+`;
+export const ListItemImage = styled.div`
+  margin-right: 10px;
 `;

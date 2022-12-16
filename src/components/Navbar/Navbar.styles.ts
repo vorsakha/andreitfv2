@@ -8,16 +8,14 @@ export const Nav = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 0;
 `;
 export const NavbarContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 130px;
-  z-index: 1;
   width: 100%;
-  max-width: 1100px;
+  max-width: 800px;
   padding: 0 24px;
 `;
 export const NavLogo = styled(Link)`
@@ -27,7 +25,6 @@ export const NavLogo = styled(Link)`
   text-decoration: none;
   display: flex;
   align-items: center;
-  border-bottom: none;
   color: ${({ theme }) => theme.colors.red.solid};
   text-shadow: ${({ theme }) =>
     `${theme.shadow} 0px 4px 18px, ${theme.shadow} 0px 2px 10px`};
@@ -78,8 +75,6 @@ export const NavItem = styled.div<{ active?: boolean }>`
     text-decoration: none;
     padding: 4px 1.5rem;
     cursor: pointer;
-    border-top: 3px solid transparent;
-    border-bottom: 3px solid transparent;
     transition: 0.2s ease;
     min-width: 89px;
     min-height: 36px;
