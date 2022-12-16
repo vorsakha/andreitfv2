@@ -33,7 +33,7 @@ const Lib = ({ gist }: GistsProps) => {
   return (
     <Container>
       <Head>
-        <title>TF | Lib</title>
+        <title>TF | {gist.title}</title>
         <meta name="description" content="Andrei T. Ferreira website" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
