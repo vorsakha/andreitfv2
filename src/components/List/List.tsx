@@ -11,7 +11,7 @@ import {
 
 export interface List {
   direction?: 'row' | 'column';
-  paginate?: boolean;
+  initialMaxItems?: number;
   grayscaleImage?: boolean;
   linkToSelf?: boolean;
 }
@@ -28,11 +28,11 @@ export interface ListProps extends List {
 const List: FC<ListProps> = ({
   items = [],
   direction,
-  paginate = false,
   grayscaleImage = false,
   linkToSelf = false,
+  initialMaxItems = 10,
 }) => {
-  const [quantityShown, setQuantityShown] = useState(10);
+  const [quantityShown, setQuantityShown] = useState(initialMaxItems);
 
   const handleShowMore = () => {
     setQuantityShown(items.length);
@@ -82,7 +82,7 @@ const List: FC<ListProps> = ({
           </ListItem>
         ))}
       </ListContainer>
-      {paginate && (
+      {items.length > initialMaxItems && (
         <Button onClick={showingMore ? handleShowLess : handleShowMore} active>
           {showingMore ? 'Show less' : 'Show more'}
         </Button>

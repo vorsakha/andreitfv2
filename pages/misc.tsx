@@ -61,11 +61,11 @@ const Misc: FC<MiscProps> = ({ songs, artists }) => {
       <Main>
         <Wrapper>
           <AltTitle>Top tracks</AltTitle>
-          <List items={songs} paginate />
+          <List items={songs} />
         </Wrapper>
         <Wrapper>
           <AltTitle>Top artists</AltTitle>
-          <List items={artists} paginate />
+          <List items={artists} />
         </Wrapper>
       </Main>
     </Container>
