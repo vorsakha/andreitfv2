@@ -14,6 +14,7 @@ export const PostHero = styled.div`
   margin: 0 auto;
   opacity: 0.8;
   filter: grayscale(100%);
+  position: relative;
 
   img {
     border-radius: 8px;

@@ -10,6 +10,7 @@ export const PostHero = styled.div`
   height: 250px;
   filter: grayscale(100%);
   transition: 0.2s opacity ease;
+  position: relative;
 
   img {
     border-radius: 8px;

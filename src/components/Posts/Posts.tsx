@@ -34,7 +34,8 @@ const Posts: FC<PostsProps> = ({ posts }) => (
                       alt={item.title}
                       fill
                       quality={60}
-                      priority
+                      priority={key <= 3}
+                      sizes="(max-width: 768px) 100%,368px"
                     />
                   </PostHero>
                 </PostLink>
