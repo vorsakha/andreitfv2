@@ -28,6 +28,8 @@ const Post: FC<PostProps> = ({ post }) => (
         src={`https:${post.heroImage.fields.file.url}`}
         alt={post.title}
         fill
+        quality={60}
+        priority
       />
     </PostHero>
     <PostWrapper>
