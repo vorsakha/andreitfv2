@@ -7,11 +7,6 @@ import json from 'react-syntax-highlighter/dist/cjs/languages/prism/json';
 import { xonokai } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import rangeParser from 'parse-numeric-range';
 import { CodeProps } from 'react-markdown/lib/ast-to-react';
-import { Fira_Code } from '@next/font/google';
-
-const fira = Fira_Code({
-  subsets: ['latin'],
-});
 
 SyntaxHighlighter.registerLanguage('tsx', tsx);
 SyntaxHighlighter.registerLanguage('typescript', typescript);
@@ -45,7 +40,7 @@ export const CodeBlock = {
         style={xonokai as any}
         language={match[1]}
         PreTag="div"
-        className={`codeStyle ${fira.className}`}
+        className="codeStyle"
         wrapLines={!!hasMeta}
         useInlineStyles
         lineProps={applyHighlights}

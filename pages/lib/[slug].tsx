@@ -12,11 +12,6 @@ import typescript from 'react-syntax-highlighter/dist/cjs/languages/prism/typesc
 import styled from 'styled-components';
 import { Description } from '../../src/components/ui/Description';
 import { Back } from '../../src/components/ui/Button';
-import { Fira_Code } from '@next/font/google';
-
-const fira = Fira_Code({
-  subsets: ['latin'],
-});
 
 SyntaxHighlighter.registerLanguage('tsx', tsx);
 SyntaxHighlighter.registerLanguage('typescript', typescript);
@@ -58,7 +53,7 @@ const Lib = ({ gist }: GistsProps) => {
               style={xonokai as any}
               language={gist.language}
               PreTag="div"
-              className={`codeStyle ${fira.className}`}
+              className="codeStyle"
               wrapLines
               useInlineStyles
             >

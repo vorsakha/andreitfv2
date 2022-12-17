@@ -48,7 +48,6 @@ export const GlobalStyles = createGlobalStyle`
         box-sizing: border-box;
         margin: 0;
         padding: 0;
-        font-family: "Inter", sans-serif;
         line-height: 1.7rem;
         font-weight: 300;
     }
@@ -108,8 +107,5 @@ export const GlobalStyles = createGlobalStyle`
   .codeStyle {
     border-radius: 8px !important;
     border: none !important;
-    span {
-      font-family: 'Fira Code', monospace !important;
-    }
   }
 `;
