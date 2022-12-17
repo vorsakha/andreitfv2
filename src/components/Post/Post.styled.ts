@@ -156,6 +156,12 @@ export const PostBody = styled(ReactMarkdown)`
     margin-left: -1rem;
     font-size: 1.5rem;
   }
+
+  @media screen and (max-width: 768px) {
+    pre {
+      padding: 0;
+    }
+  }
 `;
 export const PostRelated = styled.div`
   display: flex;

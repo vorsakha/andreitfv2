@@ -15,13 +15,9 @@ export const AltTitle = styled.h2`
   line-height: 3rem;
   font-weight: bold;
 
-  @media screen and (max-width: 768px) {
-    text-align: center;
-  }
   @media screen and (max-width: 480px) {
     font-size: 2.5rem;
     line-height: 55px;
-    text-align: center;
   }
   @media screen and (max-width: 340px) {
     font-size: 1.5rem;

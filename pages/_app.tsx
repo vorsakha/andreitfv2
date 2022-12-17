@@ -7,6 +7,12 @@ import Sidebar from '../src/components/Sidebar';
 import Footer from '../src/components/Footer';
 import { Container } from '../src/components/ui/Container';
 import useLocalStorage from '../src/hooks/useLocalStorage';
+import { Inter } from '@next/font/google';
+
+const inter = Inter({
+  variable: '--inter-font',
+  subsets: ['latin'],
+});
 
 export default function App({ Component, pageProps }: AppProps) {
   const { setItem, getItem } = useLocalStorage();
@@ -30,22 +36,24 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <ThemeProvider theme={theme[selectedTheme]}>
-      <GlobalStyles />
-      <Sidebar
-        handleMenu={() => setMenuIsOpen(!isMenuOpen)}
-        isOpen={isMenuOpen}
-        toggleTheme={toggleTheme}
-        selectedTheme={selectedTheme}
-      />
-      <Navbar
-        handleMenu={() => setMenuIsOpen(!isMenuOpen)}
-        toggleTheme={toggleTheme}
-        selectedTheme={selectedTheme}
-      />
-      <Container>
-        <Component {...pageProps} />
-      </Container>
-      <Footer />
+      <main className={inter.className}>
+        <GlobalStyles />
+        <Sidebar
+          handleMenu={() => setMenuIsOpen(!isMenuOpen)}
+          isOpen={isMenuOpen}
+          toggleTheme={toggleTheme}
+          selectedTheme={selectedTheme}
+        />
+        <Navbar
+          handleMenu={() => setMenuIsOpen(!isMenuOpen)}
+          toggleTheme={toggleTheme}
+          selectedTheme={selectedTheme}
+        />
+        <Container>
+          <Component {...pageProps} />
+        </Container>
+        <Footer />
+      </main>
     </ThemeProvider>
   );
 }

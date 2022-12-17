@@ -2,7 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  experimentalCodeSplitting: true,
+   compiler: {
+    styledComponents: true,
+  },
   images: {
     domains: ['images.ctfassets.net', 'i.scdn.co'],
   },
