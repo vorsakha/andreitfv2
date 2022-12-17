@@ -56,7 +56,7 @@ const Misc: FC<MiscProps> = ({ songs, artists }) => {
     <Container>
       <Head>
         <title>TF | Misc</title>
-        <meta name="description" content="Andrei T. Ferreira website" />
+        <meta name="description" content="Miscellaneous | Anything really" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

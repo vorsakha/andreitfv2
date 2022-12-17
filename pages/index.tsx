@@ -65,7 +65,7 @@ export default function Home({ posts }: HomeProps) {
     <Container>
       <Head>
         <title>TF</title>
-        <meta name="description" content="Andrei T. Ferreira website" />
+        <meta name="description" content="Andrei T. Ferreira's website" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

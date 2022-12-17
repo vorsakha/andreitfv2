@@ -20,7 +20,7 @@ export default function Home({ posts }: HomeProps) {
     <>
       <Head>
         <title>TF | Blog</title>
-        <meta name="description" content="Andrei Ferreira's blogs" />
+        <meta name="description" content="Coding related blog" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

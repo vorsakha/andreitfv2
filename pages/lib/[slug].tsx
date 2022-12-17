@@ -40,7 +40,10 @@ const Lib = ({ gist }: GistsProps) => {
     <Container>
       <Head>
         <title>TF | {gist.title}</title>
-        <meta name="description" content="Andrei T. Ferreira website" />
+        <meta
+          name="description"
+          content={gist.description || 'Snippet details'}
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
