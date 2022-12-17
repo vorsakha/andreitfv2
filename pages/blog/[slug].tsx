@@ -41,7 +41,7 @@ export const getStaticProps: GetStaticProps<
   const stringifiedData = safeStringify(post);
   const parsedPost = JSON.parse(stringifiedData);
   const { base64 } = await getPlaiceholder(
-    `https:${parsedPost.fields.heroImage.fields.file.url}?w=752&h=350`,
+    `https:${parsedPost.fields.heroImage.fields.file.url}?w=400&h=225`,
   );
 
   if (!parsedPost) {

@@ -41,7 +41,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
       articles.map(async p => ({
         ...p,
         placeholderImage: await getBase64Image(
-          `https:${p.heroImage.fields.file.url}?w=200&h=100`,
+          `https:${p.heroImage.fields.file.url}?w=250&h=141`,
         ),
       })),
     ),

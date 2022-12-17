@@ -21,6 +21,7 @@ export const ListItem = styled.li<List>`
     border-radius: 4px;
     filter: ${({ grayscaleImage }) =>
       grayscaleImage ? 'grayscale(100%)' : 'none'};
+    object-fit: cover;
   }
 
   p,

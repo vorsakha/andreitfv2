@@ -94,7 +94,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
     .map(entry => ({
       title: entry.fields.title,
       subtitle: entry.fields.description,
-      image: `https:${entry.fields.heroImage.fields.file.url}?w=64&h=64`,
+      image: `https:${entry.fields.heroImage.fields.file.url}?w=120&h=68`,
       url: `/blog/${entry.fields.slug}`,
     }))
     .slice(0, 3);

@@ -25,7 +25,7 @@ const Post: FC<PostProps> = ({ post }) => (
   <PostContainer>
     <PostHero>
       <Image
-        src={`https:${post.heroImage.fields.file.url}?w=752&h=350`}
+        src={`https:${post.heroImage.fields.file.url}?w=752&h=423`}
         alt={post.title}
         fill
         priority

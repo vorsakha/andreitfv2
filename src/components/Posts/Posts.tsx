@@ -32,7 +32,7 @@ const Posts: FC<PostsProps> = ({ posts }) => (
                     <Image
                       src={
                         item.heroImage
-                          ? `https:${item.heroImage.fields.file.url}?w=700&h=250`
+                          ? `https:${item.heroImage.fields.file.url}?w=752&h=423`
                           : ''
                       }
                       alt={item.title}
