@@ -38,10 +38,10 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   ).map(entry => entry.fields);
   const stringifiedData = safeStringify(
     await Promise.all(
-      articles.map(async (p: any) => ({
+      articles.map(async p => ({
         ...p,
         placeholderImage: await getBase64Image(
-          `https:${p.heroImage.fields.file.url}?w=752&h=350`,
+          `https:${p.heroImage.fields.file.url}?w=200&h=100`,
         ),
       })),
     ),
