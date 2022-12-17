@@ -1,3 +1,4 @@
+import { getBase64Image } from './../../../src/utils/image';
 import { NextApiRequest, NextApiResponse } from 'next';
 import querystring from 'querystring';
 
@@ -27,6 +28,7 @@ export interface SongResponse {
   artist: string;
   songUrl: string;
   title: string;
+  placeholderImage: string;
 }
 
 const {
@@ -82,6 +84,7 @@ export default async function handler(
   const album = song.item.album.name;
   const albumImageUrl = song.item.album.images[2].url;
   const songUrl = song.item.external_urls.spotify;
+  const placeholderImage = await getBase64Image(albumImageUrl);
 
   return res.status(200).json({
     song,
@@ -91,5 +94,6 @@ export default async function handler(
     isPlaying,
     songUrl,
     title,
+    placeholderImage,
   });
 }

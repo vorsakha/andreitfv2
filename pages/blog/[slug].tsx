@@ -6,9 +6,14 @@ import { Main } from '../../src/components/ui/Container';
 import ScrollButton from '../../src/components/ui/ScrollButton';
 import Post from '../../src/components/Post';
 import safeStringify from 'fast-safe-stringify';
+import { getPlaiceholder } from 'plaiceholder';
+
+export interface BlogPostWithPlaceholder extends IBlogPostFields {
+  placeholderImage: string;
+}
 
 interface PostsProps {
-  post: IBlogPostFields;
+  post: BlogPostWithPlaceholder;
 }
 
 const Posts: NextPage<PostsProps> = ({ post }) => {
@@ -35,6 +40,9 @@ export const getStaticProps: GetStaticProps<
   const post = await ContentService.instance.getPostBySlug(slug);
   const stringifiedData = safeStringify(post);
   const parsedPost = JSON.parse(stringifiedData);
+  const { base64 } = await getPlaiceholder(
+    `https:${parsedPost.fields.heroImage.fields.file.url}?w=752&h=350`,
+  );
 
   if (!parsedPost) {
     return { notFound: true };
@@ -42,7 +50,7 @@ export const getStaticProps: GetStaticProps<
 
   return {
     props: {
-      post: parsedPost.fields,
+      post: { ...parsedPost.fields, placeholderImage: base64 },
     },
     revalidate: 120,
   };

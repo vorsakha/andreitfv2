@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React, { FC } from 'react';
-import { IBlogPostFields } from '../../@types/contentful';
-import formatDate from '../../utils/formatDate';
+import { formatDate } from '../../utils/date';
+import { BlogPostFieldsWithPlaceholder } from '../../utils/image';
 import {
   ArchiveContainer,
   ArchiveList,
@@ -16,7 +16,7 @@ import {
 } from './Posts.styled';
 
 interface PostsProps {
-  posts: IBlogPostFields[];
+  posts: BlogPostFieldsWithPlaceholder[];
 }
 
 const Posts: FC<PostsProps> = ({ posts }) => (
@@ -30,14 +30,18 @@ const Posts: FC<PostsProps> = ({ posts }) => (
                 <PostLink href={`/blog/${item.slug}`}>
                   <PostHero>
                     <Image
-                      src={`https:${item.heroImage.fields.file.url}?w=370&h=250`}
+                      src={
+                        item.heroImage
+                          ? `https:${item.heroImage.fields.file.url}?w=370&h=250`
+                          : ''
+                      }
                       alt={item.title}
                       fill
                       quality={60}
                       priority={key <= 3}
                       sizes="(max-width: 768px) 100%,368px"
                       placeholder="blur"
-                      blurDataURL={`https:${item.heroImage.fields.file.url}?w=100&h=50`}
+                      blurDataURL={`https:${item.placeholderImage}?w=100&h=50`}
                     />
                   </PostHero>
                 </PostLink>

@@ -5,6 +5,7 @@ import List from '../src/components/List';
 import { Container, Main, Wrapper } from '../src/components/ui/Container';
 import { AltTitle } from '../src/components/ui/Title';
 import { getData } from '../src/services/spotify';
+import { getBase64Image } from '../src/utils/image';
 
 const TOP_ARTISTS_ENDPOINT = `https://api.spotify.com/v1/me/top/artists`;
 const TOP_TRACKS_ENDPOINT = `https://api.spotify.com/v1/me/top/tracks`;
@@ -41,7 +42,8 @@ interface Item {
   title: string;
   subtitle: string | string[];
   image: string;
-  url: string;
+  placeholderImage: string;
+  url?: string;
 }
 
 interface MiscProps {
@@ -75,7 +77,7 @@ const Misc: FC<MiscProps> = ({ songs, artists }) => {
 export default Misc;
 
 export const getStaticProps: GetStaticProps<
-  any,
+  MiscProps,
   { slug: string }
 > = async () => {
   const songsResponse = await getData(TOP_TRACKS_ENDPOINT);
@@ -84,18 +86,24 @@ export const getStaticProps: GetStaticProps<
   const songsData = (await songsResponse.json()) as Songs;
   const artistsData = (await artistsResponse.json()) as Artists;
 
-  const songs = songsData.items.map(item => ({
-    title: item.name,
-    subtitle: item.artists.map(s => s.name),
-    image: item.album.images[2].url,
-    url: item.external_urls.spotify,
-  }));
+  const songs = (await Promise.all(
+    songsData.items.map(async item => ({
+      title: item.name,
+      subtitle: item.artists.map(s => s.name),
+      image: item.album.images[2].url,
+      url: item.external_urls.spotify,
+      placeholderImage: await getBase64Image(item.album.images[2].url),
+    })),
+  )) as unknown as Item[];
 
-  const artists = artistsData.items.map(item => ({
-    title: item.name,
-    subtitle: item.genres,
-    image: item.images[2].url,
-  }));
+  const artists = (await Promise.all(
+    artistsData.items.map(async item => ({
+      title: item.name,
+      subtitle: item.genres,
+      image: item.images[2].url,
+      placeholderImage: await getBase64Image(item.images[2].url),
+    })),
+  )) as unknown as Item[];
 
   return {
     props: {

@@ -15,11 +15,17 @@ import { Main } from '../src/components/ui/Container';
 import CurrentlyPlaying from '../src/components/CurrentlyPlaying';
 import { AltTitle } from '../src/components/ui/Title';
 import List from '../src/components/List';
-import { ListProps } from '../src/components/List/List';
 import { Spinner } from '../src/components/ui/Spinner';
+import { getBase64Image } from '../src/utils/image';
+
+interface Posts extends IBlogPostFields {
+  placeholderImage: string;
+  subtitle: string;
+  image: string;
+}
 
 interface HomeProps {
-  posts: IBlogPostFields[];
+  posts: Posts[];
 }
 
 const Container = styled.div`
@@ -67,12 +73,7 @@ export default function Home({ posts }: HomeProps) {
         <Banner socials={socials} />
         <div>
           <AltTitle>Featured Posts</AltTitle>
-          <List
-            items={posts as unknown as ListProps['items']}
-            direction="row"
-            grayscaleImage
-            linkToSelf
-          />
+          <List items={posts} direction="row" grayscaleImage linkToSelf />
         </div>
         {isLoading ? (
           <LoadingWrapper>
@@ -93,11 +94,18 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
     .map(entry => ({
       title: entry.fields.title,
       subtitle: entry.fields.description,
-      image: `https:${entry.fields.heroImage.fields.file.url}`,
+      image: `https:${entry.fields.heroImage.fields.file.url}?w=64&h=64`,
       url: `/blog/${entry.fields.slug}`,
     }))
     .slice(0, 3);
-  const stringifiedData = safeStringify(articles);
+  const stringifiedData = safeStringify(
+    await Promise.all(
+      articles.map(async p => ({
+        ...p,
+        placeholderImage: await getBase64Image(p.image),
+      })),
+    ),
+  );
   const posts = JSON.parse(stringifiedData);
 
   return {

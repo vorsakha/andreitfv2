@@ -1,6 +1,5 @@
-import { createClient } from "contentful";
-import { config } from "dotenv";
-import { IBlogPostFields } from "../@types/contentful";
+import { createClient } from 'contentful';
+import { config } from 'dotenv';
 
 declare global {
   namespace NodeJS {
@@ -31,11 +30,11 @@ export default class ContentService {
     ).items;
   }
 
-  async getPostBySlug(slug: string) {
+  async getPostBySlug<T>(slug: string) {
     return (
-      await this.client.getEntries<IBlogPostFields>({
-        content_type: "blogPost",
-        "fields.slug": slug,
+      await this.client.getEntries<T>({
+        content_type: 'blogPost',
+        'fields.slug': slug,
       })
     ).items[0];
   }

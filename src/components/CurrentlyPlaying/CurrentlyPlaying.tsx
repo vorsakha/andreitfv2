@@ -42,7 +42,7 @@ const CurrentlyPlaying: FC<CurrentlyPlayingProps> = ({ song }) => {
               width={64}
               height={64}
               placeholder="blur"
-              blurDataURL={song?.albumImageUrl}
+              blurDataURL={song?.placeholderImage}
             />
           ) : (
             <SiSpotify size={64} color={theme.colors.red.solid} />

@@ -4,9 +4,13 @@ import React from 'react';
 import List from '../../src/components/List';
 import { Container, Main, Wrapper } from '../../src/components/ui/Container';
 import { AltTitle } from '../../src/components/ui/Title';
-import { getGists } from '../../src/services/gists';
+import { getGists, Gist } from '../../src/services/gists';
 
-const Lib = ({ gists }: any) => {
+interface GistsProps {
+  gists: Gist[];
+}
+
+const Lib = ({ gists }: GistsProps) => {
   return (
     <Container>
       <Head>
@@ -28,7 +32,7 @@ const Lib = ({ gists }: any) => {
 export default Lib;
 
 export const getStaticProps: GetStaticProps<
-  any,
+  GistsProps,
   { slug: string }
 > = async () => {
   const gists = await getGists();

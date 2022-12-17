@@ -1,4 +1,4 @@
-export default function formatDate(rawDate: string) {
+export function formatDate(rawDate: string) {
   const dateObj = new Date(rawDate);
   const month =
     dateObj.getUTCMonth() + 1 <= 9

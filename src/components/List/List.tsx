@@ -17,12 +17,21 @@ export interface List {
 }
 
 export interface ListProps extends List {
-  items: {
-    title: string;
-    subtitle: string[] | string;
-    image: string;
-    url: string;
-  }[];
+  items:
+    | {
+        title: string;
+        subtitle: string[] | string;
+        image?: never;
+        placeholderImage?: never;
+        url?: string;
+      }[]
+    | {
+        title: string;
+        subtitle: string[] | string;
+        image: string;
+        placeholderImage: string;
+        url?: string;
+      }[];
 }
 
 const List: FC<ListProps> = ({
@@ -58,7 +67,8 @@ const List: FC<ListProps> = ({
                   height={64}
                   quality={100}
                   placeholder="blur"
-                  blurDataURL={item.image}
+                  blurDataURL={item.placeholderImage}
+                  priority
                 />
               </ListItemImage>
             )}

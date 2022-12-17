@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
-import { IBlogPostFields } from '../../@types/contentful';
-import formatDate from '../../utils/formatDate';
+import { BlogPostWithPlaceholder } from '../../../pages/blog/[slug]';
+import { formatDate } from '../../utils/date';
 import { Back } from '../ui/Button';
 import { AltTitle } from '../ui/Title';
 import { CodeBlock } from './CodeBlock';
@@ -18,7 +18,7 @@ import {
 } from './Post.styled';
 
 interface PostProps {
-  post: IBlogPostFields;
+  post: BlogPostWithPlaceholder;
 }
 
 const Post: FC<PostProps> = ({ post }) => (
@@ -29,8 +29,9 @@ const Post: FC<PostProps> = ({ post }) => (
         alt={post.title}
         fill
         priority
+        loading="eager"
         placeholder="blur"
-        blurDataURL={`https:${post.heroImage.fields.file.url}?w=300&h=100`}
+        blurDataURL={post.placeholderImage}
       />
     </PostHero>
     <PostWrapper>

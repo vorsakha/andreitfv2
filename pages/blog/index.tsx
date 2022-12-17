@@ -6,9 +6,13 @@ import ContentService from '../../src/services/content';
 import { Main } from '../../src/components/ui/Container';
 import Posts from '../../src/components/Posts';
 import { AltTitle } from '../../src/components/ui/Title';
+import {
+  BlogPostFieldsWithPlaceholder,
+  getBase64Image,
+} from '../../src/utils/image';
 
 interface HomeProps {
-  posts: IBlogPostFields[];
+  posts: BlogPostFieldsWithPlaceholder[];
 }
 
 export default function Home({ posts }: HomeProps) {
@@ -32,7 +36,16 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   const articles = (
     await ContentService.instance.getEntriesByType<IBlogPostFields>('blogPost')
   ).map(entry => entry.fields);
-  const stringifiedData = safeStringify(articles);
+  const stringifiedData = safeStringify(
+    await Promise.all(
+      articles.map(async (p: any) => ({
+        ...p,
+        placeholderImage: await getBase64Image(
+          `https:${p.heroImage.fields.file.url}?w=752&h=350`,
+        ),
+      })),
+    ),
+  );
   const posts = JSON.parse(stringifiedData);
 
   return {
