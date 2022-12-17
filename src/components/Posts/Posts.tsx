@@ -30,12 +30,14 @@ const Posts: FC<PostsProps> = ({ posts }) => (
                 <PostLink href={`/blog/${item.slug}`}>
                   <PostHero>
                     <Image
-                      src={`https:${item.heroImage.fields.file.url}`}
+                      src={`https:${item.heroImage.fields.file.url}?w=370&h=250`}
                       alt={item.title}
                       fill
                       quality={60}
                       priority={key <= 3}
                       sizes="(max-width: 768px) 100%,368px"
+                      placeholder="blur"
+                      blurDataURL={`https:${item.heroImage.fields.file.url}?w=100&h=50`}
                     />
                   </PostHero>
                 </PostLink>

@@ -25,11 +25,12 @@ const Post: FC<PostProps> = ({ post }) => (
   <PostContainer>
     <PostHero>
       <Image
-        src={`https:${post.heroImage.fields.file.url}`}
+        src={`https:${post.heroImage.fields.file.url}?w=752&h=350`}
         alt={post.title}
         fill
-        quality={60}
         priority
+        placeholder="blur"
+        blurDataURL={`https:${post.heroImage.fields.file.url}?w=300&h=100`}
       />
     </PostHero>
     <PostWrapper>
