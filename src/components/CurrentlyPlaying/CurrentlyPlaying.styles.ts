@@ -19,9 +19,8 @@ export const CurrentlyPlayingImageWrapper = styled.div`
   img {
     border-radius: 4px;
     object-fit: cover;
-    width: 100%;
-    max-width: 64px;
-    max-height: 64px;
+    width: 64px;
+    height: 64px;
   }
 
   svg {

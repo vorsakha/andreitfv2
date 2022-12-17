@@ -32,16 +32,15 @@ const Posts: FC<PostsProps> = ({ posts }) => (
                     <Image
                       src={
                         item.heroImage
-                          ? `https:${item.heroImage.fields.file.url}?w=370&h=250`
+                          ? `https:${item.heroImage.fields.file.url}?w=700&h=250`
                           : ''
                       }
                       alt={item.title}
                       fill
-                      quality={60}
                       priority={key <= 3}
                       sizes="(max-width: 768px) 100%,368px"
                       placeholder="blur"
-                      blurDataURL={`https:${item.placeholderImage}?w=100&h=50`}
+                      blurDataURL={item.placeholderImage}
                     />
                   </PostHero>
                 </PostLink>
