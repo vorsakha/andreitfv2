@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import { Spinner } from '../../src/components/ui/Spinner';
 
 const RedirectFromPt = () => {
   const router = useRouter();
@@ -10,7 +11,7 @@ const RedirectFromPt = () => {
     }
   }, [router]);
 
-  return null;
+  return <Spinner />;
 };
 
 export default RedirectFromPt;
