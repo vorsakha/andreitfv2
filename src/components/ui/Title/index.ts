@@ -9,16 +9,17 @@ export const AltTitle = styled.h2`
   color: ${({ theme }) => theme.text};
   padding: 12px 0;
   font-size: 2.6rem;
-  display: flex;
   text-align: start;
   letter-spacing: normal;
   line-height: 3rem;
   font-weight: bold;
+  word-wrap: break-word;
 
   @media screen and (max-width: 480px) {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     line-height: 55px;
   }
+
   @media screen and (max-width: 340px) {
     font-size: 1.5rem;
   }
