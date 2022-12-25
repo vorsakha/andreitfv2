@@ -50,7 +50,7 @@ export const ListItem = styled.li<List>`
 `;
 
 export const ListItemContent = styled.div`
-  padding: 1rem 0;
+  align-self: center;
 `;
 export const ListItemImage = styled.div`
   margin-right: 10px;
