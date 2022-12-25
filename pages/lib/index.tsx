@@ -25,7 +25,7 @@ const Lib = ({ gists }: GistsProps) => {
       <Main>
         <Wrapper>
           <AltTitle>Snippets</AltTitle>
-          <List items={gists} linkToSelf />
+          <List items={gists} linkToSelf gap={20} />
         </Wrapper>
       </Main>
     </Container>

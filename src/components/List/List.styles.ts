@@ -6,7 +6,7 @@ export const ListContainer = styled.ul<List>`
   margin: 1rem 0;
   display: flex;
   flex-direction: ${({ direction }) => direction};
-  gap: ${({ direction }) => (direction === 'row' ? '1rem' : '10px')};
+  gap: ${({ direction, gap }) => (direction === 'row' ? '1rem' : gap + 'px')};
 
   @media screen and (max-width: 768px) {
     flex-direction: column;

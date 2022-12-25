@@ -14,6 +14,7 @@ export interface List {
   initialMaxItems?: number;
   grayscaleImage?: boolean;
   linkToSelf?: boolean;
+  gap?: number;
 }
 
 export interface ListProps extends List {
@@ -36,10 +37,11 @@ export interface ListProps extends List {
 
 const List: FC<ListProps> = ({
   items = [],
-  direction,
+  direction = 'column',
   grayscaleImage = false,
   linkToSelf = false,
   initialMaxItems = 10,
+  gap = 10,
 }) => {
   const [quantityShown, setQuantityShown] = useState(initialMaxItems);
 
@@ -55,7 +57,7 @@ const List: FC<ListProps> = ({
 
   return (
     <Wrapper>
-      <ListContainer direction={direction || 'column'}>
+      <ListContainer direction={direction} gap={gap}>
         {items.slice(0, quantityShown).map(item => (
           <ListItem key={item.title} grayscaleImage={grayscaleImage}>
             {item.image && (
