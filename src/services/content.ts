@@ -26,6 +26,7 @@ export default class ContentService {
     return (
       await this.client.getEntries<T>({
         content_type: type,
+        order: '-fields.publishDate',
       })
     ).items;
   }
