@@ -17,6 +17,7 @@ import { AltTitle } from '../src/components/ui/Title';
 import List from '../src/components/List';
 import { Spinner } from '../src/components/ui/Spinner';
 import { getBase64Image } from '../src/utils/image';
+import { baseUrl } from '../src/constants';
 
 interface Posts extends IBlogPostFields {
   placeholderImage: string;
@@ -66,6 +67,10 @@ export default function Home({ posts }: HomeProps) {
       <Head>
         <title>TF</title>
         <meta name="description" content="Andrei T. Ferreira's website" />
+        <meta
+          property="og:image"
+          content={`${baseUrl}/api/og?title=Andrei T. Ferreira's website`}
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -73,7 +78,7 @@ export default function Home({ posts }: HomeProps) {
         <Banner socials={socials} />
         <div>
           <AltTitle>Featured Posts</AltTitle>
-          <List items={posts} direction="row" grayscaleImage linkToSelf />
+          <List items={posts} grayscaleImage linkToSelf />
         </div>
         {isLoading ? (
           <LoadingWrapper>

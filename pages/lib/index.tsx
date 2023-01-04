@@ -4,6 +4,7 @@ import React from 'react';
 import List from '../../src/components/List';
 import { Container, Main, Wrapper } from '../../src/components/ui/Container';
 import { AltTitle } from '../../src/components/ui/Title';
+import { baseUrl } from '../../src/constants';
 import { getGists, Gist } from '../../src/services/gists';
 
 interface GistsProps {
@@ -19,6 +20,7 @@ const Lib = ({ gists }: GistsProps) => {
           name="description"
           content="Any code that I think will be useful sometime later"
         />
+        <meta property="og:image" content={`${baseUrl}/api/og?title=lib`} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

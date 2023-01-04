@@ -7,6 +7,7 @@ import ScrollButton from '../../src/components/ui/ScrollButton';
 import Post from '../../src/components/Post';
 import safeStringify from 'fast-safe-stringify';
 import { getPlaiceholder } from 'plaiceholder';
+import { baseUrl } from '../../src/constants';
 
 export interface BlogPostWithPlaceholder extends IBlogPostFields {
   placeholderImage: string;
@@ -22,6 +23,10 @@ const Posts: NextPage<PostsProps> = ({ post }) => {
       <Head>
         <title>{post.title} | TF</title>
         <meta name="description" content={post.description} />
+        <meta
+          property="og:image"
+          content={`${baseUrl}/api/og?title=${post.title}`}
+        />
       </Head>
 
       <Main>

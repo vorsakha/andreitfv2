@@ -4,6 +4,7 @@ import React, { FC } from 'react';
 import List from '../src/components/List';
 import { Container, Main, Wrapper } from '../src/components/ui/Container';
 import { AltTitle } from '../src/components/ui/Title';
+import { baseUrl } from '../src/constants';
 import { getData } from '../src/services/spotify';
 import { getBase64Image } from '../src/utils/image';
 
@@ -57,6 +58,10 @@ const Misc: FC<MiscProps> = ({ songs, artists }) => {
       <Head>
         <title>TF | Misc</title>
         <meta name="description" content="Miscellaneous | Anything really" />
+        <meta
+          property="og:image"
+          content={`${baseUrl}/api/og?title=Miscellaneous | Anything really`}
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

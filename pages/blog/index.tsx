@@ -10,6 +10,7 @@ import {
   BlogPostFieldsWithPlaceholder,
   getBase64Image,
 } from '../../src/utils/image';
+import { baseUrl } from '../../src/constants';
 
 interface HomeProps {
   posts: BlogPostFieldsWithPlaceholder[];
@@ -21,6 +22,7 @@ export default function Home({ posts }: HomeProps) {
       <Head>
         <title>TF | Blog</title>
         <meta name="description" content="Coding related blog" />
+        <meta property="og:image" content={`${baseUrl}/api/og?title=blog`} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

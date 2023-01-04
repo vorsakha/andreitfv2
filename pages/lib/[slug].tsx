@@ -12,10 +12,10 @@ import typescript from 'react-syntax-highlighter/dist/cjs/languages/prism/typesc
 import styled from 'styled-components';
 import { Description } from '../../src/components/ui/Description';
 import { Back } from '../../src/components/ui/Button';
+import { baseUrl } from '../../src/constants';
 
 SyntaxHighlighter.registerLanguage('tsx', tsx);
 SyntaxHighlighter.registerLanguage('typescript', typescript);
-
 export interface GistsProps {
   gist: {
     title?: string;
@@ -38,6 +38,10 @@ const Lib = ({ gist }: GistsProps) => {
         <meta
           name="description"
           content={gist.description || 'Snippet details'}
+        />
+        <meta
+          property="og:image"
+          content={`${baseUrl}/api/og?title=${gist.title}`}
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
