@@ -70,12 +70,14 @@ export const PostBody = styled(ReactMarkdown)`
 
   h1 {
     margin-top: 1.5rem;
+    word-wrap: break-word;
   }
 
   h2 {
     padding: 0.7rem 0;
     line-height: 30px;
     margin-top: 1.5rem;
+    word-wrap: break-word;
   }
 
   h3 {
