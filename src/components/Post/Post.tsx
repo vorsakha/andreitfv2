@@ -45,7 +45,7 @@ const Post: FC<PostProps> = ({ post }) => (
         <PostDate>{formatDate(post.publishDate)}</PostDate>
       </PostSub>
       <PostBody components={CodeBlock}>{post.body}</PostBody>
-      {post.related !== null && (
+      {post.related && (
         <PostRelated>
           <h2>Related Posts</h2>
           <ul>
