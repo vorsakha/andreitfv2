@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 
 export const PostContainer = styled.div`
@@ -9,7 +8,7 @@ export const PostContainer = styled.div`
 `;
 export const PostHero = styled.div`
   height: 350px;
-  max-width: 800px;
+  max-width: 900px;
   width: 100%;
   margin: 0 auto;
   opacity: 0.8;

@@ -1,13 +1,13 @@
 import Image from 'next/image';
 import React, { FC, useState } from 'react';
-import Button from '../ui/Button';
-import { Wrapper } from '../ui/Container';
+import Button from '@ui/Button';
+import { Wrapper } from '@ui/Container';
 import {
   ListContainer,
   ListItem,
   ListItemContent,
   ListItemImage,
-} from './List.styles';
+} from '@components/List/List.styles';
 
 export interface List {
   direction?: 'row' | 'column';

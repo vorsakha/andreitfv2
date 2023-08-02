@@ -1,13 +1,15 @@
 import type { AppProps } from 'next/app';
 import { ThemeProvider } from 'styled-components';
 import { useEffect, useState } from 'react';
-import { GlobalStyles, theme, THEMES } from '../src/styles/theme';
-import Navbar from '../src/components/Navbar';
-import Sidebar from '../src/components/Sidebar';
-import Footer from '../src/components/Footer';
-import { Container } from '../src/components/ui/Container';
-import useLocalStorage from '../src/hooks/useLocalStorage';
 import { Inter } from '@next/font/google';
+import useSWR from 'swr';
+
+import { GlobalStyles, theme, THEMES } from '@styles/theme';
+import Navbar from '@components/Navbar';
+import Sidebar from '@components/Sidebar';
+import Footer from '@components/Footer';
+import { Container } from '@ui/Container';
+import useLocalStorage from '@hooks/useLocalStorage';
 
 const inter = Inter({
   variable: '--inter-font',
@@ -18,6 +20,8 @@ export default function App({ Component, pageProps }: AppProps) {
   const { setItem, getItem } = useLocalStorage();
   const [selectedTheme, setSelectedTheme] = useState<THEMES>(THEMES.DARK);
   const [isMenuOpen, setMenuIsOpen] = useState(false);
+  const fetcher = (url: string) => fetch(url).then(r => r.json());
+  const { data: song, isLoading } = useSWR('/api/spotify/current', fetcher);
 
   const toggleTheme = () => {
     setSelectedTheme(prev => {
@@ -48,6 +52,7 @@ export default function App({ Component, pageProps }: AppProps) {
           handleMenu={() => setMenuIsOpen(!isMenuOpen)}
           toggleTheme={toggleTheme}
           selectedTheme={selectedTheme}
+          song={song}
         />
         <Container>
           <Component {...pageProps} />

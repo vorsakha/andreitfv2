@@ -1,4 +1,4 @@
-import { getBase64Image } from './../../../src/utils/image';
+import { getBase64Image } from '@utils/image';
 import { NextApiRequest, NextApiResponse } from 'next';
 import querystring from 'querystring';
 

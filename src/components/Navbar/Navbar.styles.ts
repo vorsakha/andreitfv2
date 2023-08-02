@@ -15,7 +15,7 @@ export const NavbarContainer = styled.div`
   align-items: center;
   height: 130px;
   width: 100%;
-  max-width: 800px;
+  max-width: 900px;
   padding: 0 24px;
 `;
 export const NavLogo = styled(Link)`
@@ -94,3 +94,9 @@ export const NavItem = styled.div<{ active?: boolean }>`
 `;
 
 export const NavLink = styled(Link)``;
+
+export const NavCurrentlyPlaying = styled.div`
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+`;

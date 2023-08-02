@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { List } from './List';
+import { List } from '@components/List/List';
 
 export const ListContainer = styled.ul<List>`
   list-style: none;

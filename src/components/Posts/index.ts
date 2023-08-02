@@ -1,1 +1,1 @@
-export { default } from './Posts';
+export { default } from '@components/Posts/Posts';

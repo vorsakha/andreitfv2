@@ -1,1 +1,1 @@
-export { default } from './CurrentlyPlaying';
+export { default } from '@components/CurrentlyPlaying/CurrentlyPlaying';

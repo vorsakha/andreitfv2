@@ -1,16 +1,13 @@
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import safeStringify from 'fast-safe-stringify';
-import { IBlogPostFields } from '../../src/@types/contentful';
-import ContentService from '../../src/services/content';
-import { Main } from '../../src/components/ui/Container';
-import Posts from '../../src/components/Posts';
-import { AltTitle } from '../../src/components/ui/Title';
-import {
-  BlogPostFieldsWithPlaceholder,
-  getBase64Image,
-} from '../../src/utils/image';
-import { baseUrl } from '../../src/constants';
+import { IBlogPostFields } from '@/@types/contentful';
+import ContentService from '@services/content';
+import { Main } from '@ui/Container';
+import Posts from '@components/Posts';
+import { AltTitle } from '@ui/Title';
+import { BlogPostFieldsWithPlaceholder, getBase64Image } from '@utils/image';
+import { baseUrl } from '@constants/index';
 
 interface HomeProps {
   posts: BlogPostFieldsWithPlaceholder[];
