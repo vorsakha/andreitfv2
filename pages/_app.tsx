@@ -52,7 +52,7 @@ export default function App({ Component, pageProps }: AppProps) {
           handleMenu={() => setMenuIsOpen(!isMenuOpen)}
           toggleTheme={toggleTheme}
           selectedTheme={selectedTheme}
-          song={song}
+          songData={{ song, loading: isLoading }}
         />
         <Container>
           <Component {...pageProps} />

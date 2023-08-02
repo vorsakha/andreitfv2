@@ -13,13 +13,19 @@ import {
   CurrentlyPlayingWrapper,
 } from '@components/CurrentlyPlayingV2/CurrentlyPlaying.styles';
 import { useTheme } from 'styled-components';
+import CurrentlyPlayingLoading from '@components/CurrentlyPlayingV2/CurrentlyPlayingLoading';
 
 interface CurrentlyPlayingProps {
   song: SongResponse;
+  loading: boolean;
 }
 
-const CurrentlyPlaying: FC<CurrentlyPlayingProps> = ({ song }) => {
+const CurrentlyPlaying: FC<CurrentlyPlayingProps> = ({ song, loading }) => {
   const theme = useTheme();
+
+  if (loading) {
+    return <CurrentlyPlayingLoading />;
+  }
 
   return (
     <CurrentlyPlayingContainer>

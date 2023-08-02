@@ -23,14 +23,17 @@ type NavbarProps = {
   handleMenu: () => void;
   toggleTheme: () => void;
   selectedTheme: THEMES;
-  song: SongResponse;
+  songData: {
+    song: SongResponse;
+    loading: boolean;
+  };
 };
 
 const Navbar: React.FC<NavbarProps> = ({
   handleMenu,
   toggleTheme,
   selectedTheme,
-  song,
+  songData,
 }): JSX.Element => {
   const router = useRouter();
   return (
@@ -46,9 +49,6 @@ const Navbar: React.FC<NavbarProps> = ({
           <NavItem active={router.pathname === '/'}>
             <NavLink href="/">Home</NavLink>
           </NavItem>
-          <NavItem active={router.pathname === '/misc'}>
-            <NavLink href="/misc">Misc</NavLink>
-          </NavItem>
           <NavItem active={router.pathname === '/lib'}>
             <NavLink href="/lib">Lib</NavLink>
           </NavItem>
@@ -62,7 +62,7 @@ const Navbar: React.FC<NavbarProps> = ({
         </NavMenu>
 
         <NavCurrentlyPlaying>
-          <CurrentlyPlaying song={song} />
+          <CurrentlyPlaying song={songData.song} loading={songData.loading} />
         </NavCurrentlyPlaying>
       </NavbarContainer>
     </Nav>

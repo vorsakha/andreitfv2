@@ -5,7 +5,6 @@ const spin = keyframes`
     100% {
         transform: rotate(360deg);
     }
-    
 `;
 
 export const Spinner = styled(ImSpinner2)`

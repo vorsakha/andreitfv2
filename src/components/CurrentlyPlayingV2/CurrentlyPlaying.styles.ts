@@ -72,3 +72,15 @@ export const CurrentlyPlayingIcon = styled.div`
   display: flex;
   justify-content: flex-end;
 `;
+export const CurrentlyPlayingLoadingWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+  }
+`;
