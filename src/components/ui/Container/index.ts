@@ -16,7 +16,7 @@ export const Wrapper = styled.div`
 export const Main = styled.main`
   display: flex;
   flex-direction: column;
-  max-width: 800px;
+  max-width: 900px;
   justify-content: center;
   margin: 0 auto;
   padding: 24px;

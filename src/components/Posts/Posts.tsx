@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React, { FC } from 'react';
-import { formatDate } from '../../utils/date';
-import { BlogPostFieldsWithPlaceholder } from '../../utils/image';
+import { formatDate } from '@utils/date';
+import { BlogPostFieldsWithPlaceholder } from '@utils/image';
 import {
   ArchiveContainer,
   ArchiveList,
@@ -13,7 +13,7 @@ import {
   PostHero,
   PostItem,
   PostLink,
-} from './Posts.styled';
+} from '@components/Posts/Posts.styled';
 
 interface PostsProps {
   posts: BlogPostFieldsWithPlaceholder[];

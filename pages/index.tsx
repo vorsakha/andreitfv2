@@ -1,7 +1,5 @@
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
-import { IBlogPostFields } from '../src/@types/contentful';
-import ContentService from '../src/services/content';
 import safeStringify from 'fast-safe-stringify';
 import styled from 'styled-components';
 import useSWR from 'swr';
@@ -10,14 +8,15 @@ import { MdEmail } from '@react-icons/all-files/md/MdEmail';
 import { FaGithub } from '@react-icons/all-files/fa/FaGithub';
 import { FaLinkedinIn } from '@react-icons/all-files/fa/FaLinkedinIn';
 
-import Banner from '../src/components/Banner';
-import { Main } from '../src/components/ui/Container';
-import CurrentlyPlaying from '../src/components/CurrentlyPlaying';
-import { AltTitle } from '../src/components/ui/Title';
-import List from '../src/components/List';
-import { Spinner } from '../src/components/ui/Spinner';
-import { getBase64Image } from '../src/utils/image';
-import { baseUrl } from '../src/constants';
+import { IBlogPostFields } from '@/@types/contentful';
+import ContentService from '@services/content';
+
+import Banner from '@components/Banner';
+import { Main } from '@components/ui/Container';
+import { AltTitle } from '@components/ui/Title';
+import List from '@components/List';
+import { getBase64Image } from '@utils/image';
+import { baseUrl } from '@constants/index';
 
 interface Posts extends IBlogPostFields {
   placeholderImage: string;
@@ -80,13 +79,6 @@ export default function Home({ posts }: HomeProps) {
           <AltTitle>Featured Posts</AltTitle>
           <List items={posts} grayscaleImage linkToSelf />
         </div>
-        {isLoading ? (
-          <LoadingWrapper>
-            <Spinner />
-          </LoadingWrapper>
-        ) : (
-          <CurrentlyPlaying song={song} />
-        )}
       </Main>
     </Container>
   );

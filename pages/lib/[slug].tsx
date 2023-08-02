@@ -1,18 +1,18 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 import React from 'react';
-import { Container, Main, Wrapper } from '../../src/components/ui/Container';
-import { AltTitle } from '../../src/components/ui/Title';
-import { getGistBySlug, getGists } from '../../src/services/gists';
+import { Container, Main, Wrapper } from '@ui/Container';
+import { AltTitle } from '@ui/Title';
+import { getGistBySlug, getGists } from '@services/gists';
 
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { xonokai } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import tsx from 'react-syntax-highlighter/dist/cjs/languages/prism/tsx';
 import typescript from 'react-syntax-highlighter/dist/cjs/languages/prism/typescript';
 import styled from 'styled-components';
-import { Description } from '../../src/components/ui/Description';
-import { Back } from '../../src/components/ui/Button';
-import { baseUrl } from '../../src/constants';
+import { Description } from '@ui/Description';
+import { Back } from '@ui/Button';
+import { baseUrl } from '@constants/index';
 
 SyntaxHighlighter.registerLanguage('tsx', tsx);
 SyntaxHighlighter.registerLanguage('typescript', typescript);

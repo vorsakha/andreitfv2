@@ -1,5 +1,5 @@
 import { getPlaiceholder } from 'plaiceholder';
-import { IBlogPostFields } from '../@types/contentful';
+import { IBlogPostFields } from '@/@types/contentful';
 
 export interface BlogPostFieldsWithPlaceholder extends IBlogPostFields {
   placeholderImage: string;

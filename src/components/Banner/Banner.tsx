@@ -1,5 +1,9 @@
 import React, { FC, ReactNode } from 'react';
-import { BannerContainer, SocialLink, Socials } from './Banner.styles';
+import {
+  BannerContainer,
+  SocialLink,
+  Socials,
+} from '@components/Banner/Banner.styles';
 
 interface SocialsProps {
   socials: {

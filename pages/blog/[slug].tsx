@@ -1,13 +1,13 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
-import { IBlogPostFields } from '../../src/@types/contentful';
-import ContentService from '../../src/services/content';
-import { Main } from '../../src/components/ui/Container';
-import ScrollButton from '../../src/components/ui/ScrollButton';
-import Post from '../../src/components/Post';
+import { IBlogPostFields } from '@/@types/contentful';
+import ContentService from '@services/content';
+import { Main } from '@ui/Container';
+import ScrollButton from '@ui/ScrollButton';
+import Post from '@components/Post';
 import safeStringify from 'fast-safe-stringify';
 import { getPlaiceholder } from 'plaiceholder';
-import { baseUrl } from '../../src/constants';
+import { baseUrl } from '@constants/index';
 
 export interface BlogPostWithPlaceholder extends IBlogPostFields {
   placeholderImage: string;

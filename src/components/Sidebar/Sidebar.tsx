@@ -1,5 +1,5 @@
 import React from 'react';
-import { THEMES } from '../../styles/theme';
+import { THEMES } from '@styles/theme';
 import { HiOutlineSun as SunIcon } from '@react-icons/all-files/hi/HiOutlineSun';
 import { HiOutlineMoon as MoonIcon } from '@react-icons/all-files/hi/HiOutlineMoon';
 
@@ -9,7 +9,7 @@ import {
   CloseIcon,
   SidebarMenu,
   SidebarLink,
-} from './Sidebar.styles';
+} from '@components/Sidebar/Sidebar.styles';
 
 type SidebarTypes = {
   handleMenu: () => void;

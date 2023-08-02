@@ -1,11 +1,11 @@
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import React from 'react';
-import List from '../../src/components/List';
-import { Container, Main, Wrapper } from '../../src/components/ui/Container';
-import { AltTitle } from '../../src/components/ui/Title';
-import { baseUrl } from '../../src/constants';
-import { getGists, Gist } from '../../src/services/gists';
+import List from '@components/List';
+import { Container, Main, Wrapper } from '@ui/Container';
+import { AltTitle } from '@ui/Title';
+import { baseUrl } from '@constants/index';
+import { getGists, Gist } from '@services/gists';
 
 interface GistsProps {
   gists: Gist[];

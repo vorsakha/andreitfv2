@@ -11,21 +11,26 @@ import {
   NavMenu,
   NavItem,
   NavLink,
-} from './Navbar.styles';
+  NavCurrentlyPlaying,
+} from '@components/Navbar/Navbar.styles';
 import { useRouter } from 'next/router';
-import { THEMES } from '../../styles/theme';
-import Button from '../ui/Button';
+import { THEMES } from '@styles/theme';
+import Button from '@ui/Button';
+import { SongResponse } from '@pages/api/spotify/current';
+import CurrentlyPlaying from '@components/CurrentlyPlayingV2';
 
-type NavbarTypes = {
+type NavbarProps = {
   handleMenu: () => void;
   toggleTheme: () => void;
   selectedTheme: THEMES;
+  song: SongResponse;
 };
 
-const Navbar: React.FC<NavbarTypes> = ({
+const Navbar: React.FC<NavbarProps> = ({
   handleMenu,
   toggleTheme,
   selectedTheme,
+  song,
 }): JSX.Element => {
   const router = useRouter();
   return (
@@ -50,10 +55,15 @@ const Navbar: React.FC<NavbarTypes> = ({
           <NavItem active={router.pathname === '/blog'}>
             <NavLink href="/blog">Blog</NavLink>
           </NavItem>
+
           <Button onClick={toggleTheme}>
             {selectedTheme === THEMES.DARK ? <SunIcon /> : <MoonIcon />}
           </Button>
         </NavMenu>
+
+        <NavCurrentlyPlaying>
+          <CurrentlyPlaying song={song} />
+        </NavCurrentlyPlaying>
       </NavbarContainer>
     </Nav>
   );

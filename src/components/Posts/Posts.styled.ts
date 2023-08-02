@@ -30,7 +30,7 @@ export const PostHero = styled.div`
   }
 `;
 export const ArchiveWrapper = styled.div`
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
 `;
 export const ArchiveList = styled.div`

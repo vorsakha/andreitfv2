@@ -1,12 +1,13 @@
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import React, { FC } from 'react';
-import List from '../src/components/List';
-import { Container, Main, Wrapper } from '../src/components/ui/Container';
-import { AltTitle } from '../src/components/ui/Title';
-import { baseUrl } from '../src/constants';
-import { getData } from '../src/services/spotify';
-import { getBase64Image } from '../src/utils/image';
+
+import List from '@components/List';
+import { Container, Main, Wrapper } from '@ui/Container';
+import { AltTitle } from '@ui/Title';
+import { baseUrl } from '@constants/index';
+import { getData } from '@services/spotify';
+import { getBase64Image } from '@utils/image';
 
 const TOP_ARTISTS_ENDPOINT = `https://api.spotify.com/v1/me/top/artists`;
 const TOP_TRACKS_ENDPOINT = `https://api.spotify.com/v1/me/top/tracks`;

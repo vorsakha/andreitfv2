@@ -11,7 +11,7 @@ import {
   CurrentlyPlayingImageWrapper,
   CurrentlyPlayingSong,
   CurrentlyPlayingWrapper,
-} from '@components/CurrentlyPlaying/CurrentlyPlaying.styles';
+} from '@components/CurrentlyPlayingV2/CurrentlyPlaying.styles';
 import { useTheme } from 'styled-components';
 
 interface CurrentlyPlayingProps {
@@ -37,13 +37,13 @@ const CurrentlyPlaying: FC<CurrentlyPlayingProps> = ({ song }) => {
             <Image
               src={song?.albumImageUrl}
               alt={song?.album}
-              width={64}
-              height={64}
+              width={36}
+              height={36}
               placeholder="blur"
               blurDataURL={song?.placeholderImage}
             />
           ) : (
-            <SiSpotify size={64} color={theme.colors.red.solid} />
+            <SiSpotify size={36} color={theme.colors.red.solid} />
           )}
         </CurrentlyPlayingImageWrapper>
 
@@ -53,12 +53,12 @@ const CurrentlyPlaying: FC<CurrentlyPlayingProps> = ({ song }) => {
           </CurrentlyPlayingSong>
           <CurrentlyPlayingArtist>
             {song?.isPlaying ? song.artist : 'Spotify'}
+            {song?.isPlaying && (
+              <CurrentlyPlayingIcon>
+                <SiSpotify size={16} color={theme.colors.red.solid} />
+              </CurrentlyPlayingIcon>
+            )}
           </CurrentlyPlayingArtist>
-          {song?.isPlaying && (
-            <CurrentlyPlayingIcon>
-              <SiSpotify size={20} color={theme.colors.red.solid} />
-            </CurrentlyPlayingIcon>
-          )}
         </CurrentlyPlayingContentWrapper>
       </CurrentlyPlayingWrapper>
     </CurrentlyPlayingContainer>

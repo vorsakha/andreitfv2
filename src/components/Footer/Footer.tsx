@@ -7,7 +7,7 @@ import {
   FooterMaker,
   CodeIcon,
   FooterAnchor,
-} from './Footer.styles';
+} from '@components/Footer/Footer.styles';
 
 const Footer: React.FC = (): JSX.Element => {
   return (

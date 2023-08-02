@@ -1,11 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
-import { BlogPostWithPlaceholder } from '../../../pages/blog/[slug]';
-import { formatDate } from '../../utils/date';
-import { Back } from '../ui/Button';
-import { AltTitle } from '../ui/Title';
-import { CodeBlock } from './CodeBlock';
+import { BlogPostWithPlaceholder } from '@pages/blog/[slug]';
+import { formatDate } from '@utils/date';
+import { Back } from '@ui/Button';
+import { AltTitle } from '@ui/Title';
+import { CodeBlock } from '@components/Post/CodeBlock';
 import {
   PostAuthor,
   PostBody,
@@ -15,7 +15,7 @@ import {
   PostRelated,
   PostSub,
   PostWrapper,
-} from './Post.styled';
+} from '@components/Post/Post.styled';
 
 interface PostProps {
   post: BlogPostWithPlaceholder;
