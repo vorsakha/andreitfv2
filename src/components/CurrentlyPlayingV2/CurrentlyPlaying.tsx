@@ -49,7 +49,7 @@ const CurrentlyPlaying: FC<CurrentlyPlayingProps> = ({ song, loading }) => {
               blurDataURL={song?.placeholderImage}
             />
           ) : (
-            <SiSpotify size={36} color={theme.colors.red.solid} />
+            <SiSpotify size={36} color={theme.colors.gray.solid} />
           )}
         </CurrentlyPlayingImageWrapper>
 
@@ -61,7 +61,7 @@ const CurrentlyPlaying: FC<CurrentlyPlayingProps> = ({ song, loading }) => {
             {song?.isPlaying ? song.artist : 'Spotify'}
             {song?.isPlaying && (
               <CurrentlyPlayingIcon>
-                <SiSpotify size={16} color={theme.colors.red.solid} />
+                <SiSpotify size={16} color={theme.colors.gray.solid} />
               </CurrentlyPlayingIcon>
             )}
           </CurrentlyPlayingArtist>

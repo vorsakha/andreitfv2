@@ -12,11 +12,15 @@ export const CurrentlyPlayingWrapper = styled.a`
   border-radius: 4px;
   gap: 4px;
   text-decoration: none;
-  transition: all 0.2s ease;
 
   &:hover {
     img {
       filter: grayscale(0%);
+    }
+
+    svg {
+      filter: drop-shadow(0px 2px 6px rgba(255, 24, 76, 0.5));
+      fill: ${({ theme }) => theme.colors.red.solid};
     }
   }
 `;
@@ -30,10 +34,11 @@ export const CurrentlyPlayingImageWrapper = styled.div`
     width: 36px;
     height: 36px;
     filter: grayscale(100%);
+    transition: all 0.2s ease;
   }
 
   svg {
-    filter: drop-shadow(0px 2px 6px rgba(255, 24, 76, 0.5));
+    transition: all 0.2s ease;
   }
 `;
 export const CurrentlyPlayingContentWrapper = styled.div`
@@ -68,9 +73,12 @@ export const CurrentlyPlayingIcon = styled.div`
   position: absolute;
   bottom: 0;
   right: -20px;
-  filter: drop-shadow(0px 2px 6px rgba(255, 24, 76, 0.5));
   display: flex;
   justify-content: flex-end;
+
+  svg {
+    transition: all 0.2s ease;
+  }
 `;
 export const CurrentlyPlayingLoadingWrapper = styled.div`
   display: flex;
