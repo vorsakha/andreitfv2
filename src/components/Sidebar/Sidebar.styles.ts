@@ -7,7 +7,7 @@ type SidebarStyledTypes = {
   $isOpen?: boolean;
 };
 
-export const SidebarContainer = styled.div`
+export const SidebarContainer = styled.div<{ $isOpen: boolean }>`
   position: fixed;
   z-index: 1000;
   width: 100%;

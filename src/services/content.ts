@@ -7,7 +7,24 @@ import {
 } from 'contentful';
 import { config } from 'dotenv';
 
-type EntryTypes = EntrySkeletonType<IBlogPostFields, 'blogPost'>;
+export type EntryTypes = EntrySkeletonType<IBlogPostFields, 'blogPost'>;
+export interface PostFields {
+  title: string;
+  slug: string;
+  tags?: string[] | undefined;
+  heroImage: {
+    fields: {
+      file: {
+        url: string;
+      };
+    };
+  };
+  description: string;
+  body: string;
+  publishDate: string;
+  author: string;
+  related?: Entry<EntryTypes>[] | undefined;
+}
 
 declare global {
   namespace NodeJS {
@@ -31,7 +48,7 @@ export default class ContentService {
   });
 
   getEntriesByType() {
-    return this.client.getEntries<EntryTypes>({
+    return this.client.getEntries<EntrySkeletonType<PostFields, 'blogPost'>>({
       content_type: 'blogPost',
       order: '-fields.publishDate' as any,
     });
@@ -39,7 +56,7 @@ export default class ContentService {
 
   async getPostBySlug(slug: string) {
     return (
-      await this.client.getEntries<EntryTypes>({
+      await this.client.getEntries<EntrySkeletonType<PostFields, 'blogPost'>>({
         content_type: 'blogPost',
         'fields.slug': slug,
       } as EntriesQueries<EntryTypes, undefined>)

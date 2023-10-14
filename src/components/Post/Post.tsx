@@ -25,7 +25,7 @@ const Post: FC<PostProps> = ({ post }) => (
   <PostContainer>
     <PostHero>
       <Image
-        src={`https:${post.heroImage.fields.file.url}?w=752&h=423`}
+        src={`https:${post.heroImage.fields.file?.url}?w=752&h=423`}
         alt={post.title}
         fill
         priority
@@ -49,7 +49,7 @@ const Post: FC<PostProps> = ({ post }) => (
         <PostRelated>
           <h2>Related Posts</h2>
           <ul>
-            {post.related?.map(related => (
+            {post.related?.map((related: any) => (
               <li key={related.fields.slug as string}>
                 <Link href={`/blog/${related.fields.slug}`}>
                   {related.fields.title as string}
