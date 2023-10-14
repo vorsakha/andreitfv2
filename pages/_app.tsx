@@ -1,7 +1,7 @@
 import type { AppProps } from 'next/app';
 import { ThemeProvider } from 'styled-components';
 import { useEffect, useState } from 'react';
-import { Inter } from '@next/font/google';
+import { Inter } from 'next/font/google';
 import useSWR from 'swr';
 
 import { GlobalStyles, theme, THEMES } from '@styles/theme';

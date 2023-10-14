@@ -2,7 +2,6 @@ import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import safeStringify from 'fast-safe-stringify';
 import styled from 'styled-components';
-import useSWR from 'swr';
 
 import { MdEmail } from '@react-icons/all-files/md/MdEmail';
 import { FaGithub } from '@react-icons/all-files/fa/FaGithub';
@@ -32,13 +31,6 @@ const Container = styled.div`
   background-color: ${({ theme }) => theme.background};
 `;
 
-const LoadingWrapper = styled.div`
-  height: 176.2px;
-  position: relative;
-  width: 200px;
-  margin: 24px 0;
-`;
-
 const socials = [
   {
     name: 'Github',
@@ -58,9 +50,6 @@ const socials = [
 ];
 
 export default function Home({ posts }: HomeProps) {
-  const fetcher = (url: string) => fetch(url).then(r => r.json());
-  const { data: song, isLoading } = useSWR('/api/spotify/current', fetcher);
-
   return (
     <Container>
       <Head>
@@ -85,10 +74,10 @@ export default function Home({ posts }: HomeProps) {
 }
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
-  const articles = (
-    await ContentService.instance.getEntriesByType<IBlogPostFields>('blogPost')
-  )
-    .map(entry => ({
+  const articles = await ContentService.instance.getEntriesByType();
+
+  const formatted = articles.items
+    .map((entry: any) => ({
       title: entry.fields.title,
       subtitle: entry.fields.description,
       image: `https:${entry.fields.heroImage.fields.file.url}?w=120&h=68`,
@@ -97,7 +86,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
     .slice(0, 3);
   const stringifiedData = safeStringify(
     await Promise.all(
-      articles.map(async p => ({
+      formatted.map(async p => ({
         ...p,
         placeholderImage: await getBase64Image(p.image),
       })),

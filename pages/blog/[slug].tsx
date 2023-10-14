@@ -6,8 +6,8 @@ import { Main } from '@ui/Container';
 import ScrollButton from '@ui/ScrollButton';
 import Post from '@components/Post';
 import safeStringify from 'fast-safe-stringify';
-import { getPlaiceholder } from 'plaiceholder';
 import { baseUrl } from '@constants/index';
+import { getBase64Image } from '@utils/image';
 
 export interface BlogPostWithPlaceholder extends IBlogPostFields {
   placeholderImage: string;
@@ -45,7 +45,7 @@ export const getStaticProps: GetStaticProps<
   const post = await ContentService.instance.getPostBySlug(slug);
   const stringifiedData = safeStringify(post);
   const parsedPost = JSON.parse(stringifiedData);
-  const { base64 } = await getPlaiceholder(
+  const placeholderImage = await getBase64Image(
     `https:${parsedPost.fields.heroImage.fields.file.url}?w=400&h=225`,
   );
 
@@ -55,19 +55,17 @@ export const getStaticProps: GetStaticProps<
 
   return {
     props: {
-      post: { ...parsedPost.fields, placeholderImage: base64 },
+      post: { ...parsedPost.fields, placeholderImage },
     },
     revalidate: 120,
   };
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await ContentService.instance.getEntriesByType<IBlogPostFields>(
-    'blogPost',
-  );
+  const posts = await ContentService.instance.getEntriesByType();
 
   return {
-    paths: posts.map(post => ({
+    paths: posts.items.map(post => ({
       params: {
         slug: post.fields.slug,
       },

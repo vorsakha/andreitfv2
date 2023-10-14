@@ -1,5 +1,13 @@
-import { createClient } from 'contentful';
+import { IBlogPostFields } from '@/@types/contentful';
+import {
+  EntriesQueries,
+  Entry,
+  EntrySkeletonType,
+  createClient,
+} from 'contentful';
 import { config } from 'dotenv';
+
+type EntryTypes = EntrySkeletonType<IBlogPostFields, 'blogPost'>;
 
 declare global {
   namespace NodeJS {
@@ -22,21 +30,19 @@ export default class ContentService {
     accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
   });
 
-  async getEntriesByType<T>(type: string) {
-    return (
-      await this.client.getEntries<T>({
-        content_type: type,
-        order: '-fields.publishDate',
-      })
-    ).items;
+  getEntriesByType() {
+    return this.client.getEntries<EntryTypes>({
+      content_type: 'blogPost',
+      order: '-fields.publishDate' as any,
+    });
   }
 
-  async getPostBySlug<T>(slug: string) {
+  async getPostBySlug(slug: string) {
     return (
-      await this.client.getEntries<T>({
+      await this.client.getEntries<EntryTypes>({
         content_type: 'blogPost',
         'fields.slug': slug,
-      })
+      } as EntriesQueries<EntryTypes, undefined>)
     ).items[0];
   }
 }

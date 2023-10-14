@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-const { withPlaiceholder } = require("@plaiceholder/next");
+import withPlaiceholder from '@plaiceholder/next';
 
 const nextConfig = {
   reactStrictMode: true,
@@ -12,4 +12,4 @@ const nextConfig = {
   },
 }
 
-module.exports = withPlaiceholder(nextConfig)
+export default withPlaiceholder(nextConfig)

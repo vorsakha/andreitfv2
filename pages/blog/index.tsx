@@ -1,7 +1,6 @@
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import safeStringify from 'fast-safe-stringify';
-import { IBlogPostFields } from '@/@types/contentful';
 import ContentService from '@services/content';
 import { Main } from '@ui/Container';
 import Posts from '@components/Posts';
@@ -32,12 +31,12 @@ export default function Home({ posts }: HomeProps) {
 }
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
-  const articles = (
-    await ContentService.instance.getEntriesByType<IBlogPostFields>('blogPost')
-  ).map(entry => entry.fields);
+  const articles = (await ContentService.instance.getEntriesByType()).items.map(
+    entry => entry.fields,
+  );
   const stringifiedData = safeStringify(
     await Promise.all(
-      articles.map(async p => ({
+      articles.map(async (p: any) => ({
         ...p,
         placeholderImage: await getBase64Image(
           `https:${p.heroImage.fields.file.url}?w=250&h=141`,

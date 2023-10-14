@@ -2,7 +2,14 @@ import styled from 'styled-components';
 import { List } from '@components/List/List';
 
 export const ListContainer = styled.ul<List>`
-  list-style: none;
+  ::before {
+    content: none;
+    color: inherit;
+    text-shadow: none;
+    display: inline-block;
+    font-size: inherit;
+  }
+  list-style: square;
   margin: 1rem 0;
   display: flex;
   flex-direction: ${({ direction }) => direction};
@@ -13,6 +20,15 @@ export const ListContainer = styled.ul<List>`
   }
 `;
 export const ListItem = styled.li<List>`
+  ::before {
+    padding-right: 0;
+    content: none;
+    color: inherit;
+    text-shadow: none;
+    display: inline-block;
+    font-size: inherit;
+  }
+
   display: flex;
   align-items: center;
   margin: 0 !important;
