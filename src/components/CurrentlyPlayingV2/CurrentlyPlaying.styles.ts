@@ -18,6 +18,10 @@ export const CurrentlyPlayingWrapper = styled.a`
       filter: grayscale(0%);
     }
 
+    p {
+      text-shadow: none;
+    }
+
     svg {
       filter: drop-shadow(0px 2px 6px rgba(255, 24, 76, 0.5));
       fill: ${({ theme }) => theme.colors.red.solid};
@@ -49,6 +53,7 @@ export const CurrentlyPlayingContentWrapper = styled.div`
   gap: 5px;
 `;
 export const CurrentlyPlayingSong = styled.p`
+  color: ${({ theme }) => theme.text};
   font-size: 12px;
   text-decoration: underline;
   line-height: 10px;

@@ -24,7 +24,7 @@ const ButtonWrapper = styled.div<{ active: boolean }>`
       active ? theme.colors.gray.transparency : 'transparent'};
     border-radius: 6px;
 
-    :hover {
+    &:hover {
       background-color: ${({ theme }) => theme.colors.gray.transparency};
       color: ${({ theme }) => theme.text};
       text-shadow: none;

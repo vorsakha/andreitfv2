@@ -71,7 +71,7 @@ export const SocialLink = styled.a`
     0px 2px 6px ${({ theme }) => theme.colors.gray.transparency}
   );
 
-  :hover {
+  &:hover {
     filter: drop-shadow(0px 2px 6px rgba(255, 24, 76, 0.5));
   }
 `;

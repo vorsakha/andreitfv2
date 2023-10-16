@@ -59,7 +59,7 @@ export const GlobalStyles = createGlobalStyle`
         transition: all 0.2s ease;
         
         
-        :hover {
+        &:hover {
           color: ${({ theme }) => theme.colors.red.solid};
           text-shadow: ${({ theme }) =>
             `${theme.colors.red.transparency} 0px 4px 18px, ${theme.colors.red.transparency} 0px 2px 10px`};

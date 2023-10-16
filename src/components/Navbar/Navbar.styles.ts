@@ -81,7 +81,7 @@ export const NavItem = styled.div<{ active?: boolean }>`
     border: none;
     background-color: transparent;
 
-    :hover {
+    &:hover {
       background-color: ${({ theme }) => theme.colors.gray.transparency};
       border-radius: 6px;
       color: ${({ theme }) => theme.text};
