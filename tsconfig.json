@@ -46,6 +46,9 @@
       ],
       "@ui/*": [
         "src/components/ui/*"
+      ],
+      "@interfaces/*": [
+        "src/interfaces/*"
       ]
     },
     "plugins": [

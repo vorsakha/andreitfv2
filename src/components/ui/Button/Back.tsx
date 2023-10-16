@@ -1,5 +1,7 @@
+'use client';
+
 import Link from 'next/link';
-import React, { FC, PropsWithChildren } from 'react';
+import { FC, PropsWithChildren } from 'react';
 import styled from 'styled-components';
 
 import { IoReturnUpBackSharp } from '@react-icons/all-files/io5/IoReturnUpBackSharp';

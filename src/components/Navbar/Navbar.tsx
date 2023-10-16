@@ -17,6 +17,7 @@ import { THEMES } from '@styles/theme';
 import Button from '@ui/Button';
 import { SongResponse } from '@pages/api/spotify/current';
 import CurrentlyPlaying from '@components/CurrentlyPlayingV2';
+import { ROUTES } from '@interfaces/routes';
 
 type NavbarProps = {
   handleMenu: () => void;
@@ -38,21 +39,21 @@ const Navbar: React.FC<NavbarProps> = ({
   return (
     <Nav>
       <NavbarContainer>
-        <NavLogo href="/">
+        <NavLogo href={ROUTES.HOME}>
           T<span>F</span>
         </NavLogo>
         <MobileIcon onClick={handleMenu}>
           <FaBars />
         </MobileIcon>
         <NavMenu>
-          <NavItem $active={pathname === '/'}>
-            <NavLink href="/">Home</NavLink>
+          <NavItem $active={pathname === ROUTES.HOME}>
+            <NavLink href={ROUTES.HOME}>Home</NavLink>
           </NavItem>
-          <NavItem $active={pathname === '/lib'}>
-            <NavLink href="/lib">Lib</NavLink>
+          <NavItem $active={pathname === ROUTES.LIB}>
+            <NavLink href={ROUTES.LIB}>Lib</NavLink>
           </NavItem>
-          <NavItem $active={pathname === '/blog'}>
-            <NavLink href="/blog">Blog</NavLink>
+          <NavItem $active={pathname === ROUTES.BLOG}>
+            <NavLink href={ROUTES.BLOG}>Blog</NavLink>
           </NavItem>
 
           <Button onClick={toggleTheme}>

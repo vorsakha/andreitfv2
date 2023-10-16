@@ -1,4 +1,6 @@
-import React, { FC, HTMLAttributes } from 'react';
+'use client';
+
+import { FC, HTMLAttributes } from 'react';
 import styled from 'styled-components';
 
 interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
