@@ -1,3 +1,5 @@
+'use client';
+
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -14,6 +16,15 @@ export const Wrapper = styled.div`
 `;
 
 export const Main = styled.main`
+  display: flex;
+  flex-direction: column;
+  max-width: 900px;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 24px;
+`;
+
+export const ContainerWrapper = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 900px;

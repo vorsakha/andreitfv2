@@ -1,3 +1,5 @@
+'use client';
+
 import styled from 'styled-components';
 import { BiCodeAlt } from '@react-icons/all-files/bi/BiCodeAlt';
 

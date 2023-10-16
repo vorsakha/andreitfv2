@@ -60,13 +60,13 @@ export const NavMenu = styled.div`
     display: none;
   }
 `;
-export const NavItem = styled.div<{ active?: boolean }>`
+export const NavItem = styled.div<{ $active?: boolean }>`
   a,
   button {
-    color: ${({ theme, active }) =>
-      active ? theme.colors.red.solid : theme.text};
-    text-shadow: ${({ theme, active }) =>
-      active
+    color: ${({ theme, $active }) =>
+      $active ? theme.colors.red.solid : theme.text};
+    text-shadow: ${({ theme, $active }) =>
+      $active
         ? `${theme.shadow} 0px 4px 18px, ${theme.shadow} 0px 2px 10px`
         : 'none'};
     display: flex;

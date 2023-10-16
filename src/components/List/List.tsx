@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import React, { FC, useState } from 'react';
 import Button from '@ui/Button';
@@ -12,7 +14,7 @@ import {
 export interface List {
   direction?: 'row' | 'column';
   initialMaxItems?: number;
-  grayscaleImage?: boolean;
+  $grayscaleImage?: boolean;
   linkToSelf?: boolean;
   gap?: number;
 }
@@ -29,8 +31,8 @@ export interface ListProps extends List {
     | {
         title: string;
         subtitle: string[] | string;
-        image: string;
-        placeholderImage: string;
+        image?: string;
+        placeholderImage?: string;
         url?: string;
       }[];
 }
@@ -38,7 +40,7 @@ export interface ListProps extends List {
 const List: FC<ListProps> = ({
   items = [],
   direction = 'column',
-  grayscaleImage = false,
+  $grayscaleImage = false,
   linkToSelf = false,
   initialMaxItems = 10,
   gap = 10,
@@ -59,7 +61,7 @@ const List: FC<ListProps> = ({
     <Wrapper>
       <ListContainer direction={direction} gap={gap}>
         {items.slice(0, quantityShown).map(item => (
-          <ListItem key={item.title} grayscaleImage={grayscaleImage}>
+          <ListItem key={item.title} $grayscaleImage={$grayscaleImage}>
             {item.image && (
               <ListItemImage>
                 <Image
@@ -96,7 +98,7 @@ const List: FC<ListProps> = ({
         ))}
       </ListContainer>
       {items.length > initialMaxItems && (
-        <Button onClick={showingMore ? handleShowLess : handleShowMore} active>
+        <Button onClick={showingMore ? handleShowLess : handleShowMore} $active>
           {showingMore ? 'Show less' : 'Show more'}
         </Button>
       )}

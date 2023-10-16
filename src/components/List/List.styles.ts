@@ -35,8 +35,8 @@ export const ListItem = styled.li<List>`
 
   img {
     border-radius: 4px;
-    filter: ${({ grayscaleImage }) =>
-      grayscaleImage ? 'grayscale(100%)' : 'none'};
+    filter: ${({ $grayscaleImage }) =>
+      $grayscaleImage ? 'grayscale(100%)' : 'none'};
     object-fit: cover;
   }
 

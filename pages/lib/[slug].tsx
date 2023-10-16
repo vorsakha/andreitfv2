@@ -1,21 +1,14 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
-import React from 'react';
 import { Container, Main, Wrapper } from '@ui/Container';
 import { AltTitle } from '@ui/Title';
 import { getGistBySlug, getGists } from '@services/gists';
 
-import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { xonokai } from 'react-syntax-highlighter/dist/cjs/styles/prism';
-import tsx from 'react-syntax-highlighter/dist/cjs/languages/prism/tsx';
-import typescript from 'react-syntax-highlighter/dist/cjs/languages/prism/typescript';
-import styled from 'styled-components';
 import { Description } from '@ui/Description';
 import { Back } from '@ui/Button';
 import { baseUrl } from '@constants/index';
+import { CodeBlock } from '@components/Lib';
 
-SyntaxHighlighter.registerLanguage('tsx', tsx);
-SyntaxHighlighter.registerLanguage('typescript', typescript);
 export interface GistsProps {
   gist: {
     title?: string;
@@ -25,10 +18,6 @@ export interface GistsProps {
     language?: string;
   };
 }
-
-const CodeWrapper = styled.div`
-  margin: 1rem 0;
-`;
 
 const Lib = ({ gist }: GistsProps) => {
   return (
@@ -52,18 +41,7 @@ const Lib = ({ gist }: GistsProps) => {
           <AltTitle>{gist.title}</AltTitle>
           <Description>{gist.description}</Description>
 
-          <CodeWrapper>
-            <SyntaxHighlighter
-              style={xonokai as any}
-              language={gist.language}
-              PreTag="div"
-              className="codeStyle"
-              wrapLines
-              useInlineStyles
-            >
-              {gist?.body || ''}
-            </SyntaxHighlighter>
-          </CodeWrapper>
+          <CodeBlock lang={gist?.language}>{gist?.body || ''}</CodeBlock>
         </Wrapper>
       </Main>
     </Container>

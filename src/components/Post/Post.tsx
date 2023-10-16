@@ -3,9 +3,10 @@ import Link from 'next/link';
 import { FC } from 'react';
 import { BlogPostWithPlaceholder } from '@pages/blog/[slug]';
 import { formatDate } from '@utils/date';
+
 import { Back } from '@ui/Button';
 import { AltTitle } from '@ui/Title';
-import { CodeBlock } from '@components/Post/CodeBlock';
+
 import {
   PostAuthor,
   PostBody,
@@ -16,6 +17,7 @@ import {
   PostSub,
   PostWrapper,
 } from '@components/Post/Post.styled';
+import { CodeBlock } from '@components/Post/CodeBlock';
 
 interface PostProps {
   post: BlogPostWithPlaceholder;
@@ -44,7 +46,7 @@ const Post: FC<PostProps> = ({ post }) => (
         </PostAuthor>
         <PostDate>{formatDate(post.publishDate)}</PostDate>
       </PostSub>
-      <PostBody components={CodeBlock}>{post.body}</PostBody>
+      <CodeBlock>{post.body}</CodeBlock>
       {post.related && (
         <PostRelated>
           <h2>Related Posts</h2>

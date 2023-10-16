@@ -63,7 +63,7 @@ export const CurrentlyPlayingSong = styled.p`
   text-overflow: ellipsis;
   align-self: flex-start;
 `;
-export const CurrentlyPlayingArtist = styled.p`
+export const CurrentlyPlayingArtist = styled.div`
   font-size: 10px;
   line-height: 10px;
   color: ${({ theme }) => theme.colors.gray.solid};
