@@ -6,8 +6,8 @@ import List from '@components/List';
 import { Container, Main, Wrapper } from '@ui/Container';
 import { AltTitle } from '@ui/Title';
 import { baseUrl } from '@constants/index';
-import { getData } from '@services/spotify';
 import { getBase64Image } from '@utils/image';
+import SpotifyService from '@services/spotify';
 
 const TOP_ARTISTS_ENDPOINT = `https://api.spotify.com/v1/me/top/artists`;
 const TOP_TRACKS_ENDPOINT = `https://api.spotify.com/v1/me/top/tracks`;
@@ -86,8 +86,8 @@ export const getStaticProps: GetStaticProps<
   MiscProps,
   { slug: string }
 > = async () => {
-  const songsResponse = await getData(TOP_TRACKS_ENDPOINT);
-  const artistsResponse = await getData(TOP_ARTISTS_ENDPOINT);
+  const songsResponse = await SpotifyService.getData(TOP_TRACKS_ENDPOINT);
+  const artistsResponse = await SpotifyService.getData(TOP_ARTISTS_ENDPOINT);
 
   const songsData = (await songsResponse.json()) as Songs;
   const artistsData = (await artistsResponse.json()) as Artists;

@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+'use client';
+
+import { useState, useEffect } from 'react';
 
 import { Button, Arrow } from '@ui/ScrollButton/ScrollButton.styles';
 
@@ -26,7 +28,7 @@ const ScrollButton = () => {
   }, []);
 
   return (
-    <Button scrolled={scrolled} onClick={scrollToTop}>
+    <Button $scrolled={scrolled} onClick={scrollToTop}>
       <Arrow />
     </Button>
   );

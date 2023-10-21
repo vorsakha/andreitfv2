@@ -15,9 +15,9 @@ import {
 import { usePathname } from 'next/navigation';
 import { THEMES } from '@styles/theme';
 import Button from '@ui/Button';
-import { SongResponse } from '@pages/api/spotify/current';
 import CurrentlyPlaying from '@components/CurrentlyPlayingV2';
 import { ROUTES } from '@interfaces/routes';
+import { SongResponse } from '@services/spotify/models';
 
 type NavbarProps = {
   handleMenu: () => void;
