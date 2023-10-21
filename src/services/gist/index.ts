@@ -1,7 +1,7 @@
 import { Octokit } from 'octokit';
 
 import { Gist } from '@services/gist/models';
-import { accessToken } from '@constants/github';
+import { accessToken } from '@constants/github.constants';
 
 const octokit = new Octokit({
   auth: accessToken,

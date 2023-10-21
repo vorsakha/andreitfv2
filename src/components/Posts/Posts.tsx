@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import React, { FC } from 'react';
 import { formatDate } from '@utils/date';
-import { BlogPostFieldsWithPlaceholder } from '@utils/image';
 import {
   ArchiveContainer,
   ArchiveList,
@@ -14,9 +13,10 @@ import {
   PostItem,
   PostLink,
 } from '@components/Posts/Posts.styled';
+import { PostWithPlaceholder } from '@services/contentful/models';
 
 interface PostsProps {
-  posts: BlogPostFieldsWithPlaceholder[];
+  posts: PostWithPlaceholder[];
 }
 
 const Posts: FC<PostsProps> = ({ posts }) => (
@@ -32,7 +32,7 @@ const Posts: FC<PostsProps> = ({ posts }) => (
                     <Image
                       src={
                         item.heroImage
-                          ? `https:${item.heroImage.fields.file.url}?w=752&h=423`
+                          ? `https:${item.imageUrl}?w=752&h=423`
                           : ''
                       }
                       alt={item.title}

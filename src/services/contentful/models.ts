@@ -1,5 +1,5 @@
 import { IBlogPostFields } from '@/@types/contentful';
-import { EntrySkeletonType } from 'contentful';
+import { AssetFields, Entry, EntrySkeletonType } from 'contentful';
 
 export type EntryTypes = EntrySkeletonType<IBlogPostFields, 'blogPost'>;
 
@@ -28,4 +28,11 @@ export interface HomeEntries {
   image?: string;
   placeholderImage?: string;
   url?: string;
+}
+
+export type PostFields = ContentfulResponse['items'][0]['fields'];
+
+export interface PostWithPlaceholder extends PostFields {
+  placeholderImage?: string;
+  imageUrl?: string;
 }

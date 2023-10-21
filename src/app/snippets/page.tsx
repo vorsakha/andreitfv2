@@ -3,11 +3,10 @@ import { Metadata } from 'next';
 
 import List from '@components/List';
 import { AltTitle } from '@ui/Title';
-import { baseUrl } from '@/constants';
-import { Container, ContainerWrapper, Wrapper } from '@ui/Container';
-import GistService from '@services/gist';
+import { Container, ContainerWrapper } from '@ui/Container';
 
-export const revalidate = 3600;
+import GistService from '@services/gist';
+import { baseUrl } from '@/constants';
 
 export const metadata: Metadata = {
   title: 'TF | Lib',
@@ -25,10 +24,8 @@ export default async function Snippets() {
       </Head>
 
       <ContainerWrapper>
-        <Wrapper>
-          <AltTitle>Snippets</AltTitle>
-          <List items={gists} linkToSelf gap={20} />
-        </Wrapper>
+        <AltTitle>Snippets</AltTitle>
+        <List items={gists} linkToSelf gap={20} />
       </ContainerWrapper>
     </Container>
   );

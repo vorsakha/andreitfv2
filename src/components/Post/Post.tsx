@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
-import { BlogPostWithPlaceholder } from '@pages/blog/[slug]';
 import { formatDate } from '@utils/date';
 
 import { Back } from '@ui/Button';
@@ -9,7 +8,6 @@ import { AltTitle } from '@ui/Title';
 
 import {
   PostAuthor,
-  PostBody,
   PostContainer,
   PostDate,
   PostHero,
@@ -18,16 +16,17 @@ import {
   PostWrapper,
 } from '@components/Post/Post.styled';
 import { CodeBlock } from '@components/Post/CodeBlock';
+import { PostWithPlaceholder } from '@services/contentful/models';
 
 interface PostProps {
-  post: BlogPostWithPlaceholder;
+  post: PostWithPlaceholder;
 }
 
 const Post: FC<PostProps> = ({ post }) => (
   <PostContainer>
     <PostHero>
       <Image
-        src={`https:${post.heroImage.fields.file?.url}?w=752&h=423`}
+        src={`https:${post.imageUrl}?w=752&h=423`}
         alt={post.title}
         fill
         priority
