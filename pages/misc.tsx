@@ -63,7 +63,6 @@ const Misc: FC<MiscProps> = ({ songs, artists }) => {
           property="og:image"
           content={`${baseUrl}/api/og?title=Miscellaneous | Anything really`}
         />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Main>
