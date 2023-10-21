@@ -17,6 +17,7 @@ import {
 } from '@components/Post/Post.styled';
 import { CodeBlock } from '@components/Post/CodeBlock';
 import { PostWithPlaceholder } from '@services/contentful/models';
+import { ROUTES } from '@interfaces/routes';
 
 interface PostProps {
   post: PostWithPlaceholder;
@@ -36,7 +37,7 @@ const Post: FC<PostProps> = ({ post }) => (
       />
     </PostHero>
     <PostWrapper>
-      <Back href="/blog">Back</Back>
+      <Back href={ROUTES.BLOG}>Back</Back>
       <AltTitle>{post.title}</AltTitle>
       <PostSub>
         <PostAuthor href="https://github.com/vorsakha" target="_blank">

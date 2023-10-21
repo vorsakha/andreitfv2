@@ -5,6 +5,7 @@ import { Description } from '@ui/Description';
 import { AltTitle } from '@ui/Title';
 import GistService from '@services/gist';
 import { baseUrl } from '@/constants';
+import { ROUTES } from '@interfaces/routes';
 
 export async function generateStaticParams() {
   const gists = await GistService.getGists();
@@ -40,7 +41,7 @@ export default async function Lib({ params }: { params: { slug: string } }) {
   return (
     <Container>
       <ContainerWrapper>
-        <Back href="/lib">Back</Back>
+        <Back href={ROUTES.LIB}>Back</Back>
         <AltTitle>{gist.title}</AltTitle>
         <Description>{gist.description}</Description>
 
