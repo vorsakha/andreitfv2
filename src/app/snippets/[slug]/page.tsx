@@ -1,5 +1,3 @@
-import Head from 'next/head';
-
 import { CodeBlock } from '@components/Lib';
 import { Back } from '@ui/Button';
 import { Container, ContainerWrapper } from '@ui/Container';
@@ -16,6 +14,24 @@ export async function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const { slug } = params;
+
+  const gist = await GistService.getGistBySlug(slug);
+
+  return {
+    title: `TF | ${gist.title}`,
+    description: gist.description,
+    openGraph: {
+      images: [`${baseUrl}/api/og?title=${gist.title}`],
+    },
+  };
+}
+
 export default async function Lib({ params }: { params: { slug: string } }) {
   const { slug } = params;
 
@@ -23,19 +39,6 @@ export default async function Lib({ params }: { params: { slug: string } }) {
 
   return (
     <Container>
-      <Head>
-        <title>TF | {gist.title}</title>
-        <meta
-          name="description"
-          content={gist.description || 'Snippet details'}
-        />
-        <meta
-          property="og:image"
-          content={`${baseUrl}/api/og?title=${gist.title}`}
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <ContainerWrapper>
         <Back href="/lib">Back</Back>
         <AltTitle>{gist.title}</AltTitle>

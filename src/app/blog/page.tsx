@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import Head from 'next/head';
 
 import { ContainerWrapper } from '@ui/Container';
 import { AltTitle } from '@ui/Title';
@@ -11,6 +10,9 @@ import ContentService from '@services/contentful';
 export const metadata: Metadata = {
   title: 'TF | Blog',
   description: 'Coding blog',
+  openGraph: {
+    images: [`${baseUrl}/api/og?title=blog`],
+  },
 };
 
 export default async function Blog() {
@@ -18,11 +20,6 @@ export default async function Blog() {
 
   return (
     <>
-      <Head>
-        <meta property="og:image" content={`${baseUrl}/api/og?title=blog`} />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <ContainerWrapper>
         <AltTitle>Archive</AltTitle>
         <Posts posts={posts} />

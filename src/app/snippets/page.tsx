@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import { Metadata } from 'next';
 
 import List from '@components/List';
@@ -11,6 +10,9 @@ import { baseUrl } from '@/constants';
 export const metadata: Metadata = {
   title: 'TF | Lib',
   description: 'Any code that I think will be useful sometime later',
+  openGraph: {
+    images: [`${baseUrl}/api/og?title=lib`],
+  },
 };
 
 export default async function Snippets() {
@@ -18,14 +20,9 @@ export default async function Snippets() {
 
   return (
     <Container>
-      <Head>
-        <meta property="og:image" content={`${baseUrl}/api/og?title=lib`} />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <ContainerWrapper>
         <AltTitle>Snippets</AltTitle>
-        <List items={gists} linkToSelf gap={20} />
+        <List items={gists} linkToSelf $gap={20} />
       </ContainerWrapper>
     </Container>
   );

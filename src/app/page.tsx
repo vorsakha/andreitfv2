@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import { Metadata } from 'next';
 
 import Banner from '@components/Banner';
@@ -14,6 +13,9 @@ import ContentService from '@services/contentful';
 export const metadata: Metadata = {
   title: 'TF',
   description: "Andrei T. Ferreira's website",
+  openGraph: {
+    images: [`${baseUrl}/api/og?title=Andrei T. Ferreira's website`],
+  },
 };
 
 export default async function Home() {
@@ -21,14 +23,6 @@ export default async function Home() {
 
   return (
     <Container>
-      <Head>
-        <meta
-          property="og:image"
-          content={`${baseUrl}/api/og?title=Andrei T. Ferreira's website`}
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <ContainerWrapper>
         <Banner />
         <div>
