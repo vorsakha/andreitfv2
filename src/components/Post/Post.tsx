@@ -1,14 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
-import { BlogPostWithPlaceholder } from '@pages/blog/[slug]';
 import { formatDate } from '@utils/date';
+
 import { Back } from '@ui/Button';
 import { AltTitle } from '@ui/Title';
-import { CodeBlock } from '@components/Post/CodeBlock';
+
 import {
   PostAuthor,
-  PostBody,
   PostContainer,
   PostDate,
   PostHero,
@@ -16,16 +15,19 @@ import {
   PostSub,
   PostWrapper,
 } from '@components/Post/Post.styled';
+import { CodeBlock } from '@components/Post/CodeBlock';
+import { PostWithPlaceholder } from '@services/contentful/models';
+import { ROUTES } from '@interfaces/routes';
 
 interface PostProps {
-  post: BlogPostWithPlaceholder;
+  post: PostWithPlaceholder;
 }
 
 const Post: FC<PostProps> = ({ post }) => (
   <PostContainer>
     <PostHero>
       <Image
-        src={`https:${post.heroImage.fields.file?.url}?w=752&h=423`}
+        src={`https:${post.imageUrl}?w=752&h=423`}
         alt={post.title}
         fill
         priority
@@ -35,7 +37,7 @@ const Post: FC<PostProps> = ({ post }) => (
       />
     </PostHero>
     <PostWrapper>
-      <Back href="/blog">Back</Back>
+      <Back href={ROUTES.BLOG}>Back</Back>
       <AltTitle>{post.title}</AltTitle>
       <PostSub>
         <PostAuthor href="https://github.com/vorsakha" target="_blank">
@@ -44,7 +46,7 @@ const Post: FC<PostProps> = ({ post }) => (
         </PostAuthor>
         <PostDate>{formatDate(post.publishDate)}</PostDate>
       </PostSub>
-      <PostBody components={CodeBlock}>{post.body}</PostBody>
+      <CodeBlock>{post.body}</CodeBlock>
       {post.related && (
         <PostRelated>
           <h2>Related Posts</h2>

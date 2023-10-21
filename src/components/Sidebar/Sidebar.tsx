@@ -10,6 +10,7 @@ import {
   SidebarMenu,
   SidebarLink,
 } from '@components/Sidebar/Sidebar.styles';
+import { ROUTES } from '@interfaces/routes';
 
 type SidebarTypes = {
   handleMenu: () => void;
@@ -30,16 +31,16 @@ const Sidebar: React.FC<SidebarTypes> = ({
         <CloseIcon />
       </IconWrapper>
       <SidebarMenu>
-        <SidebarLink onClick={handleMenu} href="/">
+        <SidebarLink onClick={handleMenu} href={ROUTES.HOME}>
           Home
         </SidebarLink>
-        <SidebarLink onClick={handleMenu} href="/misc">
+        <SidebarLink onClick={handleMenu} href={ROUTES.MISC}>
           Misc
         </SidebarLink>
-        <SidebarLink onClick={handleMenu} href="/lib">
+        <SidebarLink onClick={handleMenu} href={ROUTES.LIB}>
           Lib
         </SidebarLink>
-        <SidebarLink onClick={handleMenu} href="/blog">
+        <SidebarLink onClick={handleMenu} href={ROUTES.BLOG}>
           Blog
         </SidebarLink>
         <button onClick={toggleTheme}>

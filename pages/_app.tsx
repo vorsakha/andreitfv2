@@ -21,7 +21,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const [selectedTheme, setSelectedTheme] = useState<THEMES>(THEMES.DARK);
   const [isMenuOpen, setMenuIsOpen] = useState(false);
   const fetcher = (url: string) => fetch(url).then(r => r.json());
-  const { data: song, isLoading } = useSWR('/api/spotify/current', fetcher);
+  const { data: song, isLoading } = useSWR('/api/spotify', fetcher);
 
   const toggleTheme = () => {
     setSelectedTheme(prev => {

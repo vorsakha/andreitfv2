@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 
 import { SiSpotify } from '@react-icons/all-files/si/SiSpotify';
-import { SongResponse } from '@pages/api/spotify/current';
 import Image from 'next/image';
 import {
   CurrentlyPlayingArtist,
@@ -13,6 +12,7 @@ import {
   CurrentlyPlayingWrapper,
 } from '@components/CurrentlyPlaying/CurrentlyPlaying.styles';
 import { useTheme } from 'styled-components';
+import { SongResponse } from '@services/spotify/models';
 
 interface CurrentlyPlayingProps {
   song: SongResponse;

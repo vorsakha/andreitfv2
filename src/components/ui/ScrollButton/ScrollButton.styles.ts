@@ -1,8 +1,8 @@
 import { BsArrowUp } from '@react-icons/all-files/bs/BsArrowUp';
 import styled from 'styled-components';
 
-export const Button = styled.button<{ scrolled: boolean }>`
-  display: ${props => (props.scrolled ? 'flex' : 'none')};
+export const Button = styled.button<{ $scrolled: boolean }>`
+  display: ${props => (props.$scrolled ? 'flex' : 'none')};
   z-index: 2;
   position: fixed;
   bottom: 10vh;

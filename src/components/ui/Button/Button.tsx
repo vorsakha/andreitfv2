@@ -1,11 +1,13 @@
-import React, { FC, HTMLAttributes } from 'react';
+'use client';
+
+import { FC, HTMLAttributes } from 'react';
 import styled from 'styled-components';
 
 interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
-  active?: boolean;
+  $active?: boolean;
 }
 
-const ButtonWrapper = styled.div<{ active: boolean }>`
+const ButtonWrapper = styled.div<{ $active: boolean }>`
   button {
     color: ${({ theme }) => theme.text};
     display: flex;
@@ -20,8 +22,8 @@ const ButtonWrapper = styled.div<{ active: boolean }>`
     min-width: 89px;
     min-height: 36px;
     border: none;
-    background-color: ${({ active, theme }) =>
-      active ? theme.colors.gray.transparency : 'transparent'};
+    background-color: ${({ $active, theme }) =>
+      $active ? theme.colors.gray.transparency : 'transparent'};
     border-radius: 6px;
 
     &:hover {
@@ -36,11 +38,11 @@ const ButtonWrapper = styled.div<{ active: boolean }>`
 `;
 
 const Button: FC<ButtonProps> = (
-  { children, onClick, active = false },
+  { children, onClick, $active = false },
   rest,
 ) => {
   return (
-    <ButtonWrapper active={active}>
+    <ButtonWrapper $active={$active}>
       <button onClick={onClick} {...rest}>
         {children}
       </button>
