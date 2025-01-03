@@ -14,6 +14,7 @@ import {
 import { useTheme } from 'styled-components';
 import CurrentlyPlayingLoading from '@components/CurrentlyPlayingV2/CurrentlyPlayingLoading';
 import { SongResponse } from '@services/spotify/models';
+import { SPOTIFY_USER } from '@constants/spotify.constants';
 
 interface CurrentlyPlayingProps {
   song: SongResponse;
@@ -35,7 +36,7 @@ const CurrentlyPlaying: FC<CurrentlyPlayingProps> = ({ song, loading }) => {
         href={
           song?.isPlaying
             ? song.songUrl
-            : 'https://open.spotify.com/user/andrex15?si=yTsrZT5JSHOp7tn3ist7Ig'
+            : `https://open.spotify.com/user/${SPOTIFY_USER}?si=yTsrZT5JSHOp7tn3ist7Ig`
         }
       >
         <CurrentlyPlayingImageWrapper>
