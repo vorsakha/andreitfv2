@@ -42,7 +42,7 @@ const SpotifyService = {
     const { access_token } = await this.getAccessToken();
 
     const response = await fetch(NOW_PLAYING_ENDPOINT, {
-      cache: 'no-cache',
+      cache: 'no-store',
       headers: {
         Authorization: `Bearer ${access_token}`,
       },
