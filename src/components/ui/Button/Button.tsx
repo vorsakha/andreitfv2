@@ -1,54 +1,47 @@
 'use client';
 
 import { FC, HTMLAttributes } from 'react';
-import styled from 'styled-components';
+import { useTheme } from 'styled-components';
 
 interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   $active?: boolean;
 }
 
-const ButtonWrapper = styled.div<{ $active: boolean }>`
-  button {
-    color: ${({ theme }) => theme.text};
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    padding: 4px 1.5rem;
-    cursor: pointer;
-    border-top: 3px solid transparent;
-    border-bottom: 3px solid transparent;
-    transition: 0.2s ease;
-    min-width: 89px;
-    min-height: 36px;
-    border: none;
-    background-color: ${({ $active, theme }) =>
-      $active ? theme.colors.gray.transparency : 'transparent'};
-    border-radius: 6px;
-
-    &:hover {
-      background-color: ${({ theme }) => theme.colors.gray.transparency};
-      color: ${({ theme }) => theme.text};
-      text-shadow: none;
-    }
-  }
-  svg {
-    font-size: 1.5rem;
-  }
-`;
-
 const Button: FC<ButtonProps> = ({
   children,
   onClick,
   $active = false,
+  style,
+  className,
   ...rest
 }: ButtonProps) => {
+  const theme = useTheme();
+  
   return (
-    <ButtonWrapper $active={$active}>
-      <button onClick={onClick} {...rest}>
-        {children}
+    <div className={`${className || ''}`}>
+      <button 
+        className="flex items-center justify-center no-underline py-1 px-6 cursor-pointer border-t-[3px] border-b-[3px] border-transparent transition-all duration-200 ease-in-out min-w-[89px] min-h-[36px] border-none rounded-md hover:text-shadow-none"
+        style={{
+          color: theme?.text,
+          backgroundColor: $active ? theme?.colors?.gray?.transparency : 'transparent',
+          ...style
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.backgroundColor = theme?.colors?.gray?.transparency || '';
+          e.currentTarget.style.color = theme?.text || '';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.backgroundColor = $active ? (theme?.colors?.gray?.transparency || '') : 'transparent';
+          e.currentTarget.style.color = theme?.text || '';
+        }}
+        onClick={onClick} 
+        {...rest}
+      >
+        <div className="[&>svg]:text-2xl">
+          {children}
+        </div>
       </button>
-    </ButtonWrapper>
+    </div>
   );
 };
 

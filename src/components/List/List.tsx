@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import React, { FC, useState } from 'react';
 import Button from '@ui/Button';
-import { Wrapper } from '@ui/Container';
+import { Wrapper } from '@/components/ui/Container';
 import {
   ListContainer,
   ListItem,

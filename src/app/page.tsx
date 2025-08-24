@@ -5,7 +5,7 @@ import List from '@components/List';
 
 import { baseUrl } from '@/constants';
 
-import { Container, ContainerWrapper } from '@ui/Container';
+import { ContainerWrapper } from '@ui/Container';
 import { AltTitle } from '@ui/Title';
 
 import ContentService from '@services/contentful';
@@ -22,14 +22,12 @@ export default async function Home() {
   const articles = await ContentService.getHomeEntries();
 
   return (
-    <Container>
-      <ContainerWrapper>
-        <Banner />
-        <div>
-          <AltTitle>Featured Posts</AltTitle>
-          <List items={articles} $grayscaleImage linkToSelf />
-        </div>
-      </ContainerWrapper>
-    </Container>
+    <ContainerWrapper>
+      <Banner />
+      <div>
+        <AltTitle>Featured Posts</AltTitle>
+        <List items={articles} $grayscaleImage linkToSelf />
+      </div>
+    </ContainerWrapper>
   );
 }

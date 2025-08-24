@@ -13,6 +13,7 @@
   "dependencies": {
     "@plaiceholder/next": "^3.0.0",
     "@react-icons/all-files": "^4.1.0",
+    "@tailwindcss/postcss": "^4.1.12",
     "@tanstack/react-query": "^5.85.5",
     "@vercel/og": "^0.6.2",
     "fast-safe-stringify": "^2.1.1",
@@ -26,7 +27,8 @@
     "react-markdown": "^8.0.4",
     "react-syntax-highlighter": "^15.5.0",
     "sharp": "0.32.6",
-    "styled-components": "^6.1.8"
+    "styled-components": "^6.1.8",
+    "tailwindcss": "^4.1.12"
   },
   "devDependencies": {
     "@types/node": "^20.11.24",

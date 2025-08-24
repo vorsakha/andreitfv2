@@ -46,14 +46,6 @@ export const theme = {
 };
 
 export const GlobalStyles = createGlobalStyle`
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        line-height: 1.7rem;
-        font-weight: 300;
-    }
-
     a {
         color: ${({ theme }) => theme.text};
         text-shadow: ${({ theme }) =>

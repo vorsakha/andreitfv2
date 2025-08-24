@@ -4,7 +4,7 @@ import { FC } from 'react';
 import { formatDate } from '@utils/date';
 
 import { Back } from '@ui/Button';
-import { AltTitle } from '@ui/Title';
+import { AltTitle } from '@/components/ui/Title';
 
 import {
   PostAuthor,
@@ -49,7 +49,7 @@ const Post: FC<PostProps> = ({ post }) => (
       <CodeBlock>{post.body}</CodeBlock>
       {post.related && (
         <PostRelated>
-          <h2>Related Posts</h2>
+          <h2 className="text-2xl">Related Posts</h2>
           <ul>
             {post.related?.map((related: any) => (
               <li key={related.fields.slug as string}>

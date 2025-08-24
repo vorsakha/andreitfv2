@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+/* Custom theme configuration using Tailwind v4's @theme directive */
+@theme {
+  /* Colors matching your existing theme */
+  --color-primary: #ff184c;
+  --color-primary-alpha: rgb(255 24 76 / 0.4);
+  --color-gray: #a3a3a3;
+  --color-gray-alpha: rgb(163 163 163 / 0.2);
+  
+  /* Light theme colors */
+  --color-light-bg: #FAFAFA;
+  --color-light-text: #0f0f0f;
+  
+  /* Dark theme colors */
+  --color-dark-bg: #0f0f0f;
+  --color-dark-text: #FAFAFA;
+
+  /* Custom animations */
+  --animate-spin: spin 1s linear infinite;
+  --animate-skeleton: skeleton-pulse 1s linear infinite alternate;
+  
+  /* Custom keyframes */
+  --keyframes-spin: to { transform: rotate(360deg) };
+  --keyframes-skeleton-pulse: 
+    0% { background-color: rgba(255, 24, 76, 0.2) }
+    100% { background-color: rgba(163, 163, 163, 0.2) };
+
+  /* Component-specific tokens */
+  --spinner-size: 2rem;
+  --skeleton-radius: 2px;
+  --skeleton-profile-radius: 4px;
+  
+  /* Drop shadow utilities for primary color */
+  --drop-shadow-primary: drop-shadow(0px 2px 6px rgba(255, 24, 76, 0.8));
+  --drop-shadow-primary-soft: drop-shadow(0px 2px 6px rgba(255, 24, 76, 0.6));
+  --drop-shadow-primary-light: drop-shadow(0px 2px 6px rgba(255, 24, 76, 0.5));
+
+  /* Layout tokens */
+  --container-max-width: 900px;
+  --container-padding: 24px;
+  --wrapper-margin: 24px;
+}
+
+/* Global styles that complement your existing styled-components */
+* {
+  box-sizing: border-box;
+}
+
+/* Selection styles */
+::selection {
+  @apply bg-gray-500;
+}
+
+/* Custom utility classes for theme integration */
+.theme-light {
+  --tw-bg-color: var(--color-light-bg);
+  --tw-text-color: var(--color-light-text);
+}
+
+.theme-dark {
+  --tw-bg-color: var(--color-dark-bg);
+  --tw-text-color: var(--color-dark-text);
+}
+
+/* Custom keyframes for animations */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes skeleton-pulse {
+  0% { background-color: rgba(255, 24, 76, 0.2); }
+  100% { background-color: rgba(163, 163, 163, 0.2); }
+}
+
+/* Code syntax highlighting compatibility */
+.codeStyle {
+  border-radius: 8px !important;
+  border: none !important;
+}

@@ -9,6 +9,8 @@ import { GlobalStyles } from '@styles/theme';
 import LayoutProvider from './lib/LayoutProvider';
 import RegistryProvider from './lib/RegistryProvider';
 
+import './globals.css';
+
 const inter = Inter({
   variable: '--inter-font',
   subsets: ['latin'],

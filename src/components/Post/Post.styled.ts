@@ -67,6 +67,7 @@ export const PostBody = styled(ReactMarkdown)`
 
   p {
     padding: 0.5rem 0;
+    line-height: 1.7rem;
   }
 
   h1 {
@@ -79,16 +80,19 @@ export const PostBody = styled(ReactMarkdown)`
     line-height: 30px;
     margin-top: 1.5rem;
     word-wrap: break-word;
+    font-size: 1.5rem;
   }
 
   h3 {
     padding: 0.5rem 0;
     line-height: 30px;
     margin-top: 1.5rem;
+    font-size: 1.25rem;
   }
 
   ul {
     padding: 0.5rem 0 0.5rem 1rem;
+    line-height: 1.7rem;
   }
 
   li::before {
