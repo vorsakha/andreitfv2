@@ -1,10 +1,5 @@
 'use client';
 
-import {
-  BannerContainer,
-  SocialLink,
-  Socials,
-} from '@components/Banner/Banner.styles';
 import { FaGithub } from '@react-icons/all-files/fa/FaGithub';
 import { FaLinkedinIn } from '@react-icons/all-files/fa/FaLinkedinIn';
 import { MdEmail } from '@react-icons/all-files/md/MdEmail';
@@ -29,25 +24,50 @@ const socials = [
 
 const Banner = () => {
   return (
-    <BannerContainer>
-      <h1>Andrei T. Ferreira</h1>
-      <p>Dev / Learner / Problem Solver </p>
-      <Socials>
+    <div className="banner-container">
+      <h1
+        className="banner-title"
+        style={{
+          color: 'var(--theme-text)',
+          textShadow: 'var(--color-gray-transparency) 0px 4px 18px, var(--color-gray-transparency) 0px 2px 10px',
+        }}
+      >
+        Andrei T. Ferreira
+      </h1>
+      <p 
+        className="banner-subtitle"
+        style={{
+          color: 'var(--color-gray-solid)',
+        }}
+      >
+        Dev / Learner / Problem Solver
+      </p>
+      <div className="banner-socials">
         {socials.map((data, key) => {
           return (
-            <SocialLink
+            <a
               key={key}
               href={data.href}
               aria-label={data.name}
               rel="noopener noreferrer"
               target="_blank"
+              className="banner-social-link"
+              style={{
+                filter: 'drop-shadow(0px 2px 6px var(--color-gray-transparency))',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.filter = 'var(--drop-shadow-primary-light)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.filter = 'drop-shadow(0px 2px 6px var(--color-gray-transparency))';
+              }}
             >
               {data.icon}
-            </SocialLink>
+            </a>
           );
         })}
-      </Socials>
-    </BannerContainer>
+      </div>
+    </div>
   );
 };
 

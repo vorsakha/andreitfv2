@@ -11,7 +11,7 @@ import {
   CurrentlyPlayingSong,
   CurrentlyPlayingWrapper,
 } from '@components/CurrentlyPlaying/CurrentlyPlaying.styles';
-import { useTheme } from 'styled-components';
+import { useTheme } from '@hooks/useTheme';
 import { SongResponse } from '@services/spotify/models';
 
 interface CurrentlyPlayingProps {

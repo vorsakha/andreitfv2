@@ -11,7 +11,7 @@ import {
   CurrentlyPlayingSong,
   CurrentlyPlayingWrapper,
 } from '@components/CurrentlyPlayingV2/CurrentlyPlaying.styles';
-import { useTheme } from 'styled-components';
+import { useTheme } from '@hooks/useTheme';
 import CurrentlyPlayingLoading from '@components/CurrentlyPlayingV2/CurrentlyPlayingLoading';
 import { SongResponse } from '@services/spotify/models';
 import { SPOTIFY_USER } from '@constants/spotify.constants';

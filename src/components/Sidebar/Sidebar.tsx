@@ -1,7 +1,4 @@
 import React from 'react';
-import { THEMES } from '@styles/theme';
-import { HiOutlineSun as SunIcon } from '@react-icons/all-files/hi/HiOutlineSun';
-import { HiOutlineMoon as MoonIcon } from '@react-icons/all-files/hi/HiOutlineMoon';
 
 import {
   SidebarContainer,
@@ -14,15 +11,11 @@ import { ROUTES } from '@interfaces/routes';
 
 type SidebarTypes = {
   handleMenu: () => void;
-  toggleTheme: () => void;
-  selectedTheme: THEMES;
   isOpen: boolean;
 };
 
 const Sidebar: React.FC<SidebarTypes> = ({
   handleMenu,
-  toggleTheme,
-  selectedTheme,
   isOpen,
 }): JSX.Element => {
   return (
@@ -43,9 +36,6 @@ const Sidebar: React.FC<SidebarTypes> = ({
         <SidebarLink onClick={handleMenu} href={ROUTES.BLOG}>
           Blog
         </SidebarLink>
-        <button onClick={toggleTheme}>
-          {selectedTheme === THEMES.DARK ? <SunIcon /> : <MoonIcon />}
-        </button>
       </SidebarMenu>
     </SidebarContainer>
   );

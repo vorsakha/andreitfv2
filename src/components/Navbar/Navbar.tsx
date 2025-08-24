@@ -1,6 +1,4 @@
 import { FaBars } from '@react-icons/all-files/fa/FaBars';
-import { HiOutlineSun as SunIcon } from '@react-icons/all-files/hi/HiOutlineSun';
-import { HiOutlineMoon as MoonIcon } from '@react-icons/all-files/hi/HiOutlineMoon';
 
 import {
   Nav,
@@ -13,16 +11,12 @@ import {
   NavCurrentlyPlaying,
 } from '@components/Navbar/Navbar.styles';
 import { usePathname } from 'next/navigation';
-import { THEMES } from '@styles/theme';
-import Button from '@ui/Button';
 import CurrentlyPlaying from '@components/CurrentlyPlayingV2';
 import { ROUTES } from '@interfaces/routes';
 import { SongResponse } from '@services/spotify/models';
 
 type NavbarProps = {
   handleMenu: () => void;
-  toggleTheme: () => void;
-  selectedTheme: THEMES;
   songData: {
     song: SongResponse | null;
     loading: boolean;
@@ -31,8 +25,6 @@ type NavbarProps = {
 
 const Navbar: React.FC<NavbarProps> = ({
   handleMenu,
-  toggleTheme,
-  selectedTheme,
   songData,
 }): JSX.Element => {
   const pathname = usePathname();
@@ -55,10 +47,6 @@ const Navbar: React.FC<NavbarProps> = ({
           <NavItem $active={pathname === ROUTES.BLOG}>
             <NavLink href={ROUTES.BLOG}>Blog</NavLink>
           </NavItem>
-
-          <Button onClick={toggleTheme}>
-            {selectedTheme === THEMES.DARK ? <SunIcon /> : <MoonIcon />}
-          </Button>
         </NavMenu>
 
         <NavCurrentlyPlaying>

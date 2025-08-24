@@ -1,7 +1,6 @@
 'use client';
 
 import { FC, HTMLAttributes } from 'react';
-import { useTheme } from 'styled-components';
 
 interface ContainerProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -10,13 +9,11 @@ export const Container: FC<ContainerProps> = ({
   style,
   ...props
 }) => {
-  const theme = useTheme();
-
   return (
     <div
       className="min-h-[calc(100vh-190px)]"
       style={{
-        background: theme?.background,
+        background: 'var(--theme-background)',
         ...style,
       }}
       {...props}

@@ -4,7 +4,6 @@ import { Container } from '@ui/Container';
 
 import Footer from '@components/Footer';
 
-import { GlobalStyles } from '@styles/theme';
 
 import LayoutProvider from './lib/LayoutProvider';
 import RegistryProvider from './lib/RegistryProvider';
@@ -27,7 +26,6 @@ export default function RootLayout({
         <main className={inter.className}>
           <RegistryProvider>
             <LayoutProvider>
-              <GlobalStyles />
               <Container>{children}</Container>
               <Footer />
             </LayoutProvider>

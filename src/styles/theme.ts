@@ -14,11 +14,6 @@ export interface ThemeInterface {
   colors: Record<string, ColorsInterface>;
 }
 
-export enum THEMES {
-  LIGHT = 'light',
-  DARK = 'dark',
-}
-
 const colors = {
   red: {
     solid: '#ff184c',
@@ -30,19 +25,12 @@ const colors = {
   },
 };
 
-export const theme = {
-  light: {
-    text: '#0f0f0f',
-    background: '#FAFAFA',
-    shadow: 'rgba(255, 24, 76, 0.4)',
-    colors,
-  },
-  dark: {
-    text: '#FAFAFA',
-    background: '#0f0f0f',
-    shadow: 'rgba(255, 24, 76, 0.4)',
-    colors,
-  },
+// Single light theme - no more theme switching
+export const theme: ThemeInterface = {
+  text: '#0f0f0f',
+  background: '#FAFAFA',
+  shadow: 'rgba(255, 24, 76, 0.4)',
+  colors,
 };
 
 export const GlobalStyles = createGlobalStyle`
