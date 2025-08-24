@@ -37,10 +37,12 @@ const ButtonWrapper = styled.div<{ $active: boolean }>`
   }
 `;
 
-const Button: FC<ButtonProps> = (
-  { children, onClick, $active = false },
-  rest,
-) => {
+const Button: FC<ButtonProps> = ({
+  children,
+  onClick,
+  $active = false,
+  ...rest
+}: ButtonProps) => {
   return (
     <ButtonWrapper $active={$active}>
       <button onClick={onClick} {...rest}>

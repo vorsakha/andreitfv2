@@ -38,7 +38,7 @@ const SpotifyService = {
     });
   },
 
-  async getNowPlaying(): Promise<Song> {
+  async getNowPlaying(): Promise<Song | null> {
     const { access_token } = await this.getAccessToken();
 
     const response = await fetch(NOW_PLAYING_ENDPOINT, {
@@ -48,7 +48,26 @@ const SpotifyService = {
       },
     });
 
-    return response.json();
+    // No content (user not playing anything)
+    if (response.status === 204) return null;
+
+    if (!response.ok) {
+      // Try to consume any error body, but return null to indicate there's no valid song
+      try {
+        await response.text();
+      } catch (e) {
+        // ignore
+      }
+      return null;
+    }
+
+    try {
+      const json = await response.json();
+      return json as Song;
+    } catch (e) {
+      // Invalid JSON or unexpected shape
+      return null;
+    }
   },
 };
 
