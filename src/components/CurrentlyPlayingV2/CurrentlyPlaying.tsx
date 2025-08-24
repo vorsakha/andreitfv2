@@ -17,7 +17,7 @@ import { SongResponse } from '@services/spotify/models';
 import { SPOTIFY_USER } from '@constants/spotify.constants';
 
 interface CurrentlyPlayingProps {
-  song: SongResponse;
+  song: SongResponse | null;
   loading: boolean;
 }
 

@@ -2,7 +2,9 @@ import type { AppProps } from 'next/app';
 import { ThemeProvider } from 'styled-components';
 import { useEffect, useState } from 'react';
 import { Inter } from 'next/font/google';
-import useSWR from 'swr';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { queryClient } from '@lib/queryClient';
+import { useSpotify } from '@hooks/useSpotify';
 
 import { GlobalStyles, theme, THEMES } from '@styles/theme';
 import Navbar from '@components/Navbar';
@@ -16,12 +18,12 @@ const inter = Inter({
   subsets: ['latin'],
 });
 
-export default function App({ Component, pageProps }: AppProps) {
+function AppContent({ Component, pageProps }: AppProps) {
   const { setItem, getItem } = useLocalStorage();
   const [selectedTheme, setSelectedTheme] = useState<THEMES>(THEMES.DARK);
   const [isMenuOpen, setMenuIsOpen] = useState(false);
-  const fetcher = (url: string) => fetch(url).then(r => r.json());
-  const { data: song, isLoading } = useSWR('/api/spotify', fetcher);
+
+  const { data: song, isLoading } = useSpotify();
 
   const toggleTheme = () => {
     setSelectedTheme(prev => {
@@ -52,7 +54,7 @@ export default function App({ Component, pageProps }: AppProps) {
           handleMenu={() => setMenuIsOpen(!isMenuOpen)}
           toggleTheme={toggleTheme}
           selectedTheme={selectedTheme}
-          songData={{ song, loading: isLoading }}
+          songData={{ song: song ?? null, loading: isLoading }}
         />
         <Container>
           <Component {...pageProps} />
@@ -60,5 +62,13 @@ export default function App({ Component, pageProps }: AppProps) {
         <Footer />
       </main>
     </ThemeProvider>
+  );
+}
+
+export default function App(props: AppProps) {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <AppContent {...props} />
+    </QueryClientProvider>
   );
 }

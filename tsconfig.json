@@ -49,8 +49,10 @@
       ],
       "@interfaces/*": [
         "src/interfaces/*"
-      ]
-      ,
+      ],
+      "@lib/*": [
+        "src/lib/*"
+      ],
       "app/*": [
         "src/app/*"
       ],

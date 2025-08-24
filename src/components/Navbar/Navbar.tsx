@@ -24,7 +24,7 @@ type NavbarProps = {
   toggleTheme: () => void;
   selectedTheme: THEMES;
   songData: {
-    song: SongResponse;
+    song: SongResponse | null;
     loading: boolean;
   };
 };
