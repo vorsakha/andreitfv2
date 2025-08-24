@@ -207,6 +207,26 @@ small {
   border-bottom: none;
 }
 
+/* CurrentlyPlaying V2 hover effects - matching original styled-components behavior */
+
+/* Ensure icons inherit color so hover on anchor can change svg fill via color */
+.currently-playing-svg svg {
+  color: var(--color-gray-solid);
+}
+
+.currently-playing-group:hover .currently-playing-svg svg {
+  filter: drop-shadow(0px 2px 6px rgba(255, 24, 76, 0.5));
+  color: var(--color-primary-solid) !important;
+}
+
+.currently-playing-group:hover .currently-playing-svg path {
+  fill: var(--color-primary-solid) !important;
+}
+
+.currently-playing-group:hover .currently-playing-image {
+  filter: grayscale(0%);
+}
+
 /* Banner responsive breakpoints - matching original */
 @media screen and (max-width: 480px) {
   .banner-title {

@@ -2,16 +2,6 @@ import React, { FC } from 'react';
 
 import { SiSpotify } from '@react-icons/all-files/si/SiSpotify';
 import Image from 'next/image';
-import {
-  CurrentlyPlayingArtist,
-  CurrentlyPlayingContainer,
-  CurrentlyPlayingContentWrapper,
-  CurrentlyPlayingIcon,
-  CurrentlyPlayingImageWrapper,
-  CurrentlyPlayingSong,
-  CurrentlyPlayingWrapper,
-} from '@components/CurrentlyPlaying/CurrentlyPlaying.styles';
-import { useTheme } from '@hooks/useTheme';
 import { SongResponse } from '@services/spotify/models';
 
 interface CurrentlyPlayingProps {
@@ -19,11 +9,10 @@ interface CurrentlyPlayingProps {
 }
 
 const CurrentlyPlaying: FC<CurrentlyPlayingProps> = ({ song }) => {
-  const theme = useTheme();
-
   return (
-    <CurrentlyPlayingContainer>
-      <CurrentlyPlayingWrapper
+    <div className="my-6">
+      <a
+        className="relative inline-flex items-center justify-start my-4 rounded gap-2.5 no-underline"
         target="_blank"
         rel="noopener noreferer noreferrer"
         href={
@@ -32,7 +21,7 @@ const CurrentlyPlaying: FC<CurrentlyPlayingProps> = ({ song }) => {
             : 'https://open.spotify.com/user/andrex15?si=yTsrZT5JSHOp7tn3ist7Ig'
         }
       >
-        <CurrentlyPlayingImageWrapper>
+        <div className="flex-shrink-0">
           {song?.isPlaying ? (
             <Image
               src={song?.albumImageUrl}
@@ -41,27 +30,35 @@ const CurrentlyPlaying: FC<CurrentlyPlayingProps> = ({ song }) => {
               height={64}
               placeholder="blur"
               blurDataURL={song?.placeholderImage}
+              className="rounded object-cover w-16 h-16"
             />
           ) : (
-            <SiSpotify size={64} color={theme.colors.red.solid} />
+            <SiSpotify 
+              size={64} 
+              color="#ff184c"
+              className="drop-shadow-[0px_2px_6px_rgba(255,24,76,0.5)]"
+            />
           )}
-        </CurrentlyPlayingImageWrapper>
+        </div>
 
-        <CurrentlyPlayingContentWrapper>
-          <CurrentlyPlayingSong>
+        <div className="relative pr-7">
+          <p className="underline leading-4">
             {song?.isPlaying ? song.title : 'Not Playing'}
-          </CurrentlyPlayingSong>
-          <CurrentlyPlayingArtist>
+          </p>
+          <small 
+            className="leading-4"
+            style={{ color: '#a3a3a3', textShadow: 'none', fontStyle: 'italic' }}
+          >
             {song?.isPlaying ? song.artist : 'Spotify'}
-          </CurrentlyPlayingArtist>
+          </small>
           {song?.isPlaying && (
-            <CurrentlyPlayingIcon>
-              <SiSpotify size={20} color={theme.colors.red.solid} />
-            </CurrentlyPlayingIcon>
+            <div className="absolute bottom-0 right-0.5 drop-shadow-[0px_2px_6px_rgba(255,24,76,0.5)]">
+              <SiSpotify size={20} color="#ff184c" />
+            </div>
           )}
-        </CurrentlyPlayingContentWrapper>
-      </CurrentlyPlayingWrapper>
-    </CurrentlyPlayingContainer>
+        </div>
+      </a>
+    </div>
   );
 };
 
