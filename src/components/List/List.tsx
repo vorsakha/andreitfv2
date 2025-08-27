@@ -4,12 +4,6 @@ import Image from 'next/image';
 import React, { FC, useState } from 'react';
 import Button from '@ui/Button';
 import { Wrapper } from '@/components/ui/Container';
-import {
-  ListContainer,
-  ListItem,
-  ListItemContent,
-  ListItemImage,
-} from '@components/List/List.styles';
 
 export interface List {
   direction?: 'row' | 'column';
@@ -43,7 +37,7 @@ const List: FC<ListProps> = ({
   $grayscaleImage = false,
   linkToSelf = false,
   initialMaxItems = 10,
-  $gap = 10,
+  $gap = 16,
 }) => {
   const [quantityShown, setQuantityShown] = useState(initialMaxItems);
 
@@ -59,11 +53,17 @@ const List: FC<ListProps> = ({
 
   return (
     <Wrapper>
-      <ListContainer direction={direction} $gap={$gap}>
+      <ul
+        className={`my-4 flex ${direction === 'row' ? 'flex-row' : 'flex-col'} md:flex-col`}
+        style={{ gap: direction === 'row' ? '1rem' : `${$gap}px` }}
+      >
         {items.slice(0, quantityShown).map(item => (
-          <ListItem key={item.title} $grayscaleImage={$grayscaleImage}>
+          <li
+            key={item.title}
+            className="flex items-center before:content-none!"
+          >
             {item.image && (
-              <ListItemImage>
+              <div className="mr-[10px]">
                 <Image
                   src={item.image}
                   alt={item.title}
@@ -73,30 +73,32 @@ const List: FC<ListProps> = ({
                   placeholder="blur"
                   blurDataURL={item.placeholderImage}
                   priority
+                  className={`rounded object-cover ${$grayscaleImage ? 'grayscale' : ''}`}
                 />
-              </ListItemImage>
+              </div>
             )}
-            <ListItemContent>
+            <div className="self-center">
               {item.url ? (
                 <a
                   href={item.url}
                   target={linkToSelf ? '_self' : '_blank'}
                   rel="noreferrer"
+                  className="leading-[1.2rem]"
                 >
                   {item.title}
                 </a>
               ) : (
-                <p>{item.title}</p>
+                <p className="text-text leading-[1.2rem]">{item.title}</p>
               )}
-              <small>
+              <small className="leading-[14px] mt-[3px] block">
                 {Array.isArray(item.subtitle)
                   ? item.subtitle.join(', ')
                   : item.subtitle}
               </small>
-            </ListItemContent>
-          </ListItem>
+            </div>
+          </li>
         ))}
-      </ListContainer>
+      </ul>
       {items.length > initialMaxItems && (
         <Button onClick={showingMore ? handleShowLess : handleShowMore} $active>
           {showingMore ? 'Show less' : 'Show more'}

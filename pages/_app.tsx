@@ -1,5 +1,4 @@
 import type { AppProps } from 'next/app';
-import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 import { useState } from 'react';
 import { Inter } from 'next/font/google';
 import { QueryClientProvider } from '@tanstack/react-query';
@@ -25,22 +24,20 @@ function AppContent({ Component, pageProps }: AppProps) {
   const theme = useTheme();
 
   return (
-    <StyledThemeProvider theme={theme}>
-      <main className={inter.className}>
-        <Sidebar
-          handleMenu={() => setMenuIsOpen(!isMenuOpen)}
-          isOpen={isMenuOpen}
-        />
-        <Navbar
-          handleMenu={() => setMenuIsOpen(!isMenuOpen)}
-          songData={{ song: song ?? null, loading: isLoading }}
-        />
-        <Container>
-          <Component {...pageProps} />
-        </Container>
-        <Footer />
-      </main>
-    </StyledThemeProvider>
+    <main className={inter.className}>
+      <Sidebar
+        handleMenu={() => setMenuIsOpen(!isMenuOpen)}
+        isOpen={isMenuOpen}
+      />
+      <Navbar
+        handleMenu={() => setMenuIsOpen(!isMenuOpen)}
+        songData={{ song: song ?? null, loading: isLoading }}
+      />
+      <Container>
+        <Component {...pageProps} />
+      </Container>
+      <Footer />
+    </main>
   );
 }
 

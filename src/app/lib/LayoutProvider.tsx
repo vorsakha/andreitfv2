@@ -2,7 +2,6 @@
 
 import Navbar from '@components/Navbar';
 import Sidebar from '@components/Sidebar';
-import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 import { useState } from 'react';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { queryClient } from '@lib/queryClient';
@@ -15,7 +14,7 @@ const Menu = ({ children }: { children: React.ReactNode }) => {
   const theme = useTheme();
 
   return (
-    <StyledThemeProvider theme={theme}>
+    <>
       <Sidebar
         handleMenu={() => setMenuIsOpen(!isMenuOpen)}
         isOpen={isMenuOpen}
@@ -25,7 +24,7 @@ const Menu = ({ children }: { children: React.ReactNode }) => {
         songData={{ song: song || null, loading: isLoading }}
       />
       {children}
-    </StyledThemeProvider>
+    </>
   );
 };
 
