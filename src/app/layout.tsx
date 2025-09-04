@@ -4,10 +4,9 @@ import { Container } from '@ui/Container';
 
 import Footer from '@components/Footer';
 
-import { GlobalStyles } from '@styles/theme';
-
 import LayoutProvider from './lib/LayoutProvider';
-import RegistryProvider from './lib/RegistryProvider';
+
+import './globals.css';
 
 const inter = Inter({
   variable: '--inter-font',
@@ -23,13 +22,10 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <main className={inter.className}>
-          <RegistryProvider>
-            <LayoutProvider>
-              <GlobalStyles />
-              <Container>{children}</Container>
-              <Footer />
-            </LayoutProvider>
-          </RegistryProvider>
+          <LayoutProvider>
+            <Container>{children}</Container>
+            <Footer />
+          </LayoutProvider>
         </main>
       </body>
     </html>

@@ -2,13 +2,15 @@ import { Metadata } from 'next';
 
 import Banner from '@components/Banner';
 import List from '@components/List';
+import Link from 'next/link';
 
 import { baseUrl } from '@/constants';
 
-import { Container, ContainerWrapper } from '@ui/Container';
-import { AltTitle } from '@ui/Title';
+import { ContainerWrapper } from '@ui/Container';
+import { AltTitle, Title } from '@ui/Title';
 
 import ContentService from '@services/contentful';
+import { PROJECTS } from '@/constants/projects';
 
 export const metadata: Metadata = {
   title: 'TF',
@@ -22,14 +24,40 @@ export default async function Home() {
   const articles = await ContentService.getHomeEntries();
 
   return (
-    <Container>
-      <ContainerWrapper>
-        <Banner />
-        <div>
-          <AltTitle>Featured Posts</AltTitle>
-          <List items={articles} $grayscaleImage linkToSelf />
-        </div>
-      </ContainerWrapper>
-    </Container>
+    <ContainerWrapper>
+      <Banner />
+      <div>
+        <Title className="mb-[-16px]">Featured Posts</Title>
+        <List
+          items={articles}
+          $grayscaleImage
+          linkToSelf
+          fixedItemsLength={2}
+          $gap={4}
+        />
+        <Link href="/blog" className="underline">
+          View posts
+        </Link>
+      </div>
+
+      <div className="mt-8">
+        <Title className="mb-[-16px]">Featured Projects</Title>
+        <List
+          items={PROJECTS.map(p => ({
+            title: p.title,
+            subtitle: p.summary,
+            image: p.imageUrl,
+            url: `/projects/${p.slug}`,
+            placeholderImage: undefined,
+          }))}
+          $grayscaleImage
+          fixedItemsLength={2}
+          $gap={4}
+        />
+        <Link href="/projects" className="underline">
+          View projects
+        </Link>
+      </div>
+    </ContainerWrapper>
   );
 }

@@ -1,0 +1,371 @@
+@import "tailwindcss";
+
+/* CSS Custom Properties for Light Theme */
+:root {
+  /* Base color palette - matches existing styled-components theme */
+  --color-primary-solid: #ff184c;
+  --color-primary-transparency: rgba(255, 24, 76, 0.4);
+  --color-gray-solid: #a3a3a3;
+  --color-gray-transparency: rgba(163, 163, 163, 0.2);
+  
+  /* Shadow values */
+  --shadow-base: rgba(255, 24, 76, 0.4);
+  
+  /* Light Theme Values - now as default */
+  --theme-text: #0f0f0f;
+  --theme-background: #FAFAFA;
+  --theme-shadow: var(--shadow-base);
+  
+  /* Layout tokens */
+  --container-max-width: 900px;
+  --container-padding: 24px;
+  --wrapper-margin: 24px;
+  
+  /* Animation tokens */
+  --spinner-size: 2rem;
+  --skeleton-radius: 2px;
+  --skeleton-profile-radius: 4px;
+}
+
+/* Tailwind v4 theme configuration with theme-aware tokens */
+@theme {
+  /* Static colors */
+  --color-primary: var(--color-primary-solid);
+  --color-primary-alpha: var(--color-primary-transparency);
+  --color-gray: var(--color-gray-solid);
+  --color-gray-alpha: var(--color-gray-transparency);
+  
+  /* Theme-aware colors */
+  --color-text: var(--theme-text);
+  --color-background: var(--theme-background);
+  --color-shadow: var(--theme-shadow);
+  
+  /* Legacy support - light theme only */
+  --color-light-bg: #FAFAFA;
+  --color-light-text: #0f0f0f;
+
+  /* Custom animations */
+  --animate-spin: spin 1s linear infinite;
+  --animate-skeleton: skeleton-pulse 1s linear infinite alternate;
+  
+  /* Custom keyframes */
+  --keyframes-spin: to { transform: rotate(360deg) };
+  --keyframes-skeleton-pulse: 
+    0% { background-color: var(--color-primary-transparency) }
+    100% { background-color: var(--color-gray-transparency) };
+
+  /* Component-specific tokens */
+  --spinner-size: var(--spinner-size);
+  --skeleton-radius: var(--skeleton-radius);
+  --skeleton-profile-radius: var(--skeleton-profile-radius);
+  
+  /* Drop shadow utilities for primary color */
+  --drop-shadow-primary: drop-shadow(0px 2px 6px rgba(255, 24, 76, 0.8));
+  --drop-shadow-primary-soft: drop-shadow(0px 2px 6px rgba(255, 24, 76, 0.6));
+  --drop-shadow-primary-light: drop-shadow(0px 2px 6px rgba(255, 24, 76, 0.5));
+
+  /* Layout tokens */
+  --container-max-width: var(--container-max-width);
+  --container-padding: var(--container-padding);
+  --wrapper-margin: var(--wrapper-margin);
+}
+
+/* Global styles that complement your existing styled-components */
+* {
+  box-sizing: border-box;
+  font-weight: 300;
+}
+
+/* Theme-aware global styles matching styled-components GlobalStyles */
+a {
+  color: var(--theme-text);
+  text-shadow: var(--color-gray-transparency) 0px 4px 18px, var(--color-gray-transparency) 0px 2px 10px;
+  transition: all 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-primary-solid);
+  text-shadow: var(--color-primary-transparency) 0px 4px 18px, var(--color-primary-transparency) 0px 2px 10px;
+}
+
+::selection {
+  background: var(--color-gray-solid);
+}
+
+mark {
+  background: var(--color-primary-solid);
+  padding: 4px;
+  color: var(--theme-background);
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+li:first-child {
+  margin-top: 0;
+}
+
+li::before {
+  padding-right: 1rem;
+}
+
+ul li::before {
+  content: "•";
+  color: var(--color-primary-solid);
+  text-shadow: var(--color-primary-transparency) 0px 4px 18px, var(--color-primary-transparency) 0px 2px 10px;
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+small {
+  color: var(--color-gray-solid);
+  font-style: italic;
+}
+
+/* Custom utility classes for light theme */
+.theme-light {
+  --tw-bg-color: var(--color-light-bg);
+  --tw-text-color: var(--color-light-text);
+}
+
+/* CSS-only component utilities for performance optimization */
+.btn-themed {
+  color: var(--theme-text);
+  background-color: transparent;
+  transition: all 0.2s ease;
+}
+
+.btn-themed:hover {
+  background-color: var(--color-gray-transparency);
+  color: var(--theme-text);
+}
+
+.btn-themed.active {
+  background-color: var(--color-gray-transparency);
+}
+
+/* Custom keyframes for animations */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes skeleton-pulse {
+  0% { background-color: rgba(255, 24, 76, 0.2); }
+  100% { background-color: rgba(163, 163, 163, 0.2); }
+}
+
+/* Code syntax highlighting compatibility */
+.codeStyle {
+  border-radius: 8px !important;
+  border: none !important;
+}
+
+/* Banner component utilities - matching original styled-components behavior */
+.banner-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 0 48px 0;
+  overflow: hidden;
+  letter-spacing: 0.15em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: start;
+}
+
+.banner-title {
+  padding: 12px 0;
+  font-size: 4rem;
+  display: flex;
+  text-align: start;
+  letter-spacing: normal;
+  line-height: 4rem;
+  margin-bottom: -8px;
+  font-weight: bold;
+}
+
+.banner-subtitle {
+  text-align: start;
+  padding: 12px 0;
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.banner-social-link {
+  font-size: 2rem;
+  margin-right: 1rem;
+  transition: all 0.2s ease;
+  border-bottom: none;
+}
+
+/* CurrentlyPlaying V2 hover effects - matching original styled-components behavior */
+
+/* Ensure icons inherit color so hover on anchor can change svg fill via color */
+.currently-playing-svg svg {
+  color: var(--color-gray-solid);
+}
+
+.currently-playing-group:hover .currently-playing-svg svg {
+  filter: drop-shadow(0px 2px 6px rgba(255, 24, 76, 0.5));
+  color: var(--color-primary-solid) !important;
+}
+
+.currently-playing-group:hover .currently-playing-svg path {
+  fill: var(--color-primary-solid) !important;
+}
+
+.currently-playing-group:hover .currently-playing-image {
+  filter: grayscale(0%);
+}
+
+.navbar-logo {
+  text-shadow: var(--color-shadow) 0px 4px 18px, var(--color-shadow) 0px 2px 10px;
+}
+
+.navbar-mobile-icon {
+  filter: var(--drop-shadow-primary);
+}
+
+.active a {
+  color: var(--color-primary-solid) !important;
+  text-shadow: var(--color-shadow) 0px 4px 18px, var(--color-shadow) 0px 2px 10px !important;
+}
+
+/* Banner responsive breakpoints - matching original */
+@media screen and (max-width: 480px) {
+  .banner-title {
+    font-size: 3.2rem;
+    line-height: 55px;
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .banner-title {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .banner-container {
+    padding: 0;
+    padding-bottom: 24px;
+  }
+}
+
+/* Post markdown body styling - only complex selectors that Tailwind can't handle */
+.post-body p {
+  padding: 0.5rem 0;
+  line-height: 1.7rem;
+}
+
+.post-body h1 {
+  margin-top: 1.5rem;
+  word-wrap: break-word;
+}
+
+.post-body h2 {
+  padding: 0.7rem 0;
+  line-height: 30px;
+  margin-top: 1.5rem;
+  word-wrap: break-word;
+  font-size: 1.5rem;
+}
+
+.post-body h3 {
+  padding: 0.5rem 0;
+  line-height: 30px;
+  margin-top: 1.5rem;
+  font-size: 1.25rem;
+}
+
+.post-body ul {
+  padding: 0.5rem 0 0.5rem 1rem;
+  line-height: 1.7rem;
+  list-style: none;
+}
+
+.post-body li::before {
+  padding-right: 0;
+}
+
+.post-body ul li::before {
+  content: '•';
+  color: var(--color-primary-solid);
+  text-shadow: var(--color-primary-transparency) 0px 4px 18px, var(--color-primary-transparency) 0px 2px 10px;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  width: 1.5rem;
+  margin-left: -1rem;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.post-body a, li a {
+  text-decoration: underline;
+}
+
+.post-body pre {
+  padding: 24px;
+}
+
+.post-body img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.post-body strong {
+  font-weight: 700;
+}
+
+.post-body em {
+  font-style: italic;
+}
+
+.post-body blockquote p {
+  font-style: italic;
+  font-size: 1.5rem;
+  line-height: 2.125rem;
+  text-align: center;
+}
+
+.post-body table {
+  width: 100%;
+  border-spacing: 0.25rem;
+  border-collapse: collapse;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 400;
+}
+
+.post-body th {
+  font-weight: 700;
+  background: var(--color-primary-transparency);
+}
+
+.post-body table,
+.post-body th,
+.post-body td {
+  border: 1px solid var(--color-gray-solid);
+}
+
+.post-body th,
+.post-body td {
+  text-align: left;
+  padding: 0.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .post-body pre {
+    padding: 0;
+  }
+}

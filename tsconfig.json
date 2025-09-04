@@ -32,6 +32,9 @@
       "@hooks/*": [
         "src/hooks/*"
       ],
+      "@contexts/*": [
+        "src/contexts/*"
+      ],
       "@services/*": [
         "src/services/*"
       ],
@@ -49,6 +52,15 @@
       ],
       "@interfaces/*": [
         "src/interfaces/*"
+      ],
+      "@lib/*": [
+        "src/lib/*"
+      ],
+      "app/*": [
+        "src/app/*"
+      ],
+      "app": [
+        "src/app"
       ]
     },
     "plugins": [
@@ -58,12 +70,13 @@
     ]
   },
   "include": [
-    "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    "next-env.d.ts",
     ".next/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    ".next"
   ]
 }

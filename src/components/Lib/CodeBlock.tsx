@@ -5,15 +5,10 @@ import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { xonokai } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import tsx from 'react-syntax-highlighter/dist/cjs/languages/prism/tsx';
 import typescript from 'react-syntax-highlighter/dist/cjs/languages/prism/typescript';
-import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 
 SyntaxHighlighter.registerLanguage('tsx', tsx);
 SyntaxHighlighter.registerLanguage('typescript', typescript);
-
-const CodeWrapper = styled.div`
-  margin: 1rem 0;
-`;
 
 interface CodeBlockProps {
   children: string;
@@ -28,7 +23,7 @@ const CodeBlock = ({ children, lang }: CodeBlockProps) => {
   }, []);
 
   return (
-    <CodeWrapper>
+    <div className="my-4">
       {isClient && (
         <SyntaxHighlighter
           style={xonokai as any}
@@ -41,7 +36,7 @@ const CodeBlock = ({ children, lang }: CodeBlockProps) => {
           {children}
         </SyntaxHighlighter>
       )}
-    </CodeWrapper>
+    </div>
   );
 };
 

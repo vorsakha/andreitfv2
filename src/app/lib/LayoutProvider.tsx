@@ -1,52 +1,38 @@
 'use client';
 
-import { THEMES, theme } from '@styles/theme';
 import Navbar from '@components/Navbar';
 import Sidebar from '@components/Sidebar';
-import { ThemeProvider } from 'styled-components';
-import useSWR from 'swr';
-import useLocalStorage from '@hooks/useLocalStorage';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { queryClient } from '@lib/queryClient';
+import { useSpotify } from '@hooks/useSpotify';
+import { useTheme } from '@hooks/useTheme';
 
-const LayoutProvider = ({ children }: { children: React.ReactNode }) => {
-  const { setItem, getItem } = useLocalStorage();
-  const [selectedTheme, setSelectedTheme] = useState<THEMES>(THEMES.DARK);
+const Menu = ({ children }: { children: React.ReactNode }) => {
   const [isMenuOpen, setMenuIsOpen] = useState(false);
-
-  const fetcher = (url: string) => fetch(url).then(r => r.json());
-  const { data: song, isLoading } = useSWR('/api/spotify', fetcher);
-
-  const toggleTheme = () => {
-    setSelectedTheme(prev => {
-      const newTheme = prev === THEMES.DARK ? THEMES.LIGHT : THEMES.DARK;
-      setItem('@theme', newTheme);
-
-      return newTheme;
-    });
-  };
-
-  useEffect(() => {
-    const loadedTheme: THEMES = getItem('@theme');
-
-    if (loadedTheme) setSelectedTheme(loadedTheme);
-  }, [getItem]);
+  const { data: song, isLoading } = useSpotify();
+  const theme = useTheme();
 
   return (
-    <ThemeProvider theme={theme[selectedTheme]}>
+    <>
       <Sidebar
         handleMenu={() => setMenuIsOpen(!isMenuOpen)}
         isOpen={isMenuOpen}
-        toggleTheme={toggleTheme}
-        selectedTheme={selectedTheme}
       />
       <Navbar
         handleMenu={() => setMenuIsOpen(!isMenuOpen)}
-        toggleTheme={toggleTheme}
-        selectedTheme={selectedTheme}
-        songData={{ song, loading: isLoading }}
+        songData={{ song: song || null, loading: isLoading }}
       />
       {children}
-    </ThemeProvider>
+    </>
+  );
+};
+
+const LayoutProvider = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Menu>{children}</Menu>
+    </QueryClientProvider>
   );
 };
 

@@ -1,64 +1,50 @@
 import type { AppProps } from 'next/app';
-import { ThemeProvider } from 'styled-components';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Inter } from 'next/font/google';
-import useSWR from 'swr';
-
-import { GlobalStyles, theme, THEMES } from '@styles/theme';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { queryClient } from '@lib/queryClient';
+import { useSpotify } from '@hooks/useSpotify';
+import { useTheme } from '@hooks/useTheme';
 import Navbar from '@components/Navbar';
 import Sidebar from '@components/Sidebar';
 import Footer from '@components/Footer';
 import { Container } from '@ui/Container';
-import useLocalStorage from '@hooks/useLocalStorage';
+
+// Import globals.css for theme management
+import '../src/app/globals.css';
 
 const inter = Inter({
   variable: '--inter-font',
   subsets: ['latin'],
 });
 
-export default function App({ Component, pageProps }: AppProps) {
-  const { setItem, getItem } = useLocalStorage();
-  const [selectedTheme, setSelectedTheme] = useState<THEMES>(THEMES.DARK);
+function AppContent({ Component, pageProps }: AppProps) {
   const [isMenuOpen, setMenuIsOpen] = useState(false);
-  const fetcher = (url: string) => fetch(url).then(r => r.json());
-  const { data: song, isLoading } = useSWR('/api/spotify', fetcher);
-
-  const toggleTheme = () => {
-    setSelectedTheme(prev => {
-      const newTheme = prev === THEMES.DARK ? THEMES.LIGHT : THEMES.DARK;
-      setItem('@theme', newTheme);
-
-      return newTheme;
-    });
-  };
-
-  useEffect(() => {
-    const loadedTheme = getItem('@theme') as THEMES;
-
-    if (loadedTheme) setSelectedTheme(loadedTheme);
-  }, [getItem]);
+  const { data: song, isLoading } = useSpotify();
+  const theme = useTheme();
 
   return (
-    <ThemeProvider theme={theme[selectedTheme]}>
-      <main className={inter.className}>
-        <GlobalStyles />
-        <Sidebar
-          handleMenu={() => setMenuIsOpen(!isMenuOpen)}
-          isOpen={isMenuOpen}
-          toggleTheme={toggleTheme}
-          selectedTheme={selectedTheme}
-        />
-        <Navbar
-          handleMenu={() => setMenuIsOpen(!isMenuOpen)}
-          toggleTheme={toggleTheme}
-          selectedTheme={selectedTheme}
-          songData={{ song, loading: isLoading }}
-        />
-        <Container>
-          <Component {...pageProps} />
-        </Container>
-        <Footer />
-      </main>
-    </ThemeProvider>
+    <main className={inter.className}>
+      <Sidebar
+        handleMenu={() => setMenuIsOpen(!isMenuOpen)}
+        isOpen={isMenuOpen}
+      />
+      <Navbar
+        handleMenu={() => setMenuIsOpen(!isMenuOpen)}
+        songData={{ song: song ?? null, loading: isLoading }}
+      />
+      <Container>
+        <Component {...pageProps} />
+      </Container>
+      <Footer />
+    </main>
+  );
+}
+
+export default function App(props: AppProps) {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <AppContent {...props} />
+    </QueryClientProvider>
   );
 }

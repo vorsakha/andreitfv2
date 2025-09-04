@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { PostBody } from '@components/Post/Post.styled';
+import ReactMarkdown from 'react-markdown';
 import { CodeBlock } from '@components/Post/CodeBlock/CodeBlock';
 
 const Wrapper = ({ children }: { children: string }) => {
@@ -12,7 +12,11 @@ const Wrapper = ({ children }: { children: string }) => {
   }, []);
 
   return (
-    <>{isClient && <PostBody components={CodeBlock}>{children}</PostBody>}</>
+    <>{isClient && (
+      <div className="text-[var(--theme-text)] post-body">
+        <ReactMarkdown components={CodeBlock}>{children}</ReactMarkdown>
+      </div>
+    )}</>
   );
 };
 

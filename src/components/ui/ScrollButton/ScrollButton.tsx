@@ -1,8 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-
-import { Button, Arrow } from '@ui/ScrollButton/ScrollButton.styles';
+import { BsArrowUp } from '@react-icons/all-files/bs/BsArrowUp';
 
 const ScrollButton = () => {
   const [scrolled, setScrolled] = useState<boolean>(false);
@@ -28,9 +27,22 @@ const ScrollButton = () => {
   }, []);
 
   return (
-    <Button $scrolled={scrolled} onClick={scrollToTop}>
-      <Arrow />
-    </Button>
+    <button 
+      className={`${
+        scrolled ? 'flex' : 'hidden'
+      } z-[2] fixed bottom-[10vh] right-[6vw] cursor-pointer border-none h-[30px] w-[30px] rounded-full items-center justify-center max-md:right-[45vw] max-md:h-[40px] max-md:w-[40px] max-md:bottom-[5vh]`}
+      style={{
+        background: 'var(--color-primary-solid)',
+        filter: 'var(--drop-shadow-primary-light)',
+        color: 'var(--theme-background)'
+      }}
+      onClick={scrollToTop}
+    >
+      <BsArrowUp 
+        className="text-2xl"
+        style={{ color: 'inherit' }}
+      />
+    </button>
   );
 };
 

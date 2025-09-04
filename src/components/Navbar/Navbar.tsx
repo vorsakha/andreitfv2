@@ -1,71 +1,64 @@
 import { FaBars } from '@react-icons/all-files/fa/FaBars';
-import { HiOutlineSun as SunIcon } from '@react-icons/all-files/hi/HiOutlineSun';
-import { HiOutlineMoon as MoonIcon } from '@react-icons/all-files/hi/HiOutlineMoon';
-
-import {
-  Nav,
-  NavbarContainer,
-  NavLogo,
-  MobileIcon,
-  NavMenu,
-  NavItem,
-  NavLink,
-  NavCurrentlyPlaying,
-} from '@components/Navbar/Navbar.styles';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { THEMES } from '@styles/theme';
-import Button from '@ui/Button';
 import CurrentlyPlaying from '@components/CurrentlyPlayingV2';
 import { ROUTES } from '@interfaces/routes';
 import { SongResponse } from '@services/spotify/models';
 
 type NavbarProps = {
   handleMenu: () => void;
-  toggleTheme: () => void;
-  selectedTheme: THEMES;
   songData: {
-    song: SongResponse;
+    song: SongResponse | null;
     loading: boolean;
   };
 };
 
+const linkClassName =
+  'flex items-center justify-center no-underline py-1 px-6 cursor-pointer transition ease-in-out duration-200 min-w-[89px] min-h-9 border-0 bg-transparent text-[var(--color-text)] hover:text-[var(--theme-text)]';
+
 const Navbar: React.FC<NavbarProps> = ({
   handleMenu,
-  toggleTheme,
-  selectedTheme,
   songData,
 }): JSX.Element => {
   const pathname = usePathname();
+
   return (
-    <Nav>
-      <NavbarContainer>
-        <NavLogo href={ROUTES.HOME}>
-          T<span>F</span>
-        </NavLogo>
-        <MobileIcon onClick={handleMenu}>
+    <nav className="bg-background text-text h-[130px] flex justify-center items-center">
+      <div className="flex justify-between items-center h-[130px] w-full max-w-[900px] px-6">
+        <Link
+          href={ROUTES.HOME}
+          className="text-[35px] p-[10px] cursor-pointer no-underline flex items-center text-primary! navbar-logo"
+        >
+          T<span className="ml-[-5px]">F</span>
+        </Link>
+        <div
+          onClick={handleMenu}
+          className="hidden max-md:block absolute top-[30px] right-0 translate-x-[-100%] translate-y-[50%] text-[1.8rem] cursor-pointer text-primary navbar-mobile-icon"
+        >
           <FaBars />
-        </MobileIcon>
-        <NavMenu>
-          <NavItem $active={pathname === ROUTES.HOME}>
-            <NavLink href={ROUTES.HOME}>Home</NavLink>
-          </NavItem>
-          <NavItem $active={pathname === ROUTES.LIB}>
-            <NavLink href={ROUTES.LIB}>Lib</NavLink>
-          </NavItem>
-          <NavItem $active={pathname === ROUTES.BLOG}>
-            <NavLink href={ROUTES.BLOG}>Blog</NavLink>
-          </NavItem>
+        </div>
+        <div className="flex items-center text-center p-0 gap-4 max-md:hidden">
+          <div
+            className={`flex justify-center items-center ${pathname === ROUTES.PROJECTS ? 'active' : ''}`}
+          >
+            <Link href={ROUTES.PROJECTS} className={linkClassName}>
+              Projects
+            </Link>
+          </div>
+          <div
+            className={`flex justify-center items-center ${pathname === ROUTES.BLOG ? 'active' : ''}`}
+          >
+            <Link href={ROUTES.BLOG} className={linkClassName}>
+              Blog
+            </Link>
+          </div>
+        </div>
 
-          <Button onClick={toggleTheme}>
-            {selectedTheme === THEMES.DARK ? <SunIcon /> : <MoonIcon />}
-          </Button>
-        </NavMenu>
-
-        <NavCurrentlyPlaying>
+        <div className="max-md:hidden">
           <CurrentlyPlaying song={songData.song} loading={songData.loading} />
-        </NavCurrentlyPlaying>
-      </NavbarContainer>
-    </Nav>
+        </div>
+      </div>
+    </nav>
   );
 };
 

@@ -3,13 +3,27 @@ import withPlaiceholder from '@plaiceholder/next';
 
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
-   compiler: {
+  compiler: {
     styledComponents: true,
   },
   images: {
-    domains: ['images.ctfassets.net', 'i.scdn.co'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.ctfassets.net',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.scdn.co',
+      },
+      {
+        protocol: 'https',
+        hostname: 'opengraph.githubassets.com',
+      },
+    ],
+    qualities: [75, 100],
   },
+  outputFileTracingRoot: process.cwd(),
 }
 
 export default withPlaiceholder(nextConfig)
