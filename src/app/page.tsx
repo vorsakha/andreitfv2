@@ -51,6 +51,7 @@ export default async function Home() {
             placeholderImage: undefined,
           }))}
           $grayscaleImage
+          linkToSelf
           fixedItemsLength={2}
           $gap={4}
         />
