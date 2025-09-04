@@ -43,14 +43,15 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   return (
     <ContainerWrapper>
-      <div className="relative w-full h-[240px] mb-4">
+      <div className="h-[350px] max-w-[900px] w-full mx-auto relative md:h-[300px] max-[480px]:h-[250px] mb-4">
         <Image
           src={project.imageUrl || getOgImageUrl(project.owner, project.repo)}
           alt={project.imageAlt}
           fill
-          sizes="100vw"
+          sizes="(max-width: 900px) 100vw, 900px"
           priority
-          className={`object-cover w-full shadow-md rounded-lg ${project.imagePosition === 'top' ? 'object-top' : project.imagePosition === 'bottom' ? 'object-bottom' : 'object-center'}`}
+          loading="eager"
+          className={`rounded-lg object-cover w-full shadow-md ${project.imagePosition === 'top' ? 'object-top' : project.imagePosition === 'bottom' ? 'object-bottom' : 'object-center'}`}
         />
       </div>
 

@@ -25,7 +25,7 @@ const Post: FC<PostProps> = ({ post }) => (
         loading="eager"
         placeholder="blur"
         blurDataURL={post.placeholderImage}
-        className="rounded-lg object-cover w-full"
+        className="rounded-lg object-cover w-full shadow-md"
       />
     </div>
     <div className="max-w-[900px] w-full mx-auto py-6 flex flex-col">
