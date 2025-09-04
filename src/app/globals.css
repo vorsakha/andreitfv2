@@ -173,7 +173,7 @@ small {
 .banner-container {
   width: 100%;
   margin: 0 auto;
-  padding: 48px 0;
+  padding: 0 0 48px 0;
   overflow: hidden;
   letter-spacing: 0.15em;
   display: flex;
@@ -198,11 +198,6 @@ small {
   padding: 12px 0;
   font-size: 1rem;
   font-weight: 300;
-}
-
-.banner-socials {
-  display: flex;
-  padding: 12px 0;
 }
 
 .banner-social-link {
@@ -263,10 +258,6 @@ small {
   .banner-container {
     padding: 0;
     padding-bottom: 24px;
-  }
-  
-  .banner-socials {
-    align-self: center;
   }
 }
 

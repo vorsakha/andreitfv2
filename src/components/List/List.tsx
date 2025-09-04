@@ -11,6 +11,7 @@ export interface List {
   $grayscaleImage?: boolean;
   linkToSelf?: boolean;
   $gap?: number;
+  fixedItemsLength?: number;
 }
 
 export interface ListProps extends List {
@@ -32,6 +33,7 @@ export interface ListProps extends List {
 }
 
 const List: FC<ListProps> = ({
+  fixedItemsLength,
   items = [],
   direction = 'column',
   $grayscaleImage = false,
@@ -46,7 +48,7 @@ const List: FC<ListProps> = ({
   };
 
   const handleShowLess = () => {
-    setQuantityShown(10);
+    setQuantityShown(initialMaxItems);
   };
 
   const showingMore = quantityShown === items.length;
@@ -54,26 +56,32 @@ const List: FC<ListProps> = ({
   return (
     <Wrapper>
       <ul
-        className={`my-4 flex ${direction === 'row' ? 'flex-row' : 'flex-col'} md:flex-col`}
+        className={`flex ${direction === 'row' ? 'flex-row' : 'flex-col'} md:flex-col`}
         style={{ gap: direction === 'row' ? '1rem' : `${$gap}px` }}
       >
-        {items.slice(0, quantityShown).map(item => (
+        {items.slice(0, fixedItemsLength || quantityShown).map(item => (
           <li
             key={item.title}
-            className="flex items-center before:content-none!"
+            className="group flex items-center before:content-none! hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md p-2 -m-2 transition-colors duration-200"
           >
             {item.image && (
-              <div className="mr-[10px]">
+              <div className="mr-[10px]" style={{ minWidth: '120px' }}>
                 <Image
                   src={item.image}
                   alt={item.title}
                   width={64}
                   height={64}
                   quality={100}
-                  placeholder="blur"
-                  blurDataURL={item.placeholderImage}
+                  {...(item.placeholderImage
+                    ? {
+                        placeholder: 'blur',
+                        blurDataURL: item.placeholderImage,
+                      }
+                    : {})}
                   priority
-                  className={`rounded object-cover ${$grayscaleImage ? 'grayscale' : ''}`}
+                  className={`rounded object-cover w-full transition-all duration-200 ${
+                    $grayscaleImage ? 'grayscale group-hover:grayscale-0' : ''
+                  }`}
                 />
               </div>
             )}
@@ -99,7 +107,7 @@ const List: FC<ListProps> = ({
           </li>
         ))}
       </ul>
-      {items.length > initialMaxItems && (
+      {items.length > initialMaxItems && !fixedItemsLength && (
         <Button onClick={showingMore ? handleShowLess : handleShowMore} $active>
           {showingMore ? 'Show less' : 'Show more'}
         </Button>

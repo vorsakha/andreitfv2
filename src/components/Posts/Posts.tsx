@@ -16,14 +16,14 @@ const Posts: FC<PostsProps> = ({ posts }) => (
           return (
             <div
               key={key}
-              className="w-full grid grid-cols-1 md:grid-cols-[minmax(49%,1fr)_1fr] items-center justify-center gap-4 my-8 md:gap-4"
+              className="w-full grid group grid-cols-1 md:grid-cols-[minmax(49%,1fr)_1fr] items-center justify-center gap-4 my-8 md:gap-4"
             >
               <div className="col-start-1 col-end-2">
                 <Link
                   href={`/blog/${item.slug}`}
                   className="no-underline transition-all duration-200 text-[1.6rem]"
                 >
-                  <div className="w-full h-[200px] md:h-[250px] filter grayscale transition-opacity duration-200 relative hover:opacity-80 mt-4 mb-4 md:mt-0 md:mb-0 overflow-hidden rounded-[8px]">
+                  <div className="w-full h-[200px] md:h-[250px] filter grayscale group-hover:grayscale-0 transition-all duration-200 relative mt-4 mb-4 md:mt-0 md:mb-0 overflow-hidden rounded-[8px]">
                     {item.heroImage ? (
                       <Image
                         src={`https:${item.imageUrl}?w=752&h=423`}

@@ -14,7 +14,7 @@ type NavbarProps = {
 };
 
 const linkClassName =
-  'flex items-center justify-center no-underline py-1 px-6 cursor-pointer transition ease-in-out duration-200 min-w-[89px] min-h-9 border-0 bg-transparent text-[var(--color-text)] hover:bg-[var(--color-gray-transparency)] hover:rounded-md hover:text-[var(--theme-text)]';
+  'flex items-center justify-center no-underline py-1 px-6 cursor-pointer transition ease-in-out duration-200 min-w-[89px] min-h-9 border-0 bg-transparent text-[var(--color-text)] hover:text-[var(--theme-text)]';
 
 const Navbar: React.FC<NavbarProps> = ({
   handleMenu,
@@ -39,17 +39,10 @@ const Navbar: React.FC<NavbarProps> = ({
         </div>
         <div className="flex items-center text-center p-0 gap-4 max-md:hidden">
           <div
-            className={`flex justify-center items-center ${pathname === ROUTES.HOME ? 'active' : ''}`}
+            className={`flex justify-center items-center ${pathname === ROUTES.PROJECTS ? 'active' : ''}`}
           >
-            <Link href={ROUTES.HOME} className={linkClassName}>
-              Home
-            </Link>
-          </div>
-          <div
-            className={`flex justify-center items-center ${pathname === ROUTES.LIB ? 'active' : ''}`}
-          >
-            <Link href={ROUTES.LIB} className={linkClassName}>
-              Lib
+            <Link href={ROUTES.PROJECTS} className={linkClassName}>
+              Projects
             </Link>
           </div>
           <div

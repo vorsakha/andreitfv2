@@ -28,24 +28,10 @@ const Sidebar: React.FC<SidebarTypes> = ({
       <div className="flex flex-col items-center justify-center gap-4">
         <Link
           onClick={handleMenu}
-          href={ROUTES.HOME}
+          href={ROUTES.PROJECTS}
           className="flex items-center justify-center text-[1.5rem] no-underline list-none text-[var(--theme-text)] tracking-[1.1px] transition-all duration-200 hover:text-[var(--color-gray-solid)] h-[60px] max-[480px]:h-[80px]"
         >
-          Home
-        </Link>
-        <Link
-          onClick={handleMenu}
-          href={ROUTES.MISC}
-          className="flex items-center justify-center text-[1.5rem] no-underline list-none text-[var(--theme-text)] tracking-[1.1px] transition-all duration-200 hover:text-[var(--color-gray-solid)] h-[60px] max-[480px]:h-[80px]"
-        >
-          Misc
-        </Link>
-        <Link
-          onClick={handleMenu}
-          href={ROUTES.LIB}
-          className="flex items-center justify-center text-[1.5rem] no-underline list-none text-[var(--theme-text)] tracking-[1.1px] transition-all duration-200 hover:text-[var(--color-gray-solid)] h-[60px] max-[480px]:h-[80px]"
-        >
-          Lib
+          Projects
         </Link>
         <Link
           onClick={handleMenu}
