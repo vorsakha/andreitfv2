@@ -66,7 +66,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         ))}
       </div>
 
-      <Back href={ROUTES.BLOG}>Back</Back>
+      <Back href={ROUTES.PROJECTS}>Back</Back>
 
       <AltTitle>{project.title}</AltTitle>
 
