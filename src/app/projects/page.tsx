@@ -11,6 +11,9 @@ import { FaGithub } from '@react-icons/all-files/fa/FaGithub';
 const getOgImageUrl = (owner: string, repo: string): string =>
   `https://opengraph.githubassets.com/1/${owner}/${repo}`;
 
+const PROJECTS_BLUR_DATA_URL =
+  'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSIjRjVGNUY1Ii8+CjxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjE1IiBmaWxsPSIjRjVGNUY1IiBvcGFjaXR5PSIuNCIvPgo8L3N2Zz4K';
+
 export default function ProjectsPage() {
   return (
     <ContainerWrapper>
@@ -29,6 +32,10 @@ export default function ProjectsPage() {
                 alt={project.imageAlt}
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
+                quality={85}
+                decoding="async"
+                placeholder="blur"
+                blurDataURL={PROJECTS_BLUR_DATA_URL}
                 className={`object-cover w-full grayscale group-hover:grayscale-0 transition-all duration-300 ${project.imagePosition === 'top' ? 'object-top' : project.imagePosition === 'bottom' ? 'object-bottom' : 'object-center'}`}
                 priority
               />

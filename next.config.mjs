@@ -21,7 +21,7 @@ const nextConfig = {
         hostname: 'opengraph.githubassets.com',
       },
     ],
-    qualities: [75, 100],
+    qualities: [75, 85, 100],
   },
   outputFileTracingRoot: process.cwd(),
 }

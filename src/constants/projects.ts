@@ -64,7 +64,13 @@ export const PROJECTS: ProjectMeta[] = [
     imageAlt: 'DyeNFT app screenshot',
     summary:
       'A fullstack application that leverages adynamic ERC721 smart contract that generates fully on-chain animated SVG NFTs that evolve in real-time based on blockchain data.',
-    highlights: ['Web3', 'ERC-721', 'Smart Contracts', 'Next.js', 'TypeScript'],
+    highlights: [
+      'Web3',
+      'ERC-721',
+      'Smart Contracts',
+      'React.js',
+      'TypeScript',
+    ],
     overview:
       'Dye NFT is an innovative ERC721 project that generates fully on-chain, animated SVG NFTs that evolve in real time with blockchain data. Unlike static NFTs, each piece is a living artwork that transforms based on its owner’s ETH balance, the current block number, and other on-chain variables. This project demonstrates expertise in smart contract engineering, gas optimization, on-chain generative art, and modern Web3 frontend development.',
     keyFeatures: [
@@ -144,3 +150,6 @@ export const PROJECTS: ProjectMeta[] = [
     ],
   },
 ];
+
+export const BLUR_DATA_URL =
+  'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k=';

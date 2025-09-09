@@ -7,10 +7,10 @@ import Link from 'next/link';
 import { baseUrl } from '@/constants';
 
 import { ContainerWrapper } from '@ui/Container';
-import { AltTitle, Title } from '@ui/Title';
+import { Title } from '@ui/Title';
 
 import ContentService from '@services/contentful';
-import { PROJECTS } from '@/constants/projects';
+import { BLUR_DATA_URL, PROJECTS } from '@/constants/projects';
 
 export const metadata: Metadata = {
   title: 'TF',
@@ -48,7 +48,7 @@ export default async function Home() {
             subtitle: p.summary,
             image: p.imageUrl,
             url: `/projects/${p.slug}`,
-            placeholderImage: undefined,
+            placeholderImage: BLUR_DATA_URL,
           }))}
           $grayscaleImage
           linkToSelf

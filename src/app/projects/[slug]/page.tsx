@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
 
 import { ContainerWrapper } from '@ui/Container';
 import { AltTitle, Title } from '@ui/Title';
@@ -11,9 +12,72 @@ import { parseReadme } from '@services/github/readmeParser';
 import type { ParsedReadme } from '@services/github/models';
 import { Back } from '@/components/ui/Button';
 import { ROUTES } from '@/interfaces/routes';
+import { getBase64Image } from '@/utils/image';
 
 interface ProjectPageProps {
   params: { slug: string };
+}
+
+export async function generateMetadata({
+  params,
+}: ProjectPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const project = PROJECTS.find(p => p.slug === slug);
+
+  if (!project) {
+    return {
+      title: 'Project Not Found',
+      description: 'The requested project could not be found.',
+    };
+  }
+
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+  const imageUrl = project.imageUrl
+    ? `${baseUrl}${project.imageUrl}`
+    : `https://opengraph.githubassets.com/1/${project.owner}/${project.repo}`;
+
+  return {
+    title: `${project.title} | TF`,
+    description: project.summary,
+    keywords: project.highlights,
+    authors: [{ name: 'Andrei Ferreira' }],
+    creator: 'Andrei Ferreira',
+    publisher: 'Andrei Ferreira',
+    openGraph: {
+      title: project.title,
+      description: project.summary,
+      url: `${baseUrl}/projects/${project.slug}`,
+      siteName: 'TF',
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: project.imageAlt,
+        },
+      ],
+      locale: 'en_US',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: project.title,
+      description: project.summary,
+      images: [imageUrl],
+      creator: '@vorsakha',
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
+  };
 }
 
 const getOgImageUrl = (owner: string, repo: string): string =>
@@ -29,16 +93,28 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   let repo: MinimalRepo;
   let readme: string | null = null;
   let parsed: ParsedReadme = {} as ParsedReadme;
+  let blurDataURL: string;
 
   if (project.repoPrivate) {
     repo = {
       homepage: project.repoFallback?.homepage ?? null,
     };
     parsed = {};
+    blurDataURL = await getBase64Image(
+      getOgImageUrl(project.owner, project.repo),
+    );
   } else {
     repo = await GithubService.getRepo(project.owner, project.repo);
     readme = await GithubService.getReadmeMarkdown(project.owner, project.repo);
     parsed = readme ? parseReadme(readme) : ({} as ParsedReadme);
+
+    const imageUrl =
+      project.imageUrl || getOgImageUrl(project.owner, project.repo);
+    blurDataURL = await getBase64Image(
+      imageUrl.startsWith('/')
+        ? `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}${imageUrl}`
+        : imageUrl,
+    );
   }
 
   return (
@@ -51,6 +127,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           sizes="(max-width: 900px) 100vw, 900px"
           priority
           loading="eager"
+          quality={85}
+          decoding="async"
+          placeholder="blur"
+          blurDataURL={blurDataURL}
           className={`rounded-lg object-cover w-full shadow-md ${project.imagePosition === 'top' ? 'object-top' : project.imagePosition === 'bottom' ? 'object-bottom' : 'object-center'}`}
         />
       </div>
