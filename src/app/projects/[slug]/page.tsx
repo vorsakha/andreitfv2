@@ -7,7 +7,7 @@ import type { Metadata } from 'next';
 import { ContainerWrapper } from '@ui/Container';
 import { AltTitle, Title } from '@ui/Title';
 import GithubService from '@services/github';
-import { PROJECTS } from '@constants/projects';
+import { PROJECTS, BLUR_DATA_URL } from '@constants/projects';
 import { parseReadme } from '@services/github/readmeParser';
 import type { ParsedReadme } from '@services/github/models';
 import { Back } from '@/components/ui/Button';
@@ -31,10 +31,11 @@ export async function generateMetadata({
     };
   }
 
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-  const imageUrl = project.imageUrl
-    ? `${baseUrl}${project.imageUrl}`
-    : `https://opengraph.githubassets.com/1/${project.owner}/${project.repo}`;
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const imageUrl =
+    project.imageUrl && baseUrl
+      ? `${baseUrl}${project.imageUrl}`
+      : `https://opengraph.githubassets.com/1/${project.owner}/${project.repo}`;
 
   return {
     title: `${project.title} | TF`,
@@ -102,7 +103,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     parsed = {};
     blurDataURL = await getBase64Image(
       getOgImageUrl(project.owner, project.repo),
-    );
+    ).catch(() => BLUR_DATA_URL);
   } else {
     repo = await GithubService.getRepo(project.owner, project.repo);
     readme = await GithubService.getReadmeMarkdown(project.owner, project.repo);
@@ -110,11 +111,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
     const imageUrl =
       project.imageUrl || getOgImageUrl(project.owner, project.repo);
-    blurDataURL = await getBase64Image(
-      imageUrl.startsWith('/')
-        ? `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}${imageUrl}`
-        : imageUrl,
-    );
+    blurDataURL = imageUrl.startsWith('/')
+      ? await getBase64Image(
+          `${process.env.NEXT_PUBLIC_BASE_URL || ''}${imageUrl}`,
+        ).catch(() => BLUR_DATA_URL)
+      : await getBase64Image(imageUrl).catch(() => BLUR_DATA_URL);
   }
 
   return (
