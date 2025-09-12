@@ -22,7 +22,7 @@ export async function generateMetadata({
   params,
 }: ProjectPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const project = PROJECTS.find(p => p.slug === slug);
+  const project = PROJECTS.find(p => p.slug === slug && p.active !== false);
 
   if (!project) {
     return {
@@ -86,7 +86,7 @@ const getOgImageUrl = (owner: string, repo: string): string =>
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
-  const project = PROJECTS.find(p => p.slug === slug);
+  const project = PROJECTS.find(p => p.slug === slug && p.active !== false);
   if (!project) return notFound();
 
   type MinimalRepo = { homepage?: string | null };

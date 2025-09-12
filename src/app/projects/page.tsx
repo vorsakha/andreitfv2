@@ -15,11 +15,13 @@ const PROJECTS_BLUR_DATA_URL =
   'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSIjRjVGNUY1Ii8+CjxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjE1IiBmaWxsPSIjRjVGNUY1IiBvcGFjaXR5PSIuNCIvPgo8L3N2Zz4K';
 
 export default function ProjectsPage() {
+  const activeProjects = PROJECTS.filter(project => project.active !== false);
+
   return (
     <ContainerWrapper>
       <AltTitle>Projects</AltTitle>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {PROJECTS.map(project => (
+        {activeProjects.map(project => (
           <div
             key={project.slug}
             className="group rounded-md border border-[var(--color-gray-transparency)] overflow-hidden bg-[var(--theme-background)]"

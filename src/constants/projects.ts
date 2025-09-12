@@ -1,4 +1,9 @@
-export type ProjectSlug = 'satsip' | 'dyenft' | 'pixel-points-jobs' | 'lumen';
+export type ProjectSlug =
+  | 'satsip'
+  | 'dyenft'
+  | 'pixel-points-jobs'
+  | 'lumen'
+  | 'nostr-links';
 
 export interface ProjectMeta {
   slug: ProjectSlug;
@@ -20,9 +25,45 @@ export interface ProjectMeta {
   highlights: string[];
   overview?: string;
   keyFeatures?: string[];
+  active?: boolean;
 }
 
 export const PROJECTS: ProjectMeta[] = [
+  {
+    slug: 'nostr-links',
+    title: 'Nostr Links',
+    owner: 'vorsakha',
+    repo: 'alias',
+    liveUrl: undefined,
+    imageUrl: '/assets/links_screenshot.png',
+    imagePosition: 'center',
+    imageAlt: 'Nostr Links app screenshot',
+    summary:
+      'A fully decentralized profile platform for bitcoiners powered by Nostr. No servers, no databases, no centralized control - your data lives on the Nostr network where you own it completely. Think of it as a decentralized Linktree where bitcoiners can showcase their content, social links, and receive Lightning payments.',
+    highlights: [
+      'Decentralized',
+      'Bitcoin',
+      'Web3',
+      'Nostr Protocol',
+      'Lightning Network',
+      'Next.js',
+      'TypeScript',
+    ],
+    overview:
+      'Nostr Links is a fully decentralized profile platform for bitcoiners powered by Nostr. No servers, no databases, no centralized control - your data lives on the Nostr network where you own it completely. Think of it as a decentralized Linktree where bitcoiners can showcase their content, social links, and receive Lightning payments - all stored permanently on Nostr relays worldwide.',
+    keyFeatures: [
+      '🚀 Fully Decentralized – No servers, no databases - data lives on Nostr',
+      '🔐 Self-Sovereign – You own your data, you control your identity',
+      '⚡ Lightning Fast – Real-time updates via Nostr subscriptions',
+      '🎨 Beautiful Profiles – 20+ customizable themes across 6 categories',
+      '⚡ Lightning Zaps – Instant Bitcoin payments via Lightning Network',
+      '🔗 Link Management – Drag-and-drop link organization with rich previews',
+      "🛡️ Censorship Resistant – Your content can't be taken down",
+      '🎭 Theme Customization – Minimal, Vibrant, Professional, Creative, Retro, and Futuristic themes',
+      '🔄 Real-time Updates – Live profile updates across all connected clients',
+    ],
+    active: true,
+  },
   {
     slug: 'satsip',
     title: 'Satsip',
@@ -42,7 +83,7 @@ export const PROJECTS: ProjectMeta[] = [
       'TypeScript',
     ],
     overview:
-      'SatSip is a modern Bitcoin Lightning payment profile platform that enables creators to showcase their content, share social links, and receive instant crypto payments. Think of it as a “Lightning Linktree” — combining a customizable profile page with seamless multi-chain payment support. This project highlights expertise in full-stack Web3 development, authentication, database design, and crypto payment integrations.',
+      'SatSip is a modern Bitcoin Lightning payment profile platform that enables creators to showcase their content, share social links, and receive instant crypto payments. Think of it as a "Lightning Linktree" — combining a customizable profile page with seamless multi-chain payment support. This project highlights expertise in full-stack Web3 development, authentication, database design, and crypto payment integrations.',
     keyFeatures: [
       '⚡ Lightning Payments – One-click Bitcoin Lightning tipping directly from profiles',
       '🌐 Multi-Wallet Support – Accept Bitcoin, Ethereum, Solana, Dogecoin, and Monero',
@@ -52,6 +93,7 @@ export const PROJECTS: ProjectMeta[] = [
       '🛠️ Modern Tech Stack – Next.js 15, TypeScript, Prisma, tRPC, Tailwind, PostgreSQL',
       '🔒 Secure Auth – Discord OAuth + NextAuth.js for streamlined onboarding',
     ],
+    active: false,
   },
   {
     slug: 'dyenft',
@@ -72,16 +114,17 @@ export const PROJECTS: ProjectMeta[] = [
       'TypeScript',
     ],
     overview:
-      'Dye NFT is an innovative ERC721 project that generates fully on-chain, animated SVG NFTs that evolve in real time with blockchain data. Unlike static NFTs, each piece is a living artwork that transforms based on its owner’s ETH balance, the current block number, and other on-chain variables. This project demonstrates expertise in smart contract engineering, gas optimization, on-chain generative art, and modern Web3 frontend development.',
+      "Dye NFT is an innovative ERC721 project that generates fully on-chain, animated SVG NFTs that evolve in real time with blockchain data. Unlike static NFTs, each piece is a living artwork that transforms based on its owner's ETH balance, the current block number, and other on-chain variables. This project demonstrates expertise in smart contract engineering, gas optimization, on-chain generative art, and modern Web3 frontend development.",
     keyFeatures: [
       '🎨 Dynamic Visuals – NFTs change colors, shapes, and animations based on blockchain state and wallet balances',
       '⚡ Real-Time Updates – Artwork and metadata refresh automatically with each new block',
       '🌌 On-Chain Generative Art – 100% on-chain SVGs with procedural starfields, orbital rings, and morphing shapes',
-      '💎 Balance-Responsive Animations – NFT speed and effects adapt to the owner’s ETH holdings',
+      "💎 Balance-Responsive Animations – NFT speed and effects adapt to the owner's ETH holdings",
       '🔗 Modern Web3 Frontend – React + TypeScript + Vite + Tailwind, with wallet integration via Wagmi & Viem',
       '📱 Responsive NFT Gallery – Beautiful, real-time gallery with dark/light themes and smooth animations',
       '🛠️ Optimized Smart Contracts – Gas-efficient Solidity code using OpenZeppelin libraries, with full test coverage',
     ],
+    active: true,
   },
   {
     slug: 'pixel-points-jobs',
@@ -105,6 +148,7 @@ export const PROJECTS: ProjectMeta[] = [
       '🔗 Wallet Integration – Seamless MetaMask + Wagmi hooks for Web3 interactions',
       '🛠️ Modern Tech Stack – Next.js 14, TypeScript, Hardhat, Solidity, Tailwind, Zustand, OpenZeppelin',
     ],
+    active: true,
   },
   {
     slug: 'lumen',
@@ -140,7 +184,7 @@ export const PROJECTS: ProjectMeta[] = [
       '📖 Daily Liturgical Readings – Fetches Catholic readings for any date (EN/PT) with caching and resilience',
       '📚 Personalized Reading Plans – AI‑generated plans with progress tracking, completion, and daily advancement',
       '🔍 Scripture Study Tools – Inline passage retrieval from local Bible datasets (NABRE, Bíblia Ave Maria)',
-      '📝 Guided Journaling & Reflections – Prompts inspired by “A Bíblia no meu dia‑a‑dia”',
+      '📝 Guided Journaling & Reflections – Prompts inspired by "A Bíblia no meu dia‑a‑dia"',
       '🌹 Rosary Assistant – Start, continue, and complete rosary sessions with mystery tracking',
       '🙏 Confession Preparation – Guided examination of conscience with multiple methods',
       '💳 Subscriptions – Single plan with free trial, monthly/yearly billing via Stripe',
@@ -148,6 +192,7 @@ export const PROJECTS: ProjectMeta[] = [
       '🔒 Secure Auth – Google OAuth via NextAuth + Prisma adapter',
       '🌍 Internationalization – English & Portuguese support with `next-intl`',
     ],
+    active: true,
   },
 ];
 
