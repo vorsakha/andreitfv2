@@ -10,7 +10,7 @@ import { ContainerWrapper } from '@ui/Container';
 import { Title } from '@ui/Title';
 
 import ContentService from '@services/contentful';
-import { BLUR_DATA_URL, PROJECTS } from '@/constants/projects';
+import { BLUR_DATA_URL, ACTIVE_PROJECTS } from '@/constants/projects';
 
 export const metadata: Metadata = {
   title: 'TF',
@@ -43,7 +43,7 @@ export default async function Home() {
       <div className="mt-8">
         <Title className="mb-[-16px]">Featured Projects</Title>
         <List
-          items={PROJECTS.filter(p => p.active !== false).map(p => ({
+          items={ACTIVE_PROJECTS.map(p => ({
             title: p.title,
             subtitle: p.summary,
             image: p.imageUrl,

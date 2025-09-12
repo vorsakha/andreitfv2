@@ -7,7 +7,7 @@ import type { Metadata } from 'next';
 import { ContainerWrapper } from '@ui/Container';
 import { AltTitle, Title } from '@ui/Title';
 import GithubService from '@services/github';
-import { PROJECTS, BLUR_DATA_URL } from '@constants/projects';
+import { PROJECTS, ACTIVE_PROJECTS, BLUR_DATA_URL } from '@constants/projects';
 import { parseReadme } from '@services/github/readmeParser';
 import type { ParsedReadme } from '@services/github/models';
 import { Back } from '@/components/ui/Button';
@@ -22,7 +22,7 @@ export async function generateMetadata({
   params,
 }: ProjectPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const project = PROJECTS.find(p => p.slug === slug && p.active !== false);
+  const project = ACTIVE_PROJECTS.find(p => p.slug === slug);
 
   if (!project) {
     return {
@@ -86,7 +86,7 @@ const getOgImageUrl = (owner: string, repo: string): string =>
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
-  const project = PROJECTS.find(p => p.slug === slug && p.active !== false);
+  const project = ACTIVE_PROJECTS.find(p => p.slug === slug);
   if (!project) return notFound();
 
   type MinimalRepo = { homepage?: string | null };
