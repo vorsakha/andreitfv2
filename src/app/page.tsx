@@ -43,7 +43,7 @@ export default async function Home() {
       <div className="mt-8">
         <Title className="mb-[-16px]">Featured Projects</Title>
         <List
-          items={PROJECTS.map(p => ({
+          items={PROJECTS.filter(p => p.active !== false).map(p => ({
             title: p.title,
             subtitle: p.summary,
             image: p.imageUrl,
