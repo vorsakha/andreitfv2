@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate:types": "contentful-typescript-codegen --output src/@types/contentful.d.ts"
+    "generate:types": "contentful-typescript-codegen --output src/@types/contentful.d.ts",
+    "postinstall": "npm install --platform=linux --arch=x64 --ignore-scripts=false sharp"
   },
   "dependencies": {
     "@plaiceholder/next": "^3.0.0",
