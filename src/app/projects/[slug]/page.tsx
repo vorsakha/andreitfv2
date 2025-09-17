@@ -12,7 +12,7 @@ import { parseReadme } from '@services/github/readmeParser';
 import type { ParsedReadme } from '@services/github/models';
 import { Back } from '@/components/ui/Button';
 import { ROUTES } from '@/interfaces/routes';
-import { getBase64Image } from '@/utils/image';
+import ProjectService from '@services/projects';
 
 interface ProjectPageProps {
   params: { slug: string };
@@ -84,38 +84,34 @@ export async function generateMetadata({
 const getOgImageUrl = (owner: string, repo: string): string =>
   `https://opengraph.githubassets.com/1/${owner}/${repo}`;
 
+export async function generateStaticParams() {
+  return ACTIVE_PROJECTS.map(project => ({
+    slug: project.slug,
+  }));
+}
+
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
-  const project = ACTIVE_PROJECTS.find(p => p.slug === slug);
-  if (!project) return notFound();
+  const projectWithPlaceholder = await ProjectService.getProjectBySlugWithPlaceholder(slug);
+  if (!projectWithPlaceholder) return notFound();
+
+  const { placeholderImage, ...project } = projectWithPlaceholder;
 
   type MinimalRepo = { homepage?: string | null };
 
   let repo: MinimalRepo;
   let readme: string | null = null;
   let parsed: ParsedReadme = {} as ParsedReadme;
-  let blurDataURL: string;
 
   if (project.repoPrivate) {
     repo = {
       homepage: project.repoFallback?.homepage ?? null,
     };
     parsed = {};
-    blurDataURL = await getBase64Image(
-      getOgImageUrl(project.owner, project.repo),
-    ).catch(() => BLUR_DATA_URL);
   } else {
     repo = await GithubService.getRepo(project.owner, project.repo);
     readme = await GithubService.getReadmeMarkdown(project.owner, project.repo);
     parsed = readme ? parseReadme(readme) : ({} as ParsedReadme);
-
-    const imageUrl =
-      project.imageUrl || getOgImageUrl(project.owner, project.repo);
-    blurDataURL = imageUrl.startsWith('/')
-      ? await getBase64Image(
-          `${process.env.NEXT_PUBLIC_BASE_URL || ''}${imageUrl}`,
-        ).catch(() => BLUR_DATA_URL)
-      : await getBase64Image(imageUrl).catch(() => BLUR_DATA_URL);
   }
 
   return (
@@ -131,7 +127,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           quality={85}
           decoding="async"
           placeholder="blur"
-          blurDataURL={blurDataURL}
+          blurDataURL={placeholderImage}
           className={`rounded-lg object-cover w-full shadow-md ${project.imagePosition === 'top' ? 'object-top' : project.imagePosition === 'bottom' ? 'object-bottom' : 'object-center'}`}
         />
       </div>

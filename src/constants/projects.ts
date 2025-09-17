@@ -26,6 +26,7 @@ export interface ProjectMeta {
   overview?: string;
   keyFeatures?: string[];
   active?: boolean;
+  placeholderImage?: string;
 }
 
 export const PROJECTS: ProjectMeta[] = [
