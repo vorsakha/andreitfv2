@@ -1,64 +1,129 @@
 import { Metadata } from 'next';
-
-import Banner from '@components/Banner';
-import List from '@components/List';
 import Link from 'next/link';
+import HomeListening from '@components/HomeListening/HomeListening';
 
 import { baseUrl } from '@/constants';
 
 import { ContainerWrapper } from '@ui/Container';
-import { Title } from '@ui/Title';
-
-import ContentService from '@services/contentful';
-import { BLUR_DATA_URL, ACTIVE_PROJECTS } from '@/constants/projects';
 
 export const metadata: Metadata = {
-  title: 'TF',
-  description: "Andrei T. Ferreira's website",
+  title: 'Andrei T. Ferreira',
+  description:
+    'A calm, text-first home for Andrei T. Ferreira, a software engineer working across web2 and web3.',
   openGraph: {
-    images: [`${baseUrl}/api/og?title=Andrei T. Ferreira's website`],
+    images: [`${baseUrl}/api/og?title=Andrei T. Ferreira`],
   },
 };
 
-export default async function Home() {
-  const articles = await ContentService.getHomeEntries();
+const primaryLinks = [
+  {
+    label: 'GitHub',
+    href: 'https://github.com/vorsakha',
+    external: true,
+  },
+  {
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/andreitf/',
+    external: true,
+  },
+  {
+    label: 'Email',
+    href: 'mailto:andreitf.dev@gmail.com',
+    external: true,
+  },
+  {
+    label: 'CV',
+    href: '/cv',
+    external: false,
+  },
+];
 
+const nowItems = [
+  'Building product-facing software across web2 and web3.',
+  'Keeping things simple, fast, and a little more thoughtful than they need to be.',
+  'Paying attention to developer experience, design systems, and interfaces with some personality.',
+];
+
+const eyebrowStyle = {
+  fontFamily: 'var(--font-mono), monospace',
+};
+
+const eyebrowClassName =
+  'm-0 text-[0.74rem] uppercase tracking-[0.12em] text-[var(--theme-subtle)]';
+
+const sectionClassName =
+  'grid grid-cols-[120px_minmax(0,1fr)] gap-6 border-t border-[var(--color-border)] pt-6 max-md:grid-cols-1 max-md:gap-3';
+
+const bodyCopyClassName =
+  'm-0 max-w-[40rem] text-[1rem] leading-[1.85] text-[var(--theme-muted)]';
+
+const linkClassName =
+  'border-b border-transparent pb-[0.18rem] text-[var(--theme-text)] hover:border-[var(--color-primary-solid)]';
+
+export default function Home() {
   return (
-    <ContainerWrapper>
-      <Banner />
-      <div>
-        <Title className="mb-[-16px]">Featured Posts</Title>
-        <List
-          items={articles}
-          $grayscaleImage
-          linkToSelf
-          fixedItemsLength={2}
-          $gap={4}
-        />
-        <Link href="/blog" className="underline">
-          View posts
-        </Link>
-      </div>
+    <ContainerWrapper className="min-h-screen justify-center gap-[4.5rem] py-12 max-md:gap-14 max-md:py-8">
+      <section className="flex flex-col gap-[1.2rem]">
+        <p className={eyebrowClassName} style={eyebrowStyle}>
+          software engineer / brazil
+        </p>
+        <h1 className="m-0 max-w-[8ch] text-[clamp(2.2rem,5.8vw,4.2rem)] leading-[0.98] tracking-[-0.05em] text-balance max-md:max-w-none">
+          Andrei T. Ferreira
+        </h1>
+        <div className="flex flex-wrap gap-x-5 gap-y-3 pt-2">
+          {primaryLinks.map(link =>
+            link.external ? (
+              <a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noreferrer"
+                className={linkClassName}
+              >
+                {link.label}
+              </a>
+            ) : (
+              <Link key={link.label} href={link.href} className={linkClassName}>
+                {link.label}
+              </Link>
+            ),
+          )}
+        </div>
+      </section>
 
-      <div className="mt-8">
-        <Title className="mb-[-16px]">Featured Projects</Title>
-        <List
-          items={ACTIVE_PROJECTS.map(p => ({
-            title: p.title,
-            subtitle: p.summary,
-            image: p.imageUrl,
-            url: `/projects/${p.slug}`,
-            placeholderImage: BLUR_DATA_URL,
-          }))}
-          $grayscaleImage
-          linkToSelf
-          fixedItemsLength={2}
-          $gap={4}
-        />
-        <Link href="/projects" className="underline">
-          View projects
-        </Link>
-      </div>
+      <section className={sectionClassName}>
+        <p className={eyebrowClassName} style={eyebrowStyle}>
+          now
+        </p>
+        <div className="flex flex-col gap-3">
+          <ul className="flex flex-col gap-4">
+            {nowItems.map(item => (
+              <li
+                key={item}
+                className="relative pl-[1.15rem] text-[var(--theme-muted)] leading-[1.8] before:absolute before:top-[0.72rem] before:left-0 before:h-[0.45rem] before:w-[0.45rem] before:rounded-full before:bg-[var(--color-primary-solid)] before:content-['']"
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className={sectionClassName}>
+        <p className={eyebrowClassName} style={eyebrowStyle}>
+          about
+        </p>
+        <div className="flex flex-col gap-3">
+          <p className={bodyCopyClassName}>
+            I like working close to the product. That usually means shaping the
+            UI, tightening the system underneath it, and trimming away anything
+            that feels noisy or unnecessary. I care about technical quality, but
+            I also care about taste, pacing, and whether the final thing feels
+            relaxed instead of overdesigned.
+          </p>
+          <HomeListening />
+        </div>
+      </section>
     </ContainerWrapper>
   );
 }

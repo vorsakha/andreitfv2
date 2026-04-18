@@ -11,9 +11,9 @@ export const Container: FC<ContainerProps> = ({
 }) => {
   return (
     <div
-      className="min-h-[calc(100vh-190px)]"
+      className="min-h-screen"
       style={{
-        background: 'var(--theme-background)',
+        background: 'transparent',
         ...style,
       }}
       {...props}

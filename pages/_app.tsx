@@ -1,42 +1,33 @@
 import type { AppProps } from 'next/app';
-import { useState } from 'react';
-import { Inter } from 'next/font/google';
+import { IBM_Plex_Mono, Space_Grotesk } from 'next/font/google';
 import { QueryClientProvider } from '@tanstack/react-query';
-import { queryClient } from '@lib/queryClient';
-import { useSpotify } from '@hooks/useSpotify';
-import { useTheme } from '@hooks/useTheme';
-import Navbar from '@components/Navbar';
-import Sidebar from '@components/Sidebar';
-import Footer from '@components/Footer';
+import AmbientBackground from '@components/AmbientBackground/AmbientBackground';
 import { Container } from '@ui/Container';
+import { queryClient } from '@lib/queryClient';
 
-// Import globals.css for theme management
 import '../src/app/globals.css';
 
-const inter = Inter({
-  variable: '--inter-font',
+const spaceGrotesk = Space_Grotesk({
+  variable: '--font-sans',
   subsets: ['latin'],
 });
 
-function AppContent({ Component, pageProps }: AppProps) {
-  const [isMenuOpen, setMenuIsOpen] = useState(false);
-  const { data: song, isLoading } = useSpotify();
-  const theme = useTheme();
+const ibmPlexMono = IBM_Plex_Mono({
+  variable: '--font-mono',
+  subsets: ['latin'],
+  weight: ['400', '500'],
+});
 
+function AppContent({ Component, pageProps }: AppProps) {
   return (
-    <main className={inter.className}>
-      <Sidebar
-        handleMenu={() => setMenuIsOpen(!isMenuOpen)}
-        isOpen={isMenuOpen}
-      />
-      <Navbar
-        handleMenu={() => setMenuIsOpen(!isMenuOpen)}
-        songData={{ song: song ?? null, loading: isLoading }}
-      />
+    <main
+      className={`${spaceGrotesk.variable} ${ibmPlexMono.variable}`}
+      style={{ fontFamily: 'var(--font-sans), sans-serif' }}
+    >
+      <AmbientBackground />
       <Container>
         <Component {...pageProps} />
       </Container>
-      <Footer />
     </main>
   );
 }

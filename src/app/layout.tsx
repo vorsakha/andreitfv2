@@ -1,16 +1,21 @@
-import { Inter } from 'next/font/google';
+import { IBM_Plex_Mono, Space_Grotesk } from 'next/font/google';
 
+import AmbientBackground from '@components/AmbientBackground/AmbientBackground';
 import { Container } from '@ui/Container';
-
-import Footer from '@components/Footer';
 
 import LayoutProvider from './lib/LayoutProvider';
 
 import './globals.css';
 
-const inter = Inter({
-  variable: '--inter-font',
+const spaceGrotesk = Space_Grotesk({
+  variable: '--font-sans',
   subsets: ['latin'],
+});
+
+const ibmPlexMono = IBM_Plex_Mono({
+  variable: '--font-mono',
+  subsets: ['latin'],
+  weight: ['400', '500'],
 });
 
 export default function RootLayout({
@@ -20,11 +25,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        <main className={inter.className}>
+      <body className={`${spaceGrotesk.variable} ${ibmPlexMono.variable}`}>
+        <AmbientBackground />
+        <main>
           <LayoutProvider>
             <Container>{children}</Container>
-            <Footer />
           </LayoutProvider>
         </main>
       </body>
