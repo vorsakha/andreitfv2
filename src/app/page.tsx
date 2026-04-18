@@ -1,6 +1,10 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import HomeListening from '@components/HomeListening/HomeListening';
+import {
+  SecretTerminalIconButton,
+  SecretTerminalTrigger,
+} from '@components/SecretTerminal';
 
 import { baseUrl } from '@/constants';
 
@@ -64,9 +68,9 @@ export default function Home() {
   return (
     <ContainerWrapper className="min-h-screen justify-center gap-[4.5rem] py-12 max-md:gap-14 max-md:py-8">
       <section className="flex flex-col gap-[1.2rem]">
-        <p className={eyebrowClassName} style={eyebrowStyle}>
+        <SecretTerminalTrigger className={eyebrowClassName} style={eyebrowStyle}>
           software engineer / brazil
-        </p>
+        </SecretTerminalTrigger>
         <h1 className="m-0 max-w-[8ch] text-[clamp(2.2rem,5.8vw,4.2rem)] leading-[0.98] tracking-[-0.05em] text-balance max-md:max-w-none">
           Andrei T. Ferreira
         </h1>
@@ -82,6 +86,16 @@ export default function Home() {
               >
                 {link.label}
               </a>
+            ) : link.label === 'CV' ? (
+              <span
+                className="inline-flex items-center gap-1.5"
+                key={link.label}
+              >
+                <Link href={link.href} className={linkClassName}>
+                  {link.label}
+                </Link>
+                <SecretTerminalIconButton />
+              </span>
             ) : (
               <Link key={link.label} href={link.href} className={linkClassName}>
                 {link.label}
