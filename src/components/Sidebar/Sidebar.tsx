@@ -11,7 +11,7 @@ type SidebarTypes = {
 const Sidebar: React.FC<SidebarTypes> = ({
   handleMenu,
   isOpen,
-}): JSX.Element => {
+}) => {
   return (
     <div
       className={`fixed inset-0 w-full h-full z-[1000] bg-[var(--theme-background)] flex items-center justify-center left-0 transition-[top,opacity] duration-200 ease-in-out ${

@@ -15,7 +15,7 @@ import { ROUTES } from '@/interfaces/routes';
 import ProjectService from '@services/projects';
 
 interface ProjectPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateMetadata({

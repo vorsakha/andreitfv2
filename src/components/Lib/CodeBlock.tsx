@@ -5,7 +5,7 @@ import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { xonokai } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import tsx from 'react-syntax-highlighter/dist/cjs/languages/prism/tsx';
 import typescript from 'react-syntax-highlighter/dist/cjs/languages/prism/typescript';
-import { useEffect, useState } from 'react';
+import useIsClient from '@hooks/useIsClient';
 
 SyntaxHighlighter.registerLanguage('tsx', tsx);
 SyntaxHighlighter.registerLanguage('typescript', typescript);
@@ -16,11 +16,7 @@ interface CodeBlockProps {
 }
 
 const CodeBlock = ({ children, lang }: CodeBlockProps) => {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+  const isClient = useIsClient();
 
   return (
     <div className="my-4">

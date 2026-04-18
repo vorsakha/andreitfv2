@@ -1,11 +1,10 @@
 import { ImageResponse } from '@vercel/og';
-import { NextApiRequest } from 'next';
 
 export const config = {
   runtime: 'edge',
 };
 
-export default function handler(req: NextApiRequest) {
+export default function handler(req: Request) {
   if (!req.url) {
     return new Response(`Failed to generate the image`, {
       status: 500,

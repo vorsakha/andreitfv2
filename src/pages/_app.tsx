@@ -5,7 +5,7 @@ import AmbientBackground from '@components/AmbientBackground/AmbientBackground';
 import { Container } from '@ui/Container';
 import { queryClient } from '@lib/queryClient';
 
-import '../src/app/globals.css';
+import '../app/globals.css';
 
 const spaceGrotesk = Space_Grotesk({
   variable: '--font-sans',

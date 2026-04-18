@@ -1,15 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
+import useIsClient from '@hooks/useIsClient';
 import { CodeBlock } from '@components/Post/CodeBlock/CodeBlock';
 
 const Wrapper = ({ children }: { children: string }) => {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+  const isClient = useIsClient();
 
   return (
     <>{isClient && (
