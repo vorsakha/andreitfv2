@@ -1,0 +1,7 @@
+.next
+.netlify
+.impeccable
+artifacts
+DESIGN.md
+PRODUCT.md
+public/cv/*.pdf
