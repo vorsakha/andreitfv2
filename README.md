@@ -1,34 +1,27 @@
-<p align="center">
-  <img alt="andreitf" src="https://user-images.githubusercontent.com/13293669/131139123-5533f7c1-aa26-4d27-9fed-1efe4598a41a.png" width="150" />
-</p>
-<h1 align="center">
-    andreitf.co
-</h1>
+# andreitf.co
 
-## ✅ Technology Stack
+Andrei Ferreira's public profile and portfolio. The site uses the Next.js App
+Router, React Server Components, and one typed bilingual public-profile module.
 
-- [NextJs](https://nextjs.org).
-- [Styled components](https://styled-components.com/).
-- [Contentful CMS](https://www.contentful.com/).
-- [Spotify API](https://developer.spotify.com/documentation/web-api/reference/#/).
-- [Github API](https://docs.github.com/en/rest).
-
-
-## Getting Started
-
-First, run the development server:
+## Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
 ```
 
-## Learn More
+No environment variables or external content services are required.
 
-To learn more about Next.js, take a look at the following resources:
+## Checks
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run format:check
+npm run lint
+npm run typecheck
+npm run build
+npm run smoke:mcp
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+`npm run smoke:mcp` uses the official MCP client against the Netlify function
+handler in process. The function's in-source configuration mounts the public
+endpoint at `/mcp`.

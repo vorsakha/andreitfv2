@@ -1,38 +1,23 @@
-import { IBM_Plex_Mono, Space_Grotesk } from 'next/font/google';
+import type { ReactNode } from 'react';
 
-import AmbientBackground from '@components/AmbientBackground/AmbientBackground';
-import { Container } from '@ui/Container';
-
-import LayoutProvider from './lib/LayoutProvider';
-
+import '@fontsource-variable/newsreader';
 import './globals.css';
 
-const spaceGrotesk = Space_Grotesk({
-  variable: '--font-sans',
-  subsets: ['latin'],
-});
+import { siteFontClassName, siteMetadata, siteViewport } from './site-config';
 
-const ibmPlexMono = IBM_Plex_Mono({
-  variable: '--font-mono',
-  subsets: ['latin'],
-  weight: ['400', '500'],
-});
+export const metadata = siteMetadata;
+export const viewport = siteViewport;
 
-export default function RootLayout({
+type EnglishRootLayoutProps = Readonly<{
+  children: ReactNode;
+}>;
+
+export default function EnglishRootLayout({
   children,
-}: {
-  children: React.ReactNode;
-}) {
+}: EnglishRootLayoutProps) {
   return (
-    <html lang="en">
-      <body className={`${spaceGrotesk.variable} ${ibmPlexMono.variable}`}>
-        <AmbientBackground />
-        <main>
-          <LayoutProvider>
-            <Container>{children}</Container>
-          </LayoutProvider>
-        </main>
-      </body>
+    <html lang="en" className={siteFontClassName}>
+      <body>{children}</body>
     </html>
   );
 }

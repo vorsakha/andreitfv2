@@ -8,6 +8,9 @@
 # testing
 /coverage
 
+# local design and QA artifacts
+/artifacts/
+
 # next.js
 /.next/
 /out/
