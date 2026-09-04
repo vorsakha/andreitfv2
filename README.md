@@ -19,9 +19,11 @@ npm run format:check
 npm run lint
 npm run typecheck
 npm run build
-npm run smoke:mcp
 ```
 
-`npm run smoke:mcp` uses the official MCP client against the Netlify function
-handler in process. The function's in-source configuration mounts the public
+## MCP
+
+The public read-only endpoint is `https://andreitf.co/mcp`, using Streamable
+HTTP with no authentication. The site's `/connect` page has client setup
+instructions. The Netlify function's in-source configuration mounts the
 endpoint at `/mcp`.

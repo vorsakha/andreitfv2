@@ -127,7 +127,7 @@ function toToolResult(output: Record<string, unknown>) {
   };
 }
 
-export function createPublicProfileMcpServer() {
+function createPublicProfileMcpServer() {
   const server = new McpServer(
     { name: 'andrei-public-profile', version: '1.0.0' },
     {
@@ -209,10 +209,6 @@ const mcpHandler = createMcpHandler(createPublicProfileMcpServer);
 
 export function handleMcpRequest(request: Request): Promise<Response> {
   return mcpHandler.fetch(request);
-}
-
-export function closeMcpHandler(): Promise<void> {
-  return mcpHandler.close();
 }
 
 export default handleMcpRequest;

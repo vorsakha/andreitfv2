@@ -616,6 +616,29 @@ a:hover .row-arrow {
   line-height: 1.55;
 }
 
+.connection-details {
+  max-width: 65ch;
+  padding-top: 30px;
+  color: var(--body);
+}
+
+.connection-details p {
+  margin: 0 0 24px;
+}
+
+.connection-details code {
+  color: var(--ink);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.9em;
+}
+
+.connection-endpoint {
+  display: block;
+  margin-bottom: 24px;
+  overflow-wrap: anywhere;
+  user-select: all;
+}
+
 .back-link {
   display: inline-block;
   margin-top: 24px;

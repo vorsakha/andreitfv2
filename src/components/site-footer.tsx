@@ -28,7 +28,7 @@ export function SiteFooter({ locale = 'en' }: SiteFooterProps) {
       <nav className="machine-links" aria-label="Machine-readable links">
         <a href="/profile.json">profile.json</a>
         <a href="/llms.txt">llms.txt</a>
-        <a href="/mcp">MCP</a>
+        <Link href="/connect">MCP</Link>
       </nav>
     </footer>
   );
