@@ -29,7 +29,6 @@
     "**/*.tsx",
     "next-env.d.ts",
     "netlify/**/*.ts",
-    "scripts/**/*.ts",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
   ],

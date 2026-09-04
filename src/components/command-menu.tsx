@@ -37,6 +37,23 @@ export function CommandMenu({ links }: CommandMenuProps) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
+  function handleNavigation(href: string) {
+    if (detailsRef.current) {
+      detailsRef.current.open = false;
+    }
+
+    const destination = new URL(href, window.location.href);
+
+    if (destination.pathname === window.location.pathname && destination.hash) {
+      const target = document.getElementById(destination.hash.slice(1));
+
+      if (target) {
+        target.tabIndex = -1;
+        target.focus({ preventScroll: true });
+      }
+    }
+  }
+
   return (
     <details className="command-menu" ref={detailsRef}>
       <summary className="command-trigger" aria-label="Open site navigation">
@@ -51,7 +68,12 @@ export function CommandMenu({ links }: CommandMenuProps) {
           <ul>
             {links.map(link => (
               <li key={link.href}>
-                <Link href={link.href}>{link.label}</Link>
+                <Link
+                  href={link.href}
+                  onNavigate={() => handleNavigation(link.href)}
+                >
+                  {link.label}
+                </Link>
               </li>
             ))}
           </ul>
