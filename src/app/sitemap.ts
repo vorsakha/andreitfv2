@@ -16,6 +16,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: absoluteUrl(publicProfile.homeServer.path),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
       url: absoluteUrl(getCvPdfPath('en')),
       changeFrequency: 'monthly',
       priority: 0.6,

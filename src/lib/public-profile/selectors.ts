@@ -95,9 +95,85 @@ export function selectPublicProfile(locale: Locale) {
       body: [...note.body[locale]],
       url: absoluteUrl(`/notes/${note.slug}`),
     })),
+    homeServer: selectHomeServer(locale),
     cv: {
       pdfUrl: absoluteUrl(getCvPdfPath(locale)),
     },
+  };
+}
+
+export function selectHomeServer(locale: Locale) {
+  const homeServer = publicProfile.homeServer;
+
+  return {
+    path: homeServer.path,
+    url: absoluteUrl(homeServer.path),
+    lastReviewed: {
+      year: homeServer.lastReviewed.year,
+      month: homeServer.lastReviewed.month,
+      label: homeServer.lastReviewed.label[locale],
+    },
+    label: homeServer.label[locale],
+    headline: homeServer.headline[locale],
+    intro: homeServer.intro[locale],
+    topology: {
+      title: homeServer.topology.title[locale],
+      description: homeServer.topology.description[locale],
+      nodes: {
+        archWorkhorse: {
+          name: homeServer.topology.nodes.archWorkhorse.name,
+          role: homeServer.topology.nodes.archWorkhorse.role[locale],
+        },
+        macbook: {
+          name: homeServer.topology.nodes.macbook.name,
+          role: homeServer.topology.nodes.macbook.role[locale],
+        },
+        ubuntuServer: {
+          name: homeServer.topology.nodes.ubuntuServer.name,
+          role: homeServer.topology.nodes.ubuntuServer.role[locale],
+        },
+        apiModels: {
+          name: homeServer.topology.nodes.apiModels.name[locale],
+          role: homeServer.topology.nodes.apiModels.role[locale],
+        },
+      },
+    },
+    servers: homeServer.servers.map(server => ({
+      id: server.id,
+      title: server.title[locale],
+      story: [...server.story[locale]],
+      specs: server.specs.map(spec => ({
+        id: spec.id,
+        label: spec.label[locale],
+        value: spec.value[locale],
+        description: spec.description[locale],
+      })),
+    })),
+    tooling: {
+      title: homeServer.tooling.title[locale],
+      groups: homeServer.tooling.groups.map(group => ({
+        id: group.id,
+        title: group.title[locale],
+        tools: group.tools.map(tool => ({
+          id: tool.id,
+          name: tool.name,
+          description: tool.description[locale],
+        })),
+      })),
+    },
+    principles: {
+      title: homeServer.principles.title[locale],
+      items: homeServer.principles.items.map(item => ({
+        id: item.id,
+        title: item.title[locale],
+        description: item.description[locale],
+      })),
+    },
+    outcome: {
+      title: homeServer.outcome.title[locale],
+      description: [...homeServer.outcome.description[locale]],
+    },
+    metaDescription: homeServer.metaDescription[locale],
   };
 }
 
@@ -121,6 +197,7 @@ export function selectCommandLinks(locale: Locale) {
     { label: navigation.work, href: '/work' },
     { label: navigation.notes, href: '/#notes' },
     { label: navigation.about, href: '/#about' },
+    { label: navigation.homeServer, href: publicProfile.homeServer.path },
     { label: `${navigation.cv} · English`, href: getCvPdfPath('en') },
     {
       label: `${navigation.cv} · Português`,

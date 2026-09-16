@@ -34,6 +34,17 @@ export function GET() {
       ];
     }),
     '',
+    '## Home servers',
+    '',
+    `- [${publicProfile.homeServer.label.en}](${absoluteUrl(publicProfile.homeServer.path)}): ${publicProfile.homeServer.metaDescription.en}`,
+    ...publicProfile.homeServer.servers.map(
+      server =>
+        `- ${server.title.en}: ${server.specs.map(spec => `${spec.label.en} ${spec.value.en}`).join('; ')}`,
+    ),
+    `- ${publicProfile.homeServer.topology.description.en}`,
+    `- ${publicProfile.homeServer.outcome.description.en.join(' ')}`,
+    `- ${publicProfile.homeServer.lastReviewed.label.en}`,
+    '',
     '## Notes',
     '',
     ...publicProfile.notes.map(
@@ -45,6 +56,7 @@ export function GET() {
     '',
     `- [Homepage](${publicProfile.identity.siteUrl})`,
     `- [Selected work](${absoluteUrl('/work')})`,
+    `- [Home servers](${absoluteUrl(publicProfile.homeServer.path)})`,
     `- [English CV PDF](${absoluteUrl(getCvPdfPath('en'))})`,
     `- [PDF do currículo em português](${absoluteUrl(getCvPdfPath('pt-BR'))})`,
     `- [Public profile JSON](${absoluteUrl('/profile.json')})`,

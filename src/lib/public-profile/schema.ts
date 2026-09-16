@@ -56,6 +56,7 @@ export type LocalizedSiteCopy = Readonly<{
     work: string;
     notes: string;
     about: string;
+    homeServer: string;
     cv: string;
   }>;
   sections: Readonly<{
@@ -63,6 +64,90 @@ export type LocalizedSiteCopy = Readonly<{
     selectedWork: string;
     notes: string;
   }>;
+}>;
+
+export type HomeServerSpec = Readonly<{
+  id: 'cpu' | 'memory' | 'storage' | 'gpu' | 'os' | 'access';
+  label: Localized<string>;
+  value: Localized<string>;
+  description: Localized<string>;
+}>;
+
+export type HomeServerMachine = Readonly<{
+  id: 'ubuntu' | 'arch';
+  title: Localized<string>;
+  story: Localized<readonly [string, string]>;
+  specs: readonly HomeServerSpec[];
+}>;
+
+export type HomeServerTool = Readonly<{
+  id: 'hermes-agent' | 'bb' | 'tailscale' | 'wake-on-lan' | 'ark' | 'mcp';
+  name: string;
+  description: Localized<string>;
+}>;
+
+export type HomeServerToolGroup = Readonly<{
+  id: 'runtime' | 'fleet-control' | 'knowledge';
+  title: Localized<string>;
+  tools: readonly HomeServerTool[];
+}>;
+
+export type HomeServerPrinciple = Readonly<{
+  id:
+    | 'private-by-default'
+    | 'resource-limits'
+    | 'measured-upgrades'
+    | 'reversible-systems';
+  title: Localized<string>;
+  description: Localized<string>;
+}>;
+
+export type HomeServerPage = Readonly<{
+  path: '/home-server';
+  lastReviewed: Readonly<{
+    year: 2026;
+    month: 9;
+    label: Localized<string>;
+  }>;
+  label: Localized<string>;
+  headline: Localized<string>;
+  intro: Localized<string>;
+  topology: Readonly<{
+    title: Localized<string>;
+    description: Localized<string>;
+    nodes: Readonly<{
+      archWorkhorse: Readonly<{
+        name: 'Arch workhorse';
+        role: Localized<string>;
+      }>;
+      macbook: Readonly<{
+        name: 'MacBook';
+        role: Localized<string>;
+      }>;
+      ubuntuServer: Readonly<{
+        name: 'Ubuntu server';
+        role: Localized<string>;
+      }>;
+      apiModels: Readonly<{
+        name: Localized<string>;
+        role: Localized<string>;
+      }>;
+    }>;
+  }>;
+  servers: readonly [HomeServerMachine, HomeServerMachine];
+  tooling: Readonly<{
+    title: Localized<string>;
+    groups: readonly HomeServerToolGroup[];
+  }>;
+  principles: Readonly<{
+    title: Localized<string>;
+    items: readonly HomeServerPrinciple[];
+  }>;
+  outcome: Readonly<{
+    title: Localized<string>;
+    description: Localized<readonly [string, string]>;
+  }>;
+  metaDescription: Localized<string>;
 }>;
 
 export type BilingualPublicProfile = Readonly<{
@@ -95,5 +180,6 @@ export type BilingualPublicProfile = Readonly<{
   education: readonly EducationItem[];
   spokenLanguages: Localized<readonly string[]>;
   notes: readonly PublicNote[];
+  homeServer: HomeServerPage;
   copy: Localized<LocalizedSiteCopy>;
 }>;

@@ -11,10 +11,15 @@ import { CommandMenu } from './command-menu';
 
 type SiteHeaderProps = Readonly<{
   locale?: Locale;
+  activePath?: string;
 }>;
 
-export function SiteHeader({ locale = 'en' }: SiteHeaderProps) {
+export function SiteHeader({
+  locale = 'en',
+  activePath,
+}: SiteHeaderProps) {
   const navigation = publicProfile.copy[locale].navigation;
+  const homeServerPath = publicProfile.homeServer.path;
 
   return (
     <header className="site-header">
@@ -26,6 +31,12 @@ export function SiteHeader({ locale = 'en' }: SiteHeaderProps) {
           <Link href="/work">{navigation.work}</Link>
           <Link href="/#notes">{navigation.notes}</Link>
           <Link href="/#about">{navigation.about}</Link>
+          <Link
+            href={homeServerPath}
+            aria-current={activePath === homeServerPath ? 'page' : undefined}
+          >
+            {navigation.homeServer}
+          </Link>
           <a href={getCvPdfPath(locale)}>{navigation.cv}</a>
         </nav>
         <div className="header-utilities">

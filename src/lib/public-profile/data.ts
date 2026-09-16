@@ -317,6 +317,390 @@ export const publicProfile = {
       },
     },
   ],
+  homeServer: {
+    path: '/home-server',
+    lastReviewed: {
+      year: 2026,
+      month: 9,
+      label: {
+        en: 'Last reviewed · September 2026',
+        'pt-BR': 'Última revisão · setembro de 2026',
+      },
+    },
+    label: {
+      en: 'Home servers',
+      'pt-BR': 'Servidores domésticos',
+    },
+    headline: {
+      en: 'Two machines, one private agent cloud.',
+      'pt-BR': 'Duas máquinas, uma nuvem privada de agentes.',
+    },
+    intro: {
+      en: 'The Ubuntu server keeps services available around the clock. The Arch workhorse handles development and local compute, with the MacBook as the fleet interface.',
+      'pt-BR':
+        'O servidor Ubuntu mantém os serviços disponíveis o tempo todo. A máquina Arch cuida do desenvolvimento e processamento local, com o MacBook como interface da frota.',
+    },
+    topology: {
+      title: {
+        en: 'Fleet topology',
+        'pt-BR': 'Topologia da frota',
+      },
+      description: {
+        en: 'The MacBook connects to both servers over a private mesh. The Ubuntu server keeps services running, while the Arch workhorse handles development and local compute. Both can send model work to external APIs.',
+        'pt-BR':
+          'O MacBook se conecta aos dois servidores por uma malha privada. O servidor Ubuntu mantém os serviços ativos, enquanto a máquina Arch cuida do desenvolvimento e processamento local. Ambos podem enviar o trabalho dos modelos para APIs externas.',
+      },
+      nodes: {
+        archWorkhorse: {
+          name: 'Arch workhorse',
+          role: {
+            en: 'Development and local compute',
+            'pt-BR': 'Desenvolvimento e processamento local',
+          },
+        },
+        macbook: {
+          name: 'MacBook',
+          role: {
+            en: 'Fleet interface',
+            'pt-BR': 'Interface da frota',
+          },
+        },
+        ubuntuServer: {
+          name: 'Ubuntu server',
+          role: {
+            en: 'Always-on services',
+            'pt-BR': 'Serviços sempre ativos',
+          },
+        },
+        apiModels: {
+          name: {
+            en: 'API models',
+            'pt-BR': 'Modelos via API',
+          },
+          role: {
+            en: 'External inference',
+            'pt-BR': 'Inferência externa',
+          },
+        },
+      },
+    },
+    servers: [
+      {
+        id: 'ubuntu',
+        title: {
+          en: 'Ubuntu server',
+          'pt-BR': 'Servidor Ubuntu',
+        },
+        story: {
+          en: [
+            'I keep the server deliberately modest. It coordinates API-backed workloads, persistent services and background jobs while the Arch workhorse handles development and local compute and the MacBook provides the fleet interface.',
+            'That separation gives me an environment I can restart, limit and change without tying infrastructure to the machines I use every day.',
+          ],
+          'pt-BR': [
+            'Mantenho o servidor deliberadamente modesto. Ele coordena cargas baseadas em API, serviços persistentes e tarefas em segundo plano enquanto a máquina Arch cuida do desenvolvimento e processamento local e o MacBook funciona como interface da frota.',
+            'Essa separação me dá um ambiente que posso reiniciar, limitar e alterar sem prender a infraestrutura às máquinas que uso todos os dias.',
+          ],
+        },
+        specs: [
+          {
+            id: 'cpu',
+            label: { en: 'CPU', 'pt-BR': 'CPU' },
+            value: { en: 'AMD FX-4300', 'pt-BR': 'AMD FX-4300' },
+            description: {
+              en: 'Four physical cores for modest orchestration work.',
+              'pt-BR': 'Quatro núcleos físicos para orquestração moderada.',
+            },
+          },
+          {
+            id: 'memory',
+            label: { en: 'Memory', 'pt-BR': 'Memória' },
+            value: {
+              en: '11 GB RAM + 4 GB swap',
+              'pt-BR': '11 GB de RAM + 4 GB de swap',
+            },
+            description: {
+              en: 'Services run inside explicit memory limits.',
+              'pt-BR': 'Os serviços rodam com limites explícitos de memória.',
+            },
+          },
+          {
+            id: 'storage',
+            label: { en: 'Storage', 'pt-BR': 'Armazenamento' },
+            value: {
+              en: '120 GB SSD + 500 GB HDD',
+              'pt-BR': '120 GB SSD + 500 GB HDD',
+            },
+            description: {
+              en: 'Active state stays on SSD; larger artifacts move to HDD.',
+              'pt-BR':
+                'O estado ativo fica no SSD; artefatos maiores vão para o HDD.',
+            },
+          },
+          {
+            id: 'gpu',
+            label: { en: 'GPU', 'pt-BR': 'GPU' },
+            value: {
+              en: 'NVIDIA GTX 650',
+              'pt-BR': 'NVIDIA GTX 650',
+            },
+            description: {
+              en: 'Not used for inference; model work runs through external APIs.',
+              'pt-BR':
+                'Não é usada para inferência; os modelos rodam por APIs externas.',
+            },
+          },
+          {
+            id: 'os',
+            label: { en: 'OS', 'pt-BR': 'SO' },
+            value: { en: 'Ubuntu', 'pt-BR': 'Ubuntu' },
+            description: {
+              en: 'A stable host for containers and supervised services.',
+              'pt-BR':
+                'Um host estável para contêineres e serviços supervisionados.',
+            },
+          },
+          {
+            id: 'access',
+            label: { en: 'Access', 'pt-BR': 'Acesso' },
+            value: { en: 'Tailscale', 'pt-BR': 'Tailscale' },
+            description: {
+              en: 'Private mesh access without exposing the server publicly.',
+              'pt-BR':
+                'Acesso por malha privada sem expor o servidor publicamente.',
+            },
+          },
+        ],
+      },
+      {
+        id: 'arch',
+        title: {
+          en: 'Arch workhorse',
+          'pt-BR': 'Máquina Arch',
+        },
+        story: {
+          en: [
+            'The Arch workhorse is the more capable server. It handles development environments, local builds and workloads that need more CPU, memory or GPU capacity than the Ubuntu server can provide.',
+            'Keeping that work on a separate machine lets the always-on services remain predictable while heavier jobs use the hardware built for them.',
+          ],
+          'pt-BR': [
+            'A máquina Arch é o servidor mais potente. Ela cuida de ambientes de desenvolvimento, builds locais e cargas que precisam de mais CPU, memória ou GPU do que o servidor Ubuntu pode oferecer.',
+            'Manter esse trabalho em uma máquina separada preserva a previsibilidade dos serviços sempre ativos enquanto as tarefas mais pesadas usam o hardware adequado.',
+          ],
+        },
+        specs: [
+          {
+            id: 'cpu',
+            label: { en: 'CPU', 'pt-BR': 'CPU' },
+            value: { en: 'AMD Ryzen 5 5600X', 'pt-BR': 'AMD Ryzen 5 5600X' },
+            description: {
+              en: 'Six cores and twelve threads for builds and concurrent jobs.',
+              'pt-BR':
+                'Seis núcleos e doze threads para builds e tarefas simultâneas.',
+            },
+          },
+          {
+            id: 'memory',
+            label: { en: 'Memory', 'pt-BR': 'Memória' },
+            value: { en: '32 GB RAM', 'pt-BR': '32 GB de RAM' },
+            description: {
+              en: 'Enough room for development environments and parallel workloads.',
+              'pt-BR':
+                'Espaço para ambientes de desenvolvimento e cargas paralelas.',
+            },
+          },
+          {
+            id: 'gpu',
+            label: { en: 'GPU', 'pt-BR': 'GPU' },
+            value: {
+              en: 'NVIDIA RTX 5060 Ti',
+              'pt-BR': 'NVIDIA RTX 5060 Ti',
+            },
+            description: {
+              en: 'GPU capacity for local compute and graphics workloads.',
+              'pt-BR':
+                'Capacidade de GPU para processamento local e cargas gráficas.',
+            },
+          },
+          {
+            id: 'os',
+            label: { en: 'OS', 'pt-BR': 'SO' },
+            value: { en: 'Omarchy (Arch)', 'pt-BR': 'Omarchy (Arch)' },
+            description: {
+              en: 'Omarchy provides the development environment on top of Arch Linux.',
+              'pt-BR':
+                'O Omarchy fornece o ambiente de desenvolvimento sobre o Arch Linux.',
+            },
+          },
+          {
+            id: 'access',
+            label: { en: 'Access', 'pt-BR': 'Acesso' },
+            value: { en: 'Tailscale', 'pt-BR': 'Tailscale' },
+            description: {
+              en: 'Private fleet access from the MacBook and Ubuntu server.',
+              'pt-BR': 'Acesso privado pelo MacBook e pelo servidor Ubuntu.',
+            },
+          },
+        ],
+      },
+    ],
+    tooling: {
+      title: { en: 'What runs here', 'pt-BR': 'O que roda aqui' },
+      groups: [
+        {
+          id: 'runtime',
+          title: { en: 'Agent runtime', 'pt-BR': 'Runtime de agentes' },
+          tools: [
+            {
+              id: 'hermes-agent',
+              name: 'Hermes Agent',
+              description: {
+                en: 'The resident agent runtime and command interface on the Ubuntu server.',
+                'pt-BR':
+                  'O runtime de agentes residente e a interface de comando no servidor Ubuntu.',
+              },
+            },
+            {
+              id: 'bb',
+              name: 'bb',
+              description: {
+                en: 'Coordinates coding agents and supervised workflows across the fleet.',
+                'pt-BR':
+                  'Coordena agentes de código e fluxos supervisionados entre as máquinas.',
+              },
+            },
+          ],
+        },
+        {
+          id: 'fleet-control',
+          title: { en: 'Fleet control', 'pt-BR': 'Controle da frota' },
+          tools: [
+            {
+              id: 'tailscale',
+              name: 'Tailscale',
+              description: {
+                en: 'Connects the MacBook and both servers over a private network.',
+                'pt-BR':
+                  'Conecta o MacBook e os dois servidores por uma rede privada.',
+              },
+            },
+            {
+              id: 'wake-on-lan',
+              name: 'Wake-on-LAN',
+              description: {
+                en: 'Lets the always-on Ubuntu server wake the Arch workhorse when I need it.',
+                'pt-BR':
+                  'Permite que o servidor Ubuntu sempre ativo ligue a máquina Arch quando necessário.',
+              },
+            },
+          ],
+        },
+        {
+          id: 'knowledge',
+          title: {
+            en: 'Knowledge and tools',
+            'pt-BR': 'Conhecimento e ferramentas',
+          },
+          tools: [
+            {
+              id: 'ark',
+              name: 'Ark',
+              description: {
+                en: 'Indexes user-confirmed knowledge for deliberate retrieval.',
+                'pt-BR':
+                  'Indexa conhecimento confirmado para recuperação deliberada.',
+              },
+            },
+            {
+              id: 'mcp',
+              name: 'MCP',
+              description: {
+                en: 'Provides a standard boundary between agents and hosted tools.',
+                'pt-BR':
+                  'Fornece uma fronteira padrão entre agentes e ferramentas hospedadas.',
+              },
+            },
+          ],
+        },
+      ],
+    },
+    principles: {
+      title: {
+        en: 'Operating principles',
+        'pt-BR': 'Princípios de operação',
+      },
+      items: [
+        {
+          id: 'private-by-default',
+          title: {
+            en: 'Private by default',
+            'pt-BR': 'Privado por padrão',
+          },
+          description: {
+            en: 'The machines communicate over a private mesh. Only intentionally public facts leave it.',
+            'pt-BR':
+              'As máquinas se comunicam por uma malha privada. Só fatos intencionalmente públicos saem dela.',
+          },
+        },
+        {
+          id: 'resource-limits',
+          title: {
+            en: 'Explicit resource limits',
+            'pt-BR': 'Limites explícitos de recurso',
+          },
+          description: {
+            en: 'Jobs receive clear CPU, memory and time bounds so one workload cannot consume the host.',
+            'pt-BR':
+              'Tarefas recebem limites claros de CPU, memória e tempo para que uma carga não consuma o host.',
+          },
+        },
+        {
+          id: 'measured-upgrades',
+          title: {
+            en: 'Measured upgrades',
+            'pt-BR': 'Upgrades medidos',
+          },
+          description: {
+            en: 'Hardware and software change when a measured limit justifies the cost.',
+            'pt-BR':
+              'Hardware e software mudam quando um limite medido justifica o custo.',
+          },
+        },
+        {
+          id: 'reversible-systems',
+          title: {
+            en: 'Reversible, understandable systems',
+            'pt-BR': 'Sistemas reversíveis e compreensíveis',
+          },
+          description: {
+            en: 'I prefer setups I can inspect, undo and replace without reconstructing forgotten decisions.',
+            'pt-BR':
+              'Prefiro configurações que posso inspecionar, desfazer e substituir sem reconstruir decisões esquecidas.',
+          },
+        },
+      ],
+    },
+    outcome: {
+      title: {
+        en: 'What this enables',
+        'pt-BR': 'O que isso possibilita',
+      },
+      description: {
+        en: [
+          'The fleet lets me work remotely without giving up desktop compute. Builds, heavier jobs and several agents run on the servers, so the MacBook stays responsive and uses less battery.',
+          'The Ubuntu server stays online as the control point. I can use it to wake the Arch workhorse when I need more capacity, then shut that machine down when the work is finished.',
+        ],
+        'pt-BR': [
+          'A frota me permite trabalhar remotamente sem abrir mão do poder de processamento de um desktop. Builds, tarefas pesadas e vários agentes rodam nos servidores, mantendo o MacBook responsivo e consumindo menos bateria.',
+          'O servidor Ubuntu permanece ativo como ponto de controle. Posso usá-lo para ligar a máquina Arch quando preciso de mais capacidade e desligá-la quando o trabalho termina.',
+        ],
+      },
+    },
+    metaDescription: {
+      en: 'A two-server home fleet for always-on agent services, development and local compute.',
+      'pt-BR':
+        'Uma frota doméstica com dois servidores para serviços de agentes sempre ativos, desenvolvimento e processamento local.',
+    },
+  },
   copy: {
     en: {
       eyebrow: 'FULL-STACK ENGINEER · AI-NATIVE SYSTEMS',
@@ -325,7 +709,13 @@ export const publicProfile = {
         'TypeScript, React, Node.js and PostgreSQL.',
         'Currently building Pi Native Subagents.',
       ],
-      navigation: { work: 'Work', notes: 'Notes', about: 'About', cv: 'CV' },
+      navigation: {
+        work: 'Work',
+        notes: 'Notes',
+        about: 'About',
+        homeServer: 'Home servers',
+        cv: 'CV',
+      },
       sections: {
         building: 'Building',
         selectedWork: 'Selected work',
@@ -343,6 +733,7 @@ export const publicProfile = {
         work: 'Trabalho',
         notes: 'Notas',
         about: 'Sobre',
+        homeServer: 'Servidores domésticos',
         cv: 'Currículo',
       },
       sections: {
