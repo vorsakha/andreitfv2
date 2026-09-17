@@ -563,9 +563,9 @@ export const publicProfile = {
               id: 'bb',
               name: 'bb',
               description: {
-                en: 'Coordinates coding agents and supervised workflows across the fleet.',
+                en: 'Runs Claude Code, Codex, Pi and Cursor agents through one coordinated interface across the fleet.',
                 'pt-BR':
-                  'Coordena agentes de código e fluxos supervisionados entre as máquinas.',
+                  'Executa agentes do Claude Code, Codex, Pi e Cursor por uma interface coordenada entre as máquinas.',
               },
             },
           ],
